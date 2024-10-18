@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { environment } from '../../environments/envionments';
+import { environment } from '../../environments/environments';
 import { HttpClient } from '@angular/common/http';
 import { Role } from '../models/Role';
 const base_url=environment.base
