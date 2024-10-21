@@ -1,0 +1,36 @@
+<table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+  
+    <!-- Position Column -->
+    <ng-container matColumnDef="c1">
+      <th mat-header-cell *matHeaderCellDef> id Detalle de Historia </th>
+      <td mat-cell *matCellDef="let element"> {{element.idDetalleHistoria}} </td>
+    </ng-container>
+  
+    <!-- Name Column -->
+    <ng-container matColumnDef="c2">
+      <th mat-header-cell *matHeaderCellDef> id Historia </th>
+      <td mat-cell *matCellDef="let element"> {{element.medicalRecord.idMedicalRecord}} </td>
+    </ng-container>
+  
+    <!-- Weight Column -->
+    <ng-container matColumnDef="c3">
+      <th mat-header-cell *matHeaderCellDef> id Receta </th>
+      <td mat-cell *matCellDef="let element"> {{element.recipe.idRecipe}} </td>
+    </ng-container>
+  
+    <!-- Symbol Column -->
+    <ng-container matColumnDef="c4">
+      <th mat-header-cell *matHeaderCellDef> id Cita </th>
+      <td mat-cell *matCellDef="let element"> {{element.appointment.idAppointment}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="c5">
+        <th mat-header-cell *matHeaderCellDef> Diagnostico </th>
+        <td mat-cell *matCellDef="let element"> {{element.diagnostico}} </td>
+      </ng-container>
+  
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+  
+  
