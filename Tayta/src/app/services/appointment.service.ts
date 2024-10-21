@@ -8,7 +8,7 @@ const base_url=environment.base
   providedIn: 'root'
 })
 export class AppointmentService {
-private url=`${base_url}/cita`
+private url=`${base_url}/citas`
   constructor(private http:HttpClient) { }
   list(){
     return this.http.get<Appointment[]>(this.url);

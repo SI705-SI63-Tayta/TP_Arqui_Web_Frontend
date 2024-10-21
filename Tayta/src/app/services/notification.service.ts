@@ -1,16 +1,24 @@
 import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environments';
 import { HttpClient } from '@angular/common/http';
-import { Recipe } from '../models/Recipe';
+import { Notification } from '../models/Notification';
+
+
+
+
 const base_url=environment.base
 
 @Injectable({
   providedIn: 'root'
 })
-export class RecipeService {
-private url=`${base_url}/recipes`
+export class NotificationService {
+
+   private url=`${base_url}/notificaciones`
+
   constructor(private http:HttpClient) { }
+
   list(){
-    return this.http.get<Recipe[]>(this.url);
+    return this.http.get<Notification[]>(this.url);
   }
+
 }

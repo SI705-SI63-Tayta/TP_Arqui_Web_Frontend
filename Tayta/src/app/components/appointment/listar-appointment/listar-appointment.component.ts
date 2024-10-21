@@ -10,7 +10,7 @@ import { AppointmentService } from '../../../services/appointment.service';
   templateUrl: './listar-appointment.component.html',
   styleUrl: './listar-appointment.component.css'
 })
-export class ListarAppointmentComponent {
+export class ListarAppointmentComponent implements OnInit{
   dataSource:MatTableDataSource<Appointment> = new MatTableDataSource();
   displayedColumns: string[] = ['c1', 'c2', 'c3','c4','c5']
 
