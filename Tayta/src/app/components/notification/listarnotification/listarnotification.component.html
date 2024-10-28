@@ -1,0 +1,28 @@
+<table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+
+    <ng-container matColumnDef="c1">
+      <th mat-header-cell *matHeaderCellDef> idNotification </th>
+      <td mat-cell *matCellDef="let element"> {{element.idNotification}} </td>
+    </ng-container>
+  
+    <ng-container matColumnDef="c2">
+      <th mat-header-cell *matHeaderCellDef> message </th>
+      <td mat-cell *matCellDef="let element"> {{element.message}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="c3">
+        <th mat-header-cell *matHeaderCellDef> id user </th>
+        <td mat-cell *matCellDef="let element"> {{element.user.idUser}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="c4">
+        <th mat-header-cell *matHeaderCellDef> id recipe </th>
+        <td mat-cell *matCellDef="let element"> {{element.recipes.idRecipe}} </td>
+    </ng-container>
+
+  
+    
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
