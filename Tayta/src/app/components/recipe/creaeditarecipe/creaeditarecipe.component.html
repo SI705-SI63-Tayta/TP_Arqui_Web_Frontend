@@ -1,0 +1,48 @@
+<div class="container" style="text-align: center;margin:2%">
+    <div><h1>Registro de Vehículos</h1></div>
+    <div>
+      <form [formGroup]="form" (submit)=" insertar()">
+        <mat-form-field class="example-full-width" *ngIf="edicion">
+          <mat-label>Código</mat-label>
+          <input matInput formControlName="codigo" />
+        </mat-form-field>
+        <br />
+        <mat-form-field class="example-full-width">
+          <mat-label>Descripcion</mat-label>
+          <input matInput formControlName="descripcion" />
+        </mat-form-field>
+        <br />
+        <mat-form-field>
+            <mat-label>Escoge una fecha de inicio</mat-label>
+            <input matInput [matDatepicker]="picker" formControlName="fechainicio"/>
+            <mat-hint>MM/DD/YYYY</mat-hint>
+            <mat-datepicker-toggle
+              matIconSuffix
+              [for]="picker"
+            ></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+          </mat-form-field>
+        <br />
+        <mat-form-field>
+            <mat-label>Escoge una fecha de fin</mat-label>
+            <input matInput [matDatepicker]="picker" formControlName="fechafin"/>
+            <mat-hint>MM/DD/YYYY</mat-hint>
+            <mat-datepicker-toggle
+              matIconSuffix
+              [for]="picker"
+            ></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+          </mat-form-field>
+        <br />
+        <mat-form-field class="example-full-width">
+            <mat-label>Estado</mat-label>
+            <input matInput formControlName="estado" />
+          </mat-form-field>
+  
+        <div>
+          <button mat-flat-button class="custom-button">Registrar</button>
+        </div>
+      </form>
+    </div>
+  </div>
+  
