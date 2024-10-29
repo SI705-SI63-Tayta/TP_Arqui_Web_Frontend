@@ -1,4 +1,4 @@
-<div class="container" style="text-align: center;margin:2%">
+  <div class="container" style="text-align: center;margin:2%">
     <div><h1>Registro de Citas</h1></div>
     <div>
       <form [formGroup]="form" (submit)=" insertar()">
@@ -20,12 +20,11 @@
         <br />
         <mat-form-field>
           <mat-label>Razon</mat-label>
-          <mat-select formControlName="razon" >
-          </mat-select>
+          <input matInput formControlName="razon" >
         </mat-form-field>
         <br />
         <mat-form-field>
-          <mat-label>Color</mat-label>
+          <mat-label>Modalidad</mat-label>
           <mat-select formControlName="modo">
             @for (c of listaModo; track c) {
             <mat-option [value]="c.value">{{ c.viewValue }}</mat-option>
@@ -35,7 +34,7 @@
   
         <br />
         <mat-form-field class="example-full-width">
-            <mat-label>Fecha</mat-label>
+            <mat-label>Descripcion</mat-label>
             <input matInput placeholder="Completar..." formControlName="descripcion" />
           </mat-form-field>
         <div>

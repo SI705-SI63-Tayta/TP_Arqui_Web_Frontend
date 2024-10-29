@@ -29,13 +29,13 @@
         <th mat-header-cell *matHeaderCellDef> state </th>
         <td mat-cell *matCellDef="let element"> {{element.state}} </td>
       </ng-container>
-      <ng-container matColumnDef="accion01">
+      <ng-container matColumnDef="c6">
         <th mat-header-cell *matHeaderCellDef>Eliminar</th>
         <td mat-cell *matCellDef="let element" (click)="eliminar(element.idRecipe)">
           <mat-icon style="color:#eb0a21">delete</mat-icon>
         </td>
       </ng-container>
-      <ng-container matColumnDef="accion02">
+      <ng-container matColumnDef="c7">
         <th mat-header-cell *matHeaderCellDef>Editar</th>
         <td mat-cell *matCellDef="let element" [routerLink]="['ediciones',element.idRecipe]">
           <mat-icon style="color:#eb0a21">edit</mat-icon>

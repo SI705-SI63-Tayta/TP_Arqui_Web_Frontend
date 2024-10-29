@@ -1,0 +1,35 @@
+<section class="login">
+    <img class="wave"
+        src="https://raw.githubusercontent.com/IHC-Eldermy-Tayta/Tayta/refs/heads/main/public/assets/images/wave.png">
+    <div class="login-container">
+        <div class="img">
+            <img
+                src="https://raw.githubusercontent.com/IHC-Eldermy-Tayta/Tayta/refs/heads/main/public/assets/images/adulto-mayor.png">
+        </div>
+        <div class="login-content">
+            <form id="loginForm" action="">
+                <img
+                    src="https://raw.githubusercontent.com/IHC-Eldermy-Tayta/Tayta/refs/heads/main/public/assets/images/Logo.png">
+                <h2 class="title">BIENVENIDO</h2>
+
+                <mat-form-field appearance="fill" class="input-div">
+                    <mat-label>Usuario</mat-label>
+                    <input [(ngModel)]="username" name="username" matInput type="text" id="loginUsername">
+                    <mat-icon matPrefix>person</mat-icon>
+                </mat-form-field>
+
+                <mat-form-field appearance="fill" class="input-div">
+                    <mat-label>Contraseña</mat-label>
+                    <input [(ngModel)]="password" name="password" matInput [type]="hidePassword ? 'password' : 'text'" id="loginPassword">
+                    <mat-icon matPrefix>lock</mat-icon>
+                    <mat-icon matSuffix (click)="hidePassword = !hidePassword">
+                        {{ hidePassword ? 'visibility_off' : 'visibility' }}
+                    </mat-icon>
+                </mat-form-field>
+
+                <a href="#">Olvidaste tu contraseña?</a>
+                <button mat-raised-button color="primary" (click)="login()" class="btn" id="loginSubmitButton">Login</button>
+            </form>
+        </div>
+    </div>
+</section>
