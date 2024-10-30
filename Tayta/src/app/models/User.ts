@@ -5,7 +5,6 @@ export class User {
     fullName: string = "";
     email: string = "";
     username: string = "";
-    password: string="";
     enabled: boolean = true;
     address: string = "";
     dni: string = "";

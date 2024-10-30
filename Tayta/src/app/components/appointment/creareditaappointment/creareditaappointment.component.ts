@@ -8,9 +8,7 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatInputModule } from '@angular/material/input';
 import { Appointment } from '../../../models/Appointment';
 import { AppointmentService } from '../../../services/appointment.service';
-import { ActivatedRoute, Params, Router, RouterModule } from '@angular/router';
-import { ToolbarComponent } from "../../toolbar/toolbar.component";
-import { LoginService } from '../../../services/login.service';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 
 @Component({
   selector: 'app-creareditaappointment',
@@ -21,14 +19,13 @@ import { LoginService } from '../../../services/login.service';
     MatNativeDateModule,
     MatButtonModule,
     ReactiveFormsModule,
-    CommonModule, ToolbarComponent,RouterModule],
+    CommonModule],
   templateUrl: './creareditaappointment.component.html',
   styleUrl: './creareditaappointment.component.css'
 })
 export class CreareditaappointmentComponent implements OnInit{
   form: FormGroup = new FormGroup({});
   appointment: Appointment = new Appointment;
-  role: string = "";
   
   id: number = 0;
   edicion: boolean = false;
@@ -36,12 +33,11 @@ export class CreareditaappointmentComponent implements OnInit{
     private aS: AppointmentService,
     private formBuilder: FormBuilder,
     private router: Router,
-    private route: ActivatedRoute,
-    private lS:LoginService
+    private route: ActivatedRoute
   ) {}
   listaModo: { value: string; viewValue: string }[] = [
     { value: 'Virtual', viewValue: 'Virtual' },
-    { value: 'Presencial', viewValue: 'Presencial' },
+    { value: 'Prescencial', viewValue: 'Prescencial' },
   ];
   ngOnInit(): void {
     this.route.params.subscribe((data: Params) => {

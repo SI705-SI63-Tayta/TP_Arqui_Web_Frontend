@@ -15,5 +15,4 @@ export class UserService {
   list(){
     return this.http.get<User[]>(this.url);
   }
-
 }
