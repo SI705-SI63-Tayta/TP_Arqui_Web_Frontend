@@ -15,6 +15,9 @@
           <mat-error *ngIf="form.get('htipo')?.hasError('rolInvalido')">
             Rol no permitido. Solo se permiten: DOCTOR, ENFERMERO, CLIENTE, ADMINISTRADOR.
           </mat-error>
+          <mat-error *ngIf="form.get('htipo')?.hasError('rolDuplicado')">
+            Este rol ya ha sido registrado.
+          </mat-error>
         </mat-form-field>
         <div>
           <button mat-flat-button class="custom-button">Registrar</button>
