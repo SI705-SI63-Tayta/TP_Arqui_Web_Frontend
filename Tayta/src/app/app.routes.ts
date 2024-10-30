@@ -3,6 +3,8 @@ import { AppointmentComponent } from './components/appointment/appointment.compo
 import { CreareditaappointmentComponent } from './components/appointment/creareditaappointment/creareditaappointment.component';
 import { RecipeComponent } from './components/recipe/recipe.component';
 import { CreaeditarecipeComponent } from './components/recipe/creaeditarecipe/creaeditarecipe.component';
+import { RoleComponent } from './components/role/role.component';
+import { CreaeditaroleComponent } from './components/role/creaeditarole/creaeditarole.component';
 
 export const routes: Routes = [
     {
@@ -24,6 +26,17 @@ export const routes: Routes = [
             },
             {
               path:'ediciones/:id',component:CreaeditarecipeComponent
+            }
+        ]
+    },
+    {
+        path:'roles',component:RoleComponent,
+        children:[
+            {
+                path:'registrar',component:CreaeditaroleComponent
+            },
+            {
+              path:'ediciones/:id',component:CreaeditaroleComponent
             }
         ]
     }
