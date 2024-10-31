@@ -42,7 +42,6 @@ export class CreaeditarecipeComponent implements OnInit{
     this.route.params.subscribe((data: Params) => {
       this.id = data['id'];
       this.edicion = data['id'] != null;
-      //trae los datos
       this.init();
     });
     this.form = this.formBuilder.group({
