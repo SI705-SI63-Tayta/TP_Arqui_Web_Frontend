@@ -34,6 +34,10 @@ export class CreaeditarecipeComponent implements OnInit{
     private router: Router,
     private route: ActivatedRoute
   ) {}
+  listaModo: { value: string; viewValue: string }[] = [
+    { value: 'Virtual', viewValue: 'Virtual' },
+    { value: 'Prescencial', viewValue: 'Prescencial' },
+  ];
   ngOnInit(): void {
     this.route.params.subscribe((data: Params) => {
       this.id = data['id'];
