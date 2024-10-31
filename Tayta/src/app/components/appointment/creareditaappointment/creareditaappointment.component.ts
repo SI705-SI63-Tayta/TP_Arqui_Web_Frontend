@@ -29,7 +29,7 @@ export class CreareditaappointmentComponent implements OnInit{
   form: FormGroup = new FormGroup({});
   appointment: Appointment = new Appointment;
   role: string = "";
-  
+
   id: number = 0;
   edicion: boolean = false;
   constructor(
@@ -65,7 +65,7 @@ export class CreareditaappointmentComponent implements OnInit{
         this.appointment.reason=this.form.value.razon;
         this.appointment.mode=this.form.value.modo;
         this.appointment.description=this.form.value.descripcion;
-      
+
         if (this.edicion) {
           this.aS.update(this.appointment).subscribe((data) => {
             this.aS.list().subscribe((data) => {

@@ -21,6 +21,10 @@ export class ListardailyactivitiesComponent implements OnInit{
     this.dS.list().subscribe((data)=>{
       this.dataSource=new MatTableDataSource(data);
     })
+    
+    this.dS.getList().subscribe((data)=>{
+      this.dataSource=new MatTableDataSource(data);
+    })
   }
 
 }

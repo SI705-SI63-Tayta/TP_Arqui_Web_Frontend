@@ -38,7 +38,7 @@ export class CreareditardailyactivitiesComponent implements OnInit {
     });
 
     this.form = this.formBuilder.group({
-      codigo: ['', Validators.required],
+      codigo: [''],
       nombreHabito: ['', Validators.required],
       codigoUser: ['', Validators.required]
     })
@@ -49,7 +49,7 @@ export class CreareditardailyactivitiesComponent implements OnInit {
     if (this.form.valid) {
       this.activities.idDailyActivities = this.form.value.codigo;
       this.activities.habits = this.form.value.nombreHabito;
-      this.activities.user = new User();
+      //this.activities.user = new User();
       this.activities.user.idUser = this.form.value.codigoUser;
 
       console.log('Estado de validación - codigo:', this.form.get('codigo')?.valid);
@@ -67,9 +67,7 @@ export class CreareditardailyactivitiesComponent implements OnInit {
         },
         error: (err) => console.error('Error al guardar:', err) // Log para error
       });
-    } else {
-      console.warn('Formulario inválido'); // Mensaje si el formulario es inválido
-    }
+    } 
   }
 
 

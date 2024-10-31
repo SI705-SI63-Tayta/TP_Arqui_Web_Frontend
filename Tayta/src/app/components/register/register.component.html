@@ -1,0 +1,80 @@
+<section class="register">
+  <img class="wave" src="https://raw.githubusercontent.com/IHC-Eldermy-Tayta/Tayta/refs/heads/main/public/assets/images/wave.png">
+  <div class="register-container">
+      <div class="img">
+          <img src="https://raw.githubusercontent.com/IHC-Eldermy-Tayta/Tayta/refs/heads/main/public/assets/images/adulto-mayor.png">
+      </div>
+      <div class="register-content">
+          <form id="registerForm" (ngSubmit)="registrar()" [formGroup]="form">
+              <img src="https://raw.githubusercontent.com/IHC-Eldermy-Tayta/Tayta/refs/heads/main/public/assets/images/Logo.png">
+              <h2 class="title">REGISTRO</h2>
+
+              <mat-form-field appearance="fill" class="input-div">
+                  <mat-label>Nombre Completo</mat-label>
+                  <input formControlName="fullName" matInput type="text" id="registerFullName">
+                  <mat-icon matPrefix>person</mat-icon>
+                  <mat-error *ngIf="form.get('fullName')?.hasError('required')">Este campo es obligatorio.</mat-error>
+                  <mat-error *ngIf="form.get('fullName')?.hasError('maxLength')">No puede exceder los 50 caracteres.</mat-error>
+              </mat-form-field>
+
+              <mat-form-field appearance="fill" class="input-div">
+                  <mat-label>Correo Electrónico</mat-label>
+                  <input formControlName="email" matInput type="email" id="registerEmail">
+                  <mat-icon matPrefix>email</mat-icon>
+                  <mat-error *ngIf="form.get('email')?.hasError('required')">Este campo es obligatorio.</mat-error>
+                  <mat-error *ngIf="form.get('email')?.hasError('maxLength')">No puede exceder los 50 caracteres.</mat-error>
+                  <mat-error *ngIf="form.get('email')?.hasError('email')">Debe ser un correo válido.</mat-error>
+              </mat-form-field>
+
+              <mat-form-field appearance="fill" class="input-div">
+                  <mat-label>Nombre de Usuario</mat-label>
+                  <input formControlName="username" matInput type="text" id="registerUsername">
+                  <mat-icon matPrefix>person</mat-icon>
+                  <mat-error *ngIf="form.get('username')?.hasError('required')">Este campo es obligatorio.</mat-error>
+                  <mat-error *ngIf="form.get('username')?.hasError('usernameTaken')">Ya existe un usuario con este username.</mat-error>
+              </mat-form-field>
+
+              <mat-form-field appearance="fill" class="input-div">
+                  <mat-label>Contraseña</mat-label>
+                  <input formControlName="password" matInput [type]="hidePassword ? 'password' : 'text'" id="registerPassword">
+                  <mat-icon matPrefix>lock</mat-icon>
+                  <mat-icon matSuffix (click)="hidePassword = !hidePassword">
+                      {{ hidePassword ? 'visibility_off' : 'visibility' }}
+                  </mat-icon>
+                  <mat-error *ngIf="form.get('password')?.hasError('required')">Este campo es obligatorio.</mat-error>
+              </mat-form-field>
+
+              <mat-form-field appearance="fill" class="input-div">
+                  <mat-label>Dirección</mat-label>
+                  <input formControlName="address" matInput type="text" id="registerAddress">
+                  <mat-icon matPrefix>home</mat-icon>
+                  <mat-error *ngIf="form.get('address')?.hasError('required')">Este campo es obligatorio.</mat-error>
+                  <mat-error *ngIf="form.get('address')?.hasError('maxLength')">No puede exceder los 250 caracteres.</mat-error>
+              </mat-form-field>
+
+              <mat-form-field appearance="fill" class="input-div">
+                  <mat-label>DNI</mat-label>
+                  <input formControlName="dni" matInput type="text" id="registerDNI">
+                  <mat-icon matPrefix>card_membership</mat-icon>
+                  <mat-error *ngIf="form.get('dni')?.hasError('required')">Este campo es obligatorio.</mat-error>
+                  <mat-error *ngIf="form.get('dni')?.hasError('maxLength')">No puede exceder los 8 caracteres.</mat-error>
+                  <mat-error *ngIf="form.get('dni')?.hasError('pattern')">Solo se permiten números.</mat-error>
+              </mat-form-field>
+
+              <mat-form-field appearance="fill" class="input-div">
+                <mat-label>Rol</mat-label>
+                <mat-icon matPrefix>card_membership</mat-icon>
+                <mat-select formControlName="rol">
+                  @for (r of listaRol; track r) {
+                  <mat-option [value]="r.value">{{ r.viewValue }}</mat-option>
+                  }
+                </mat-select>
+              </mat-form-field>
+
+
+              <button mat-raised-button color="primary" class="btn" id="registerSubmitButton">Registrarse</button>
+              <a [routerLink]="['/login']">¿Ya tienes cuenta? Inicia sesión</a>
+          </form>
+      </div>
+  </div>
+</section>

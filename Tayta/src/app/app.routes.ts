@@ -13,15 +13,25 @@ import { segGuard } from './guard/seguridad.guard';
 import { ToolbarComponent } from './components/toolbar/toolbar.component';
 import { DailyactivitiesComponent } from './components/dailyactivities/dailyactivities.component';
 import { CreareditardailyactivitiesComponent } from './components/dailyactivities/creareditardailyactivities/creareditardailyactivities.component';
+import { MenulandingComponent } from './components/menulanding/menulanding.component';
+import { RegisterComponent } from './components/register/register.component';
 
 
 export const routes: Routes = [
     {
-        path: '', redirectTo: 'login', pathMatch: 'full' // Redirige a login por defecto
+        path: '', redirectTo: 'menulanding', pathMatch: 'full' // Redirige a login por defecto
     },
+    {
+        path: 'menulanding', component:MenulandingComponent // Redirige a login por defecto
+    }
+    ,
     {
         path: 'login', component: LoginComponent
     },
+    {
+        path:'register', component:RegisterComponent
+    }
+    ,
     {
         path:'', component:ToolbarComponent, canActivate: [segGuard],
         children:[

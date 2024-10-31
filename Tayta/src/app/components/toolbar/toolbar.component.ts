@@ -57,9 +57,10 @@ export class ToolbarComponent implements OnInit {
         { icon: 'person', label: 'Ver Citas', route: '/citas' },
         { icon: 'person', label: 'Registrar Actividades', route: '/actividades/registrar' },
         { icon: 'person', label: 'Ver Actividades', route: '/actividades' },
-        { icon: 'person', label: 'Ver Recetas', route: '/recetas/listar' }
+        { icon: 'person', label: 'Ver Recetas', route: '/recetas/listar' },
       ];
     }
+
   }
   navigateTo(route: string) {
     this.router.navigate([route]);
