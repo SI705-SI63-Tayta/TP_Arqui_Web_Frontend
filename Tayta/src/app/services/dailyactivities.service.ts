@@ -33,4 +33,12 @@ export class DailyactivitiesService {
   listId(id:number){
     return this.http.get<DailyActivities>(`${this.url}/${id}`);
   }
+
+  delete(id: number) {
+    return this.http.delete(`${this.url}/${id}`);
+  }
+
+  update(da: DailyActivities) {
+    return this.http.put(this.url, da);
+  }
 }

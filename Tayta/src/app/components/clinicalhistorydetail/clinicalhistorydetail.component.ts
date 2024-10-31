@@ -7,9 +7,8 @@ import { ListarclinicalhistorydetailComponent } from './listarclinicalhistorydet
   standalone: true,
   imports: [RouterOutlet, ListarclinicalhistorydetailComponent],
   templateUrl: './clinicalhistorydetail.component.html',
-  styleUrl: './clinicalhistorydetail.component.css'
+  styleUrl: './clinicalhistorydetail.component.css',
 })
 export class ClinicalhistorydetailComponent {
-  constructor(public route:ActivatedRoute){}
-
+  constructor(public route: ActivatedRoute) {}
 }
