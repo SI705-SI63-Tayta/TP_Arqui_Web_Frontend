@@ -13,6 +13,9 @@ import { segGuard } from './guard/seguridad.guard';
 import { ToolbarComponent } from './components/toolbar/toolbar.component';
 import { DailyactivitiesComponent } from './components/dailyactivities/dailyactivities.component';
 import { CreareditardailyactivitiesComponent } from './components/dailyactivities/creareditardailyactivities/creareditardailyactivities.component';
+import { ClinicalhistorydetailComponent } from './components/clinicalhistorydetail/clinicalhistorydetail.component';
+import { CreareditarclinicalhistorydetailComponent } from './components/clinicalhistorydetail/creareditarclinicalhistorydetail/creareditarclinicalhistorydetail.component';
+import { ListarclinicalhistorydetailComponent } from './components/clinicalhistorydetail/listarclinicalhistorydetail/listarclinicalhistorydetail.component';
 
 
 export const routes: Routes = [
@@ -61,6 +64,21 @@ export const routes: Routes = [
                     {
                         path:'registrar', component:CreareditardailyactivitiesComponent
                     }
+                ],
+                canActivate: [segGuard],
+            },
+            {
+                path:'detallehistoriaclinica',component:ClinicalhistorydetailComponent,
+                children:[
+                    {
+                        path:'registrar', component:CreareditarclinicalhistorydetailComponent
+                    },
+                    {
+                        path:'listar',component:ListarclinicalhistorydetailComponent
+                    },
+                    {
+                        path:'ediciones/:id', component:CreareditarclinicalhistorydetailComponent
+                    },
                 ],
                 canActivate: [segGuard],
             }
