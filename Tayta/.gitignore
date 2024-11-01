@@ -3,6 +3,7 @@
 /src/environments/*
 
 # Compiled output
+/src/var/*
 /dist
 /tmp
 /out-tsc
