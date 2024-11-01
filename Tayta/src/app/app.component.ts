@@ -15,8 +15,8 @@ import { ToolbarComponent } from "./components/toolbar/toolbar.component";
 import { LoginComponent } from "./components/login/login.component";
 import { LoginService } from './services/login.service';
 import { ListarAppointmentComponent } from "./components/appointment/listar-appointment/listar-appointment.component";
-import { environment } from '../environments/environments';
 import { isPlatformBrowser } from '@angular/common';
+import { vari } from '../var/var';
 
 @Component({
   selector: 'app-root',
@@ -43,7 +43,7 @@ export class AppComponent implements OnInit{
     // Verificamos si estamos en el navegador
     if (isPlatformBrowser(this.platformId)) {
       const script = document.createElement('script');
-      script.src = `https://maps.googleapis.com/maps/api/js?key=${environment.googleMapsApiKey}&libraries=places`;
+      script.src = `https://maps.googleapis.com/maps/api/js?key=${vari.googleMapsApiKey}&libraries=places`;
       script.async = true;
       script.defer = true;
       document.head.appendChild(script);
