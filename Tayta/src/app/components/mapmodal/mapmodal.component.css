@@ -1,0 +1,31 @@
+.modal-container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 500px;
+  padding: 2rem;
+}
+
+.search-container {
+  margin-bottom: 10px;
+}
+
+.search-input {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.location-info {
+  margin-top: 10px;
+  font-size: 0.9rem;
+  color: #333;
+}
+
+.action-buttons {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 20px;
+}

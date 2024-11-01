@@ -73,6 +73,9 @@ export const routes: Routes = [
                 children:[
                     {
                         path:'registrar', component:CreareditardailyactivitiesComponent
+                    },
+                    {
+                      path: 'ediciones/:id', component: CreareditardailyactivitiesComponent
                     }
                 ],
                 canActivate: [segGuard],

@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environments';
 import { HttpClient } from '@angular/common/http';
 import { User } from '../models/User';
-import { Observable, Subject } from 'rxjs';
+import { map, Observable, Subject } from 'rxjs';
 const base_url=environment.base
 
 
@@ -44,6 +44,12 @@ export class UserService {
 
   exitsByUsername(username: string):Observable<boolean>{
     return this.http.get<boolean>(`${this.url}/?username=${username}`);
+  }
+
+  getMedicos(): Observable<User[]> {
+    return this.list().pipe(
+      map(users => users.filter(user => user.role.tipoRol === 'DOCTOR' || user.role.tipoRol === 'ENFERMERO'))
+    );
   }
 
 }

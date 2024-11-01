@@ -6,8 +6,8 @@ export class Appointment {
     reason: string = ""
     mode: string = ""
     description: string = ""
-    latitude:string=""
-    longitude:string=""
+    latitude:number=0
+    longitude:number=0
     userCliente: User = new User();
     userPersonal: User = new User();
 }
