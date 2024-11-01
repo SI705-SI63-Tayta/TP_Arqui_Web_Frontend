@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environments';
 import { HttpClient } from '@angular/common/http';
 import { Recipe } from '../models/Recipe';
-import { Subject } from 'rxjs';
+import { map, Observable, Subject } from 'rxjs';
 const base_url=environment.base
 
 @Injectable({
@@ -37,5 +37,11 @@ private url=`${base_url}/recipes`
 
   update(veh: Recipe) {
     return this.http.put(this.url, veh);
+  }
+
+  getRecetasByCliente(id:number): Observable<Recipe[]>{
+    return this.list().pipe(
+      map(re=>re.filter(r=>r.appointment.userCliente.idUser===id))
+    );
   }
 }

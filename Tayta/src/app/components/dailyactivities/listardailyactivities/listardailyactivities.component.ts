@@ -5,6 +5,7 @@ import { DailyactivitiesService } from '../../../services/dailyactivities.servic
 import { UserService } from '../../../services/user.service';
 import { MatIconModule } from '@angular/material/icon';
 import { RouterModule } from '@angular/router';
+import { LoginService } from '../../../services/login.service';
 
 @Component({
   selector: 'app-listardailyactivities',
@@ -15,12 +16,14 @@ import { RouterModule } from '@angular/router';
 })
 export class ListardailyactivitiesComponent implements OnInit{
   dataSource:MatTableDataSource<DailyActivities> = new MatTableDataSource();
-  displayedColumns: string[] = ['c1', 'c2', 'c3','eliminar','editar']
+  displayedColumns: string[] = ['c1', 'c2','eliminar','editar']
 
-  constructor(private dS:DailyactivitiesService, private uS:UserService){}
+  constructor(private dS:DailyactivitiesService, private uS:UserService, private lS:LoginService){}
+  idCliente: number=0;
 
   ngOnInit(): void {
-    this.dS.list().subscribe((data)=>{
+    this.idCliente=this.lS.getId();
+    this.dS.getActivitiesByCliente(this.idCliente).subscribe((data)=>{
       this.dataSource=new MatTableDataSource(data);
     })
     this.dS.getList().subscribe((data)=>{
@@ -30,7 +33,7 @@ export class ListardailyactivitiesComponent implements OnInit{
 
   eliminar(id: number) {
     this.dS.delete(id).subscribe((data)=>{
-      this.dS.list().subscribe((data)=>{
+      this.dS.getActivitiesByCliente(this.idCliente).subscribe((data)=>{
         this.dS.setList(data);
       })
     })

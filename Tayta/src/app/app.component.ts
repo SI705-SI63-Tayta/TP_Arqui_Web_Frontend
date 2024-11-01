@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Inject, OnInit, PLATFORM_ID } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { DailyactivitiesComponent } from "./components/dailyactivities/dailyactivities.component";
 import { RoleComponent } from "./components/role/role.component";
@@ -15,6 +15,8 @@ import { ToolbarComponent } from "./components/toolbar/toolbar.component";
 import { LoginComponent } from "./components/login/login.component";
 import { LoginService } from './services/login.service';
 import { ListarAppointmentComponent } from "./components/appointment/listar-appointment/listar-appointment.component";
+import { environment } from '../environments/environments';
+import { isPlatformBrowser } from '@angular/common';
 
 @Component({
   selector: 'app-root',
@@ -23,13 +25,30 @@ import { ListarAppointmentComponent } from "./components/appointment/listar-appo
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
-export class AppComponent {
+export class AppComponent implements OnInit{
   title = 'Tayta';
   role: string = '';
   usuario: string = '';
 
-  constructor(private lS: LoginService) { }
+  constructor(private lS: LoginService,
+    @Inject(PLATFORM_ID) private platformId: Object
+  ) { }
 
+
+  ngOnInit() {
+    this.loadGoogleMaps();
+  }
+
+  loadGoogleMaps() {
+    // Verificamos si estamos en el navegador
+    if (isPlatformBrowser(this.platformId)) {
+      const script = document.createElement('script');
+      script.src = `https://maps.googleapis.com/maps/api/js?key=${environment.googleMapsApiKey}&libraries=places`;
+      script.async = true;
+      script.defer = true;
+      document.head.appendChild(script);
+    }
+  }
   close() {
     sessionStorage.clear();
   }

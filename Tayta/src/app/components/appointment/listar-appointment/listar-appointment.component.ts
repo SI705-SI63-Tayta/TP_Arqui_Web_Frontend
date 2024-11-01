@@ -4,14 +4,13 @@ import { Appointment } from '../../../models/Appointment';
 import { AppointmentService } from '../../../services/appointment.service';
 import { RouterLink, RouterModule } from '@angular/router';
 import { MatIconModule } from '@angular/material/icon';
-import { ToolbarComponent } from "../../toolbar/toolbar.component";
 import { LoginService } from '../../../services/login.service';
 import {MatCardModule} from '@angular/material/card';
 import { CommonModule } from '@angular/common';
 @Component({
   selector: 'app-listar-appointment',
   standalone: true,
-  imports: [MatTableModule, MatIconModule, RouterLink, ToolbarComponent,RouterModule,MatCardModule,CommonModule],
+  imports: [MatTableModule, MatIconModule, RouterLink,RouterModule,MatCardModule,CommonModule],
   templateUrl: './listar-appointment.component.html',
   styleUrl: './listar-appointment.component.css'
 })
@@ -20,9 +19,11 @@ export class ListarAppointmentComponent implements OnInit{
   displayedColumns: string[] = ['c1', 'c2', 'c3','c4','c5','c6','c7']
 
   constructor(private aS:AppointmentService, private lS:LoginService){}
-
+  idCliente:number=0;
   ngOnInit(): void {
-    this.aS.list().subscribe((data)=>{
+    this.idCliente=this.lS.getId();
+
+    this.aS.getCitasByCliente(this.idCliente).subscribe((data)=>{
       this.dataSource=new MatTableDataSource(data);
     });
     this.aS.getList().subscribe((data) => {
@@ -31,7 +32,7 @@ export class ListarAppointmentComponent implements OnInit{
   }
   eliminar(id: number) {
     this.aS.delete(id).subscribe((data) => {
-      this.aS.list().subscribe((data) => {
+      this.aS.getCitasByCliente(this.idCliente).subscribe((data) => {
         this.aS.setList(data);
       });
     });

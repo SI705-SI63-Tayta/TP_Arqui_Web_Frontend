@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environments';
 import { HttpClient } from '@angular/common/http';
 import { DailyActivities } from '../models/DailyActivities';
-import { Subject } from 'rxjs';
+import { map, Observable, Subject } from 'rxjs';
 const base_url=environment.base
 
 
@@ -40,5 +40,11 @@ export class DailyactivitiesService {
 
   update(da: DailyActivities) {
     return this.http.put(this.url, da);
+  }
+
+  getActivitiesByCliente(id:number): Observable<DailyActivities[]>{
+    return this.list().pipe(
+      map(ac=>ac.filter(a=>a.user.idUser===id))
+    );
   }
 }
