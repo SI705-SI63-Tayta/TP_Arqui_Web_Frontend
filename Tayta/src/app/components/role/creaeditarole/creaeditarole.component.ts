@@ -23,7 +23,7 @@ export class CreaeditaroleComponent implements OnInit{
 
   id: number = 0;
   edicion: boolean = false;
-
+  rolesRegistrados: string[] = [];
   listaRoles: string[] = ['DOCTOR', 'ENFERMERO', 'CLIENTE', 'ADMINISTRADOR'];
 
   constructor(
@@ -43,7 +43,7 @@ export class CreaeditaroleComponent implements OnInit{
     });
     this.form = this.formBuilder.group({
       hcodigo: [''],
-      htipo: ['', [Validators.required, this.validarRolPermitido.bind(this)]]
+      htipo: ['', [Validators.required, this.validarRolPermitido.bind(this), this.validarRolUnico.bind(this)]]
       });
   }
 
@@ -51,6 +51,15 @@ export class CreaeditaroleComponent implements OnInit{
     const valor = control.value.toUpperCase(); // Convertimos a mayúsculas
     if (!this.listaRoles.includes(valor)) {
       return { 'rolInvalido': true };
+    }
+    return null;
+  }
+
+  // Validar que el rol no haya sido registrado previamente
+  validarRolUnico(control: FormControl): { [key: string]: boolean } | null {
+    const valor = control.value.toUpperCase();
+    if (this.rolesRegistrados.includes(valor)) {
+      return { 'rolDuplicado': true };
     }
     return null;
   }
@@ -90,7 +99,7 @@ export class CreaeditaroleComponent implements OnInit{
       this.rS.listId(this.id).subscribe((data) => {
         this.form = new FormGroup({
           hcodigo: new FormControl(data.idRol),
-          htipo: new FormControl(data.tipoRol, [Validators.required, this.validarRolPermitido.bind(this)]),
+          htipo: new FormControl(data.tipoRol, [Validators.required, this.validarRolPermitido.bind(this),this.validarRolUnico.bind(this)]),
         });
       });
     }
