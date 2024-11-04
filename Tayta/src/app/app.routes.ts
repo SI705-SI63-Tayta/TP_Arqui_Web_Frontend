@@ -20,6 +20,10 @@ import { CreareditarclinicalhistorydetailComponent } from './components/clinical
 import { ListarclinicalhistorydetailComponent } from './components/clinicalhistorydetail/listarclinicalhistorydetail/listarclinicalhistorydetail.component';
 import { MedicalrecordComponent } from './components/medicalrecord/medicalrecord.component';
 import { CreaeditamedicalrecordComponent } from './components/medicalrecord/creaeditamedicalrecord/creaeditamedicalrecord.component';
+import { NotificationComponent } from './components/notification/notification.component';
+import { ReviewComponent } from './components/review/review.component';
+import { CreareditarnotificationComponent } from './components/notification/creareditarnotification/creareditarnotification.component';
+import { CreareditarreviewComponent } from './components/review/creareditarreview/creareditarreview.component';
 
 
 export const routes: Routes = [
@@ -103,12 +107,34 @@ export const routes: Routes = [
                     {
                         path:'registrar', component:CreaeditamedicalrecordComponent
                     },
-                    
+
                     {
                         path:'ediciones/:id', component:CreaeditamedicalrecordComponent
                     },
                 ],
                 canActivate: [segGuard],
+            },
+            {
+                path:'notificaciones',component:NotificationComponent,
+                children:[
+                  {
+                    path:'registrar', component:CreareditarnotificationComponent
+                  },
+                  {
+                    path:'ediciones/:id', component:CreareditarnotificationComponent
+                  }
+                ]
+            },
+            {
+              path:'resenas',component:ReviewComponent,
+              children:[
+                {
+                  path:'registrar',component:CreareditarreviewComponent
+                },
+                {
+                  path:'ediciones/:id', component:CreareditarreviewComponent
+                }
+              ]
             }
         ]
     },
