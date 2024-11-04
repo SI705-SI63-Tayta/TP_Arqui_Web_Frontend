@@ -22,6 +22,10 @@ export class ListarmedicalrecordComponent implements OnInit{
     this.mS.list().subscribe((data)=>{
       this.dataSource=new MatTableDataSource(data);
     })
+
+    this.mS.getList().subscribe((data) => {
+      this.dataSource = new MatTableDataSource(data);
+    });
   }
 
 }
