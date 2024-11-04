@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environments';
 import { HttpClient } from '@angular/common/http';
 import { Notification } from '../models/Notification';
-import { Observable, Subject } from 'rxjs';
+import { Subject } from 'rxjs';
 
 
 const base_url=environment.base
@@ -18,12 +18,9 @@ export class NotificationService {
   list(){
     return this.http.get<Notification[]>(this.url);
   }
-
-  insert(notification: Notification): Observable<any> {
-
-    return this.http.post<any>(`${this.url}`, notification);
+  insert(n: Notification) {
+    return this.http.post(this.url, n);
   }
-
 
   getList() {
     return this.listaCambio.asObservable();

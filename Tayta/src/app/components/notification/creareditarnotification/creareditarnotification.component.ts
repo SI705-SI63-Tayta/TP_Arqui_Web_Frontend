@@ -52,8 +52,10 @@ export class CreareditarnotificationComponent implements OnInit{
       this.notification.message = this.form.value.mensaje;
       this.notification.user.idUser = this.form.value.userCliente;
       this.notification.recipe.idRecipe = this.form.value.idReceta;
+
       console.log(`vengo del form ${this.form.value.idReceta}`);
       console.log(`vengo de la entidad${this.notification.recipe.idRecipe}`);
+
       if(this.edicion){
         this.nS.update(this.notification).subscribe((data)=>{
           this.nS.getList().subscribe((data)=>{
@@ -63,7 +65,6 @@ export class CreareditarnotificationComponent implements OnInit{
       }else{
         this.nS.insert(this.notification).subscribe((data)=>{
           this.nS.getList().subscribe((data)=>{
-            console.log(data);
             this.nS.setList(data);
           });
         });

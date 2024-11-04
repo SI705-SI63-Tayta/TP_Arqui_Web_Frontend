@@ -34,6 +34,7 @@ export class ToolbarComponent implements OnInit {
     private router:Router
   ){
 
+
   }
   ngOnInit(): void {
     this.role=this.lS.showRole();
@@ -72,5 +73,6 @@ export class ToolbarComponent implements OnInit {
   navigateTo(route: string) {
     this.router.navigate([route]);
   }
+
 
 }
