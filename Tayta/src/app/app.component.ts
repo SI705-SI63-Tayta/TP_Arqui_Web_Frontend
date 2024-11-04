@@ -17,11 +17,13 @@ import { LoginService } from './services/login.service';
 import { ListarAppointmentComponent } from "./components/appointment/listar-appointment/listar-appointment.component";
 import { isPlatformBrowser } from '@angular/common';
 import { vari } from '../var/var';
+//import { vari } from '../var/var'; 
+
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, MedicalrecordComponent, DailyactivitiesComponent, RoleComponent, UserComponent, ClinicalhistorydetailComponent, AppointmentComponent, NotificationComponent, RecipeComponent, ReviewComponent, MenulandingComponent, ToolbarComponent, LoginComponent, ListarAppointmentComponent],
+  imports: [RouterOutlet,MedicalrecordComponent, DailyactivitiesComponent, RoleComponent, UserComponent, ClinicalhistorydetailComponent, AppointmentComponent, NotificationComponent, RecipeComponent, ReviewComponent, MenulandingComponent, ToolbarComponent, LoginComponent, ListarAppointmentComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })

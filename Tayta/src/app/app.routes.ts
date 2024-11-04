@@ -18,6 +18,8 @@ import { RegisterComponent } from './components/register/register.component';
 import { ClinicalhistorydetailComponent } from './components/clinicalhistorydetail/clinicalhistorydetail.component';
 import { CreareditarclinicalhistorydetailComponent } from './components/clinicalhistorydetail/creareditarclinicalhistorydetail/creareditarclinicalhistorydetail.component';
 import { ListarclinicalhistorydetailComponent } from './components/clinicalhistorydetail/listarclinicalhistorydetail/listarclinicalhistorydetail.component';
+import { MedicalrecordComponent } from './components/medicalrecord/medicalrecord.component';
+import { CreaeditamedicalrecordComponent } from './components/medicalrecord/creaeditamedicalrecord/creaeditamedicalrecord.component';
 
 
 export const routes: Routes = [
@@ -91,6 +93,19 @@ export const routes: Routes = [
                     },
                     {
                         path:'ediciones/:id', component:CreareditarclinicalhistorydetailComponent
+                    },
+                ],
+                canActivate: [segGuard],
+            },
+            {
+                path:'historiaclinica',component:MedicalrecordComponent,
+                children:[
+                    {
+                        path:'registrar', component:CreaeditamedicalrecordComponent
+                    },
+                    
+                    {
+                        path:'ediciones/:id', component:CreaeditamedicalrecordComponent
                     },
                 ],
                 canActivate: [segGuard],

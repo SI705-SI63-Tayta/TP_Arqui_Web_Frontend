@@ -59,6 +59,10 @@ export class ToolbarComponent implements OnInit {
         { icon: 'person', label: 'Ver Actividades', route: '/actividades' },
         { icon: 'person', label: 'Ver Recetas', route: '/recetas/listar' },
       ];
+    }else if(this.role === 'ADMINISTRADOR'){
+      this.menuItems=[
+        {icon: 'home', label: 'ver historia clinica', route: '/historiaclinica/registrar'}
+      ]
     }
 
   }
