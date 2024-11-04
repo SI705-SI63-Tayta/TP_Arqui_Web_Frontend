@@ -17,6 +17,7 @@ export class UserService {
   list(){
     return this.http.get<User[]>(this.url);
   }
+<<<<<<< HEAD
 
   insert(u:User){
     return this.http.post(this.url,u);
@@ -52,4 +53,6 @@ export class UserService {
     );
   }
 
+=======
+>>>>>>> 2fe96d804b2c99e8084df3b1509ec6c9d5c2ee45
 }

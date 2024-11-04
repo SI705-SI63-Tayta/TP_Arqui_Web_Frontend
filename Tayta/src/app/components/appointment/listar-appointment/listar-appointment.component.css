@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 /* Contenedor principal */
 .container {
   display: flex;
@@ -78,3 +79,5 @@ mat-card-actions {
 .edit-button:hover {
   background-color: #1565c0; /* Azul oscuro al pasar el mouse */
 }
+=======
+>>>>>>> 2fe96d804b2c99e8084df3b1509ec6c9d5c2ee45

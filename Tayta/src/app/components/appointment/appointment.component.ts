@@ -9,9 +9,6 @@ import { ListarAppointmentComponent } from "./listar-appointment/listar-appointm
   templateUrl: './appointment.component.html',
   styleUrl: './appointment.component.css'
 })
-export class AppointmentComponent implements OnInit{
+export class AppointmentComponent{
   constructor(public route:ActivatedRoute){}
-  ngOnInit(): void {
-    
-  }
 }

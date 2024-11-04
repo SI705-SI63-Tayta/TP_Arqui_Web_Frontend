@@ -15,8 +15,8 @@ private url=`${base_url}/citas`
   list(){
     return this.http.get<Appointment[]>(this.url);
   }
-  insert(ap: Appointment) {
-    return this.http.post(this.url, ap);
+  insert(r: Appointment) {
+    return this.http.post(this.url, r);
   }
 
   getList() {
@@ -35,8 +35,8 @@ private url=`${base_url}/citas`
     return this.http.get<Appointment>(`${this.url}/${id}`);
   }
 
-  update(ap: Appointment) {
-    return this.http.put(this.url, ap);
+  update(veh: Appointment) {
+    return this.http.put(this.url, veh);
   }
 
   getCitasByCliente(id:number): Observable<Appointment[]>{

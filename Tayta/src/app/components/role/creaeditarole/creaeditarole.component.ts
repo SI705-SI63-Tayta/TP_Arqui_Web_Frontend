@@ -20,6 +20,7 @@ import { ActivatedRoute, Params, Router } from '@angular/router';
 export class CreaeditaroleComponent implements OnInit{
   form: FormGroup = new FormGroup({});
   role: Role = new Role;
+  rolesRegistrados: string[] = [];
 
   id: number = 0;
   edicion: boolean = false;
@@ -41,6 +42,12 @@ export class CreaeditaroleComponent implements OnInit{
       //trae los datos
       this.init();
     });
+
+    // Obtenemos la lista de roles ya registrados
+    this.rS.list().subscribe((roles: Role[]) => {
+      this.rolesRegistrados = roles.map(role => role.tipoRol.toUpperCase());
+    });
+
     this.form = this.formBuilder.group({
       hcodigo: [''],
       htipo: ['', [Validators.required, this.validarRolPermitido.bind(this), this.validarRolUnico.bind(this)]]
@@ -55,8 +62,13 @@ export class CreaeditaroleComponent implements OnInit{
     return null;
   }
 
+<<<<<<< HEAD
   // Validar que el rol no haya sido registrado previamente
   validarRolUnico(control: FormControl): { [key: string]: boolean } | null {
+=======
+   // Validar que el rol no haya sido registrado previamente
+   validarRolUnico(control: FormControl): { [key: string]: boolean } | null {
+>>>>>>> 2fe96d804b2c99e8084df3b1509ec6c9d5c2ee45
     const valor = control.value.toUpperCase();
     if (this.rolesRegistrados.includes(valor)) {
       return { 'rolDuplicado': true };
@@ -99,7 +111,11 @@ export class CreaeditaroleComponent implements OnInit{
       this.rS.listId(this.id).subscribe((data) => {
         this.form = new FormGroup({
           hcodigo: new FormControl(data.idRol),
+<<<<<<< HEAD
           htipo: new FormControl(data.tipoRol, [Validators.required, this.validarRolPermitido.bind(this),this.validarRolUnico.bind(this)]),
+=======
+          htipo: new FormControl(data.tipoRol, [Validators.required, this.validarRolPermitido.bind(this), this.validarRolUnico.bind(this)]),
+>>>>>>> 2fe96d804b2c99e8084df3b1509ec6c9d5c2ee45
         });
       });
     }

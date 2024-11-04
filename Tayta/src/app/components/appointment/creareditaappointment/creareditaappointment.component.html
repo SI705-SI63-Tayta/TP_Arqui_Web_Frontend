@@ -1,7 +1,55 @@
+<<<<<<< HEAD
 <div class="container" style="text-align: center;margin:1%">
   <div>
     <h1 *ngIf="!edicion">Registro de Citas</h1>
     <h1 *ngIf="edicion">Edicion de Citas</h1>
+=======
+<div class="container" style="text-align: center;margin:2%">
+    <div><h1>Registro de Citas</h1></div>
+    <div>
+      <form [formGroup]="form" (submit)=" insertar()">
+        <mat-form-field class="example-full-width" *ngIf="edicion">
+          <mat-label>Código</mat-label>
+          <input matInput formControlName="codigo" />
+        </mat-form-field>
+        <br />
+        <mat-form-field>
+            <mat-label>Escoge una fecha</mat-label>
+            <input matInput [matDatepicker]="picker" formControlName="fecha"/>
+            <mat-hint>MM/DD/YYYY</mat-hint>
+            <mat-datepicker-toggle
+              matIconSuffix
+              [for]="picker"
+            ></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+          </mat-form-field>
+        <br />
+        <mat-form-field>
+          <mat-label>Razon</mat-label>
+          <mat-select formControlName="razon" >
+          </mat-select>
+        </mat-form-field>
+        <br />
+        <mat-form-field>
+          <mat-label>Color</mat-label>
+          <mat-select formControlName="modo">
+            @for (c of listaModo; track c) {
+            <mat-option [value]="c.value">{{ c.viewValue }}</mat-option>
+            }
+          </mat-select>
+        </mat-form-field>
+  
+        <br />
+        <mat-form-field class="example-full-width">
+            <mat-label>Fecha</mat-label>
+            <input matInput placeholder="Completar..." formControlName="descripcion" />
+          </mat-form-field>
+        <div>
+          <button mat-flat-button class="custom-button">Registrar</button>
+        </div>
+      </form>
+    </div>
+>>>>>>> 2fe96d804b2c99e8084df3b1509ec6c9d5c2ee45
   </div>
   <div>
     <form [formGroup]="form" (submit)=" insertar()">

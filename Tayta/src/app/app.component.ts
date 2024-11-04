@@ -10,6 +10,7 @@ import { AppointmentComponent } from "./components/appointment/appointment.compo
 import { NotificationComponent } from "./components/notification/notification.component";
 import { RecipeComponent } from "./components/recipe/recipe.component";
 import { ReviewComponent } from "./components/review/review.component";
+<<<<<<< HEAD
 import { MenulandingComponent } from "./components/menulanding/menulanding.component";
 import { ToolbarComponent } from "./components/toolbar/toolbar.component";
 import { LoginComponent } from "./components/login/login.component";
@@ -19,16 +20,23 @@ import { isPlatformBrowser } from '@angular/common';
 import { vari } from '../var/var';
 //import { vari } from '../var/var'; 
 
+=======
+>>>>>>> 2fe96d804b2c99e8084df3b1509ec6c9d5c2ee45
 
 @Component({
   selector: 'app-root',
   standalone: true,
+<<<<<<< HEAD
   imports: [RouterOutlet,MedicalrecordComponent, DailyactivitiesComponent, RoleComponent, UserComponent, ClinicalhistorydetailComponent, AppointmentComponent, NotificationComponent, RecipeComponent, ReviewComponent, MenulandingComponent, ToolbarComponent, LoginComponent, ListarAppointmentComponent],
+=======
+  imports: [RouterOutlet, MedicalrecordComponent, DailyactivitiesComponent, RoleComponent, UserComponent, ClinicalhistorydetailComponent, AppointmentComponent, NotificationComponent, RecipeComponent, ReviewComponent],
+>>>>>>> 2fe96d804b2c99e8084df3b1509ec6c9d5c2ee45
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
 export class AppComponent implements OnInit{
   title = 'Tayta';
+<<<<<<< HEAD
   role: string = '';
   usuario: string = '';
 
@@ -77,4 +85,6 @@ export class AppComponent implements OnInit{
   isEnfermero() {
     return this.role === 'ENFERMERO';
   }
+=======
+>>>>>>> 2fe96d804b2c99e8084df3b1509ec6c9d5c2ee45
 }

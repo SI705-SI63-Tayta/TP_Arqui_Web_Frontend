@@ -2,7 +2,10 @@ import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environments';
 import { HttpClient } from '@angular/common/http';
 import { DailyActivities } from '../models/DailyActivities';
+<<<<<<< HEAD
 import { map, Observable, Subject } from 'rxjs';
+=======
+>>>>>>> 2fe96d804b2c99e8084df3b1509ec6c9d5c2ee45
 const base_url=environment.base
 
 
@@ -11,12 +14,13 @@ const base_url=environment.base
 })
 export class DailyactivitiesService {
   private url=`${base_url}/actividades_diarias`
-  private listaCambio=new Subject<DailyActivities[]>();
+
   constructor(private http:HttpClient) { }
 
   list(){
     return this.http.get<DailyActivities[]>(this.url);
   }
+<<<<<<< HEAD
 
   insert(da:DailyActivities){
     return this.http.post(this.url,da);
@@ -47,4 +51,6 @@ export class DailyactivitiesService {
       map(ac=>ac.filter(a=>a.user.idUser===id))
     );
   }
+=======
+>>>>>>> 2fe96d804b2c99e8084df3b1509ec6c9d5c2ee45
 }

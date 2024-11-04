@@ -8,6 +8,7 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatInputModule } from '@angular/material/input';
 import { Appointment } from '../../../models/Appointment';
 import { AppointmentService } from '../../../services/appointment.service';
+<<<<<<< HEAD
 import { ActivatedRoute, Params, Router, RouterModule } from '@angular/router';
 import { ToolbarComponent } from "../../toolbar/toolbar.component";
 import { LoginService } from '../../../services/login.service';
@@ -16,6 +17,9 @@ import {MatDialog, MatDialogModule} from '@angular/material/dialog';
 import { MapmodalComponent } from '../../mapmodal/mapmodal.component';
 import { DialogRef } from '@angular/cdk/dialog';
 
+=======
+import { ActivatedRoute, Params, Router } from '@angular/router';
+>>>>>>> 2fe96d804b2c99e8084df3b1509ec6c9d5c2ee45
 
 @Component({
   selector: 'app-creareditaappointment',
@@ -26,15 +30,23 @@ import { DialogRef } from '@angular/cdk/dialog';
     MatNativeDateModule,
     MatButtonModule,
     ReactiveFormsModule,
+<<<<<<< HEAD
     CommonModule, ToolbarComponent, RouterModule, MatDialogModule, FormsModule, MapmodalComponent],
+=======
+    CommonModule],
+>>>>>>> 2fe96d804b2c99e8084df3b1509ec6c9d5c2ee45
   templateUrl: './creareditaappointment.component.html',
   styleUrl: './creareditaappointment.component.css'
 })
 export class CreareditaappointmentComponent implements OnInit{
   form: FormGroup = new FormGroup({});
   appointment: Appointment = new Appointment;
+<<<<<<< HEAD
   role: string = "";
 
+=======
+  
+>>>>>>> 2fe96d804b2c99e8084df3b1509ec6c9d5c2ee45
   id: number = 0;
   edicion: boolean = false;
   flagForm: boolean = false;
@@ -44,14 +56,18 @@ export class CreareditaappointmentComponent implements OnInit{
     private aS: AppointmentService,
     private formBuilder: FormBuilder,
     private router: Router,
+<<<<<<< HEAD
     private route: ActivatedRoute,
     private lS:LoginService,
     private uS:UserService,
     private _matDialog:MatDialog,
+=======
+    private route: ActivatedRoute
+>>>>>>> 2fe96d804b2c99e8084df3b1509ec6c9d5c2ee45
   ) {}
   listaModo: { value: string; viewValue: string }[] = [
     { value: 'Virtual', viewValue: 'Virtual' },
-    { value: 'Presencial', viewValue: 'Presencial' },
+    { value: 'Prescencial', viewValue: 'Prescencial' },
   ];
   idCliente:number=0;
 
