@@ -1,0 +1,31 @@
+<div class="container" style="text-align: center;margin:2%">
+  <div>
+    <h1>Registro de Notificaciones</h1>
+  </div>
+  <div>
+    <form [formGroup]="form" (submit)=" insertar()">
+      <mat-form-field class="example-full-width" *ngIf="edicion">
+        <mat-label>Codigo</mat-label>
+        <input matInput formControlName="codigo" />
+      </mat-form-field>
+      <br>
+      <mat-form-field>
+        <mat-label>Mensaje</mat-label>
+        <input matInput formControlName="mensaje">
+      </mat-form-field>
+      <br />
+      <mat-form-field>
+        <mat-label>Cliente</mat-label>
+        <input matInput formControlName="userCliente">
+      </mat-form-field>
+      <br>
+      <mat-form-field>
+        <mat-label>Receta</mat-label>
+        <input matInput formControlName="idReceta">
+      </mat-form-field>
+      <div>
+        <button mat-flat-button class="custom-button">Registrar</button>
+      </div>
+    </form>
+  </div>
+</div>

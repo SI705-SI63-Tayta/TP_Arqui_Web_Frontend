@@ -38,9 +38,9 @@ export class CreaeditarecipeComponent implements OnInit{
   ) {}
 
   idCliente:number=0;
-  listaModo: { value: string; viewValue: string }[] = [
-    { value: 'Virtual', viewValue: 'Virtual' },
-    { value: 'Prescencial', viewValue: 'Prescencial' },
+  listaEstado: { value: string; viewValue: string }[] = [
+    { value: 'ACTIVO', viewValue: 'Activo' },
+    { value: 'CULMINADA', viewValue: 'Culminada' },
   ];
   ngOnInit(): void {
     this.idCliente=this.lS.getId();
@@ -50,7 +50,7 @@ export class CreaeditarecipeComponent implements OnInit{
       this.init();
     });
     this.form = this.formBuilder.group({
-    codigo: [''],
+      codigo: [''],
       descripcion: ['', Validators.required],
       fechainicio: ['', Validators.required],
       fechafin: ['', Validators.required],
@@ -62,20 +62,40 @@ export class CreaeditarecipeComponent implements OnInit{
       this.recipe.idRecipe = this.form.value.codigo;
       this.recipe.description=this.form.value.descripcion;
       this.recipe.startDate=this.form.value.fechainicio;
-      this.recipe.endDate=this.form.value.estado;
+      this.recipe.endDate=this.form.value.fechafin;
+      this.recipe.state=this.form.value.estado;
 
       if (this.edicion) {
-        this.rS.update(this.recipe).subscribe((data) => {
-          this.rS.getRecetasByCliente(this.idCliente).subscribe((data) => {
-            this.rS.setList(data);
+        if(this.isCliente()){
+          this.rS.update(this.recipe).subscribe((data) => {
+            this.rS.getRecetasByCliente(this.idCliente).subscribe((data) => {
+              this.rS.setList(data);
+            });
           });
-        });
+        }else{
+          this.rS.update(this.recipe).subscribe((data) => {
+            this.rS.getList().subscribe((data) => {
+              this.rS.setList(data);
+            });
+          });
+        }
+
       } else {
-        this.rS.insert(this.recipe).subscribe((data) => {
-          this.rS.getRecetasByCliente(this.idCliente).subscribe((data) => {
-            this.rS.setList(data);
+
+        if(this.isCliente()){
+          this.rS.insert(this.recipe).subscribe((data) => {
+            this.rS.getRecetasByCliente(this.idCliente).subscribe((data) => {
+              this.rS.setList(data);
+            });
           });
-        });
+        }else{
+          this.rS.insert(this.recipe).subscribe((data) => {
+            this.rS.getList().subscribe((data) => {
+              this.rS.setList(data);
+            });
+          });
+        }
+
       }
     }
     this.router.navigate(['recetas']);
@@ -92,5 +112,21 @@ export class CreaeditarecipeComponent implements OnInit{
         });
       });
     }
+  }
+
+  isAdmin(){
+    return this.lS.showRole()==='ADMINISTRADOR';
+  }
+
+  isDoctor(){
+    return this.lS.showRole()==='DOCTOR';
+  }
+
+  isEnfermero(){
+    return this.lS.showRole()==='ENFERMERO';
+  }
+
+  isCliente(){
+    return this.lS.showRole()==='CLIENTE';
   }
 }

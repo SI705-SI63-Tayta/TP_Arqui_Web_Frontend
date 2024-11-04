@@ -23,16 +23,30 @@ export class ListarrecipeComponent implements OnInit{
   ){}
 
   idCliente:number=0;
-
+  idPersonal: number=0;
   ngOnInit(): void {
-    this.idCliente=this.lS.getId();
 
-    this.rS.getRecetasByCliente(this.idCliente).subscribe((data)=>{
-      this.dataSource=new MatTableDataSource(data);
-    });
-    this.rS.getList().subscribe((data) => {
-      this.dataSource = new MatTableDataSource(data);
-    });
+    if(this.isCliente()){
+      this.idCliente=this.lS.getId();
+
+      this.rS.getRecetasByCliente(this.idCliente).subscribe((data)=>{
+        this.dataSource=new MatTableDataSource(data);
+      });
+      this.rS.getList().subscribe((data) => {
+        this.dataSource = new MatTableDataSource(data);
+      });
+    }else{
+      this.idCliente=this.lS.getId();
+
+      this.rS.list().subscribe((data)=>{
+        this.dataSource=new MatTableDataSource(data);
+      });
+      this.rS.getList().subscribe((data) => {
+        this.dataSource = new MatTableDataSource(data);
+      });
+    }
+
+
   }
   eliminar(id: number) {
     this.rS.delete(id).subscribe((data) => {

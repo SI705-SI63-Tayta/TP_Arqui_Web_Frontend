@@ -1,52 +1,49 @@
-<div class="container" style="text-align: center;margin:2%">
-    <div><h1>Registro de Vehículos</h1></div>
-    <div>
-      <form [formGroup]="form" (submit)=" insertar()">
-        <mat-form-field class="example-full-width" *ngIf="edicion">
-          <mat-label>Código</mat-label>
-          <input matInput formControlName="codigo" />
-        </mat-form-field>
-        <br />
-        <mat-form-field class="example-full-width">
-          <mat-label>Descripcion</mat-label>
-          <input matInput formControlName="descripcion" />
-        </mat-form-field>
-        <br />
-        <mat-form-field>
-            <mat-label>Escoge una fecha de inicio</mat-label>
-            <input matInput [matDatepicker]="picker" formControlName="fechainicio"/>
-            <mat-hint>MM/DD/YYYY</mat-hint>
-            <mat-datepicker-toggle
-              matIconSuffix
-              [for]="picker"
-            ></mat-datepicker-toggle>
-            <mat-datepicker #picker></mat-datepicker>
-          </mat-form-field>
-        <br />
-        <mat-form-field>
-            <mat-label>Escoge una fecha de fin</mat-label>
-            <input matInput [matDatepicker]="picker" formControlName="fechafin"/>
-            <mat-hint>MM/DD/YYYY</mat-hint>
-            <mat-datepicker-toggle
-              matIconSuffix
-              [for]="picker"
-            ></mat-datepicker-toggle>
-            <mat-datepicker #picker></mat-datepicker>
-          </mat-form-field>
-        <br />
-        <mat-form-field>
-          <mat-label>Estado</mat-label>
-          <mat-select formControlName="modo">
-            @for (c of listaModo; track c) {
-            <mat-option [value]="c.value">{{ c.viewValue }}</mat-option>
-            }
-          </mat-select>
-        </mat-form-field>
-  
-        <div>
-          <button mat-flat-button class="custom-button">Registrar</button>
-        </div>
-      </form>
-    </div>
+<div class="container" style="text-align: center; margin: 2%">
+  <div><h1>Registro de Recetas</h1></div>
+  <div>
+    <form [formGroup]="form" (submit)="insertar()">
+      <mat-form-field class="example-full-width" *ngIf="edicion">
+        <mat-label>Código</mat-label>
+        <input matInput formControlName="codigo" />
+      </mat-form-field>
+      <br />
+
+      <mat-form-field class="example-full-width">
+        <mat-label>Descripción</mat-label>
+        <input matInput formControlName="descripcion" />
+      </mat-form-field>
+      <br />
+
+      <!-- Campo de fecha de inicio -->
+      <mat-form-field>
+        <mat-label>Escoge una fecha de inicio</mat-label>
+        <input matInput [matDatepicker]="pickerInicio" formControlName="fechainicio" />
+        <mat-hint>MM/DD/YYYY</mat-hint>
+        <mat-datepicker-toggle matIconSuffix [for]="pickerInicio"></mat-datepicker-toggle>
+        <mat-datepicker #pickerInicio></mat-datepicker>
+      </mat-form-field>
+      <br />
+
+      <!-- Campo de fecha de fin -->
+      <mat-form-field>
+        <mat-label>Escoge una fecha de fin</mat-label>
+        <input matInput [matDatepicker]="pickerFin" formControlName="fechafin" />
+        <mat-hint>MM/DD/YYYY</mat-hint>
+        <mat-datepicker-toggle matIconSuffix [for]="pickerFin"></mat-datepicker-toggle>
+        <mat-datepicker #pickerFin></mat-datepicker>
+      </mat-form-field>
+      <br />
+
+      <mat-form-field>
+        <mat-label>Estado</mat-label>
+        <mat-select formControlName="estado">
+          <mat-option *ngFor="let c of listaEstado" [value]="c.value">{{ c.viewValue }}</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <div>
+        <button mat-flat-button class="custom-button">Registrar</button>
+      </div>
+    </form>
   </div>
-  
+</div>

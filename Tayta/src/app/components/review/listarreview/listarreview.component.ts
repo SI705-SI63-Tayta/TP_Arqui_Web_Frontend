@@ -23,7 +23,10 @@ constructor(private reS:ReviewService, private uS:UserService){}
 ngOnInit(): void {
     this.reS.list().subscribe((data)=>{
       this.dataSource=new MatTableDataSource(data);
+    })
 
+    this.reS.getList().subscribe((data)=>{
+      this.dataSource=new MatTableDataSource(data);
     })
 }
 

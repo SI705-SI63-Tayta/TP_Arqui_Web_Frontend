@@ -33,7 +33,7 @@ export class ToolbarComponent implements OnInit {
     private lS:LoginService,
     private router:Router
   ){
-    
+
   }
   ngOnInit(): void {
     this.role=this.lS.showRole();
@@ -57,11 +57,14 @@ export class ToolbarComponent implements OnInit {
         { icon: 'person', label: 'Ver Citas', route: '/citas' },
         { icon: 'person', label: 'Registrar Actividades', route: '/actividades/registrar' },
         { icon: 'person', label: 'Ver Actividades', route: '/actividades' },
-        { icon: 'person', label: 'Ver Recetas', route: '/recetas/listar' },
+        { icon: 'person', label: 'Ver Recetas', route: '/recetas' },
       ];
     }else if(this.role === 'ADMINISTRADOR'){
       this.menuItems=[
-        {icon: 'home', label: 'ver historia clinica', route: '/historiaclinica/registrar'}
+        {icon: 'home', label: 'ver historia clinica', route: '/historiaclinica/registrar'},
+        {icon: 'home', label: 'ver notificaciones', route: '/notificaciones/registrar'},
+        {icon: 'home', label: 'ver reseñas', route: '/resenas/registrar'},
+        { icon: 'person', label: 'Ver Recetas', route: '/recetas' },
       ]
     }
 
@@ -69,5 +72,5 @@ export class ToolbarComponent implements OnInit {
   navigateTo(route: string) {
     this.router.navigate([route]);
   }
-  
+
 }
