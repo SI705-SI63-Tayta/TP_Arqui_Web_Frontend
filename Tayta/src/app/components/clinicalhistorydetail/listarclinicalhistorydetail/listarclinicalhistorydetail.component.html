@@ -1,20 +1,20 @@
 <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
-  
+
     <ng-container matColumnDef="c1">
       <th mat-header-cell *matHeaderCellDef> id Detalle de Historia </th>
       <td mat-cell *matCellDef="let element"> {{element.idDetalleHistoria}} </td>
     </ng-container>
-  
+
     <ng-container matColumnDef="c2">
       <th mat-header-cell *matHeaderCellDef> id Historia Clínica</th>
       <td mat-cell *matCellDef="let element"> {{element.medicalRecord.idMedicalRecord}} </td>
     </ng-container>
-  
+
     <ng-container matColumnDef="c3">
       <th mat-header-cell *matHeaderCellDef> id Receta </th>
       <td mat-cell *matCellDef="let element"> {{element.recipe.idRecipe}} </td>
     </ng-container>
-  
+
     <ng-container matColumnDef="c4">
       <th mat-header-cell *matHeaderCellDef> id Cita </th>
       <td mat-cell *matCellDef="let element"> {{element.appointment.idAppointment}} </td>
@@ -28,19 +28,27 @@
     <ng-container matColumnDef="eliminar">
       <th mat-header-cell *matHeaderCellDef>Eliminar</th>
       <td mat-cell *matCellDef="let element" (click)="eliminar(element.idDetalleHistoria)">
-        <mat-icon style="color:#eb0a21">delete</mat-icon>
+
+        <button mat-mini-fab style="background-color: #ffffff00;">
+          <mat-icon style="color:#eb0a21">delete</mat-icon>
+        </button>
+
       </td>
     </ng-container>
 
     <ng-container matColumnDef="editar">
       <th mat-header-cell *matHeaderCellDef>Editar</th>
       <td mat-cell *matCellDef="let element" [routerLink]="['ediciones',element.idDetalleHistoria]">
-        <mat-icon style="color:#eb0a21">edit</mat-icon>
+
+        <button mat-mini-fab style="background-color: #ffffff00;">
+          <mat-icon style="color:#eb0a21">edit</mat-icon>
+        </button>
+
       </td>
     </ng-container>
 
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
   </table>
-  
-  
+
+

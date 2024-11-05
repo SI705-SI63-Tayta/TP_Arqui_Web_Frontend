@@ -41,4 +41,10 @@ export class ReviewService {
     return this.http.put(this.url, r);
   }
 
+  getResenasByPersonal(id:number): Observable<Review[]>{
+    return this.list().pipe(
+      map(re=>re.filter(r=>r.userPersonal.idUser===id))
+    );
+  }
+
 }

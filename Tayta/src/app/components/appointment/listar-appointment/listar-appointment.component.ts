@@ -19,23 +19,44 @@ export class ListarAppointmentComponent implements OnInit{
   displayedColumns: string[] = ['c1', 'c2', 'c3','c4','c5','c6','c7']
 
   constructor(private aS:AppointmentService, private lS:LoginService){}
-  idCliente:number=0;
+  idUser: number=0;
+  role: string="";
   ngOnInit(): void {
-    this.idCliente=this.lS.getId();
+    this.role=this.lS.showRole();
+    this.idUser=this.lS.getId();
 
-    this.aS.getCitasByCliente(this.idCliente).subscribe((data)=>{
-      this.dataSource=new MatTableDataSource(data);
-    });
+    if(this.role==="CLIENTE"){
+      this.aS.getCitasByCliente(this.idUser).subscribe((data)=>{
+        this.dataSource=new MatTableDataSource(data);
+      });
+    }else if(this.role=== "DOCTOR" || this.role==="ENFERMERO"){
+      this.aS.getCitasByPersonal(this.idUser).subscribe((data)=>{
+        this.dataSource=new MatTableDataSource(data);
+      });
+    }
     this.aS.getList().subscribe((data) => {
       this.dataSource = new MatTableDataSource(data);
     });
+
+
+
+
   }
   eliminar(id: number) {
-    this.aS.delete(id).subscribe((data) => {
-      this.aS.getCitasByCliente(this.idCliente).subscribe((data) => {
-        this.aS.setList(data);
+    if(this.role==="CLIENTE"){
+      this.aS.delete(id).subscribe((data) => {
+        this.aS.getCitasByCliente(this.idUser).subscribe((data) => {
+          this.aS.setList(data);
+        });
       });
-    });
+    }else if(this.role=== "DOCTOR" || this.role==="ENFERMERO"){
+      this.aS.delete(id).subscribe((data) => {
+        this.aS.getCitasByPersonal(this.idUser).subscribe((data) => {
+          this.aS.setList(data);
+        });
+      });
+    }
+
   }
 
 }

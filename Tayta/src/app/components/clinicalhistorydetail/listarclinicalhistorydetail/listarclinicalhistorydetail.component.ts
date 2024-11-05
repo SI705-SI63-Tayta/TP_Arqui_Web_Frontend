@@ -4,11 +4,12 @@ import { ClinicalHistoryDetail } from '../../../models/ClinicalHistoryDetail';
 import { ClinicaldetailhistoryService } from '../../../services/clinicaldetailhistory.service';
 import { MatIconModule } from '@angular/material/icon';
 import { RouterModule } from '@angular/router';
+import { MatButtonModule } from '@angular/material/button';
 
 @Component({
   selector: 'app-listarclinicalhistorydetail',
   standalone: true,
-  imports: [MatTableModule,  MatIconModule, RouterModule],
+  imports: [MatTableModule,  MatIconModule, RouterModule,MatButtonModule],
   templateUrl: './listarclinicalhistorydetail.component.html',
   styleUrl: './listarclinicalhistorydetail.component.css'
 })

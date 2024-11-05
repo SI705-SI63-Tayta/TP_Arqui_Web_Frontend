@@ -51,8 +51,8 @@
         <textarea matInput formControlName="descripcion"></textarea>
       </mat-form-field>
       <div>
-        <button mat-flat-button (click)="flagUpdate()" class="custom-button" *ngIf="!edicion">Registrar</button>
-        <button mat-flat-button (click)="flagUpdate()" class="custom-button" *ngIf="edicion">Guardar</button>
+        <button mat-flat-button (click)="flagUpdate()" style="background-color: #27AE60; color: #fff;" class="custom-button" *ngIf="!edicion">Registrar</button>
+        <button mat-flat-button (click)="flagUpdate()" style="background-color: #27AE60; color: #fff;" class="custom-button" *ngIf="edicion">Guardar</button>
       </div>
     </form>
   </div>

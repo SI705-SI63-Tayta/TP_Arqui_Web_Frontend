@@ -9,6 +9,7 @@ import {Router, RouterModule, RouterOutlet } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { BreakpointObserver } from '@angular/cdk/layout';
 import { LoginService } from '../../services/login.service';
+import {MatMenuModule} from '@angular/material/menu';
 
 interface MenuItem {
   icon: string;
@@ -19,7 +20,7 @@ interface MenuItem {
 @Component({
   selector: 'app-toolbar',
   standalone: true,
-  imports: [MatToolbarModule,MatSidenavModule,MatButtonModule,MatIconModule,MatDividerModule,MatListModule,RouterOutlet,CommonModule,RouterModule],
+  imports: [MatToolbarModule,MatSidenavModule,MatButtonModule,MatIconModule,MatDividerModule,MatListModule,RouterOutlet,CommonModule,RouterModule,MatMenuModule],
   templateUrl: './toolbar.component.html',
   styleUrl: './toolbar.component.css'
 })
@@ -27,8 +28,11 @@ export class ToolbarComponent implements OnInit {
   @ViewChild(MatSidenav, {static:true})
   sidenav!:MatSidenav;
   menuItems: MenuItem[] = [];
+  notifications: string[] = ['Notificación 1', 'Notificación 2', 'Notificación 3']; // Aquí pones las notificaciones
 
-  @Input() role:string="";
+
+  role: string="";
+  username:string="";
   constructor(private observer:BreakpointObserver,
     private lS:LoginService,
     private router:Router
@@ -37,6 +41,7 @@ export class ToolbarComponent implements OnInit {
   }
   ngOnInit(): void {
     this.role=this.lS.showRole();
+    this.username=this.lS.showUsername();
     this.observer.observe(["(max-width:800px)"])
     .subscribe((res)=>{
       if(res.matches){
@@ -57,8 +62,22 @@ export class ToolbarComponent implements OnInit {
         { icon: 'person', label: 'Ver Citas', route: '/citas' },
         { icon: 'person', label: 'Registrar Actividades', route: '/actividades/registrar' },
         { icon: 'person', label: 'Ver Actividades', route: '/actividades' },
-        { icon: 'person', label: 'Ver Recetas', route: '/recetas/listar' },
+        { icon: 'person', label: 'Ver Recetas', route: '/recetas' },
+        { icon: 'person', label: 'Registrar reseña', route: '/resenas/registrar' },
+        { icon: 'person', label: 'Ver Reseñas', route: '/resenas' },
       ];
+    }else if(this.role==='DOCTOR' || this.role==='ENFERMERO'){
+      this.menuItems=[
+        { icon: 'person', label: 'Ver Citas', route: '/citas' },
+        { icon: 'person', label: 'Ver Reseñas', route: '/resenas' },
+        { icon: 'person', label: 'Registrar Historia Clinica', route: '/historiaclinica/registrar' },
+        { icon: 'person', label: 'Ver Historia Clinica', route: '/historiaclinica' },
+        { icon: 'person', label: 'Registrar Detalle Historia', route: '/detallehistoriaclinica/registrar' },
+        { icon: 'person', label: 'Ver Detalle Historia', route: '/detallehistoriaclinica' },
+      ]
+
+
+
     }else if(this.role === 'ADMINISTRADOR'){
       this.menuItems=[
         {icon: 'home', label: 'ver historia clinica', route: '/historiaclinica/registrar'},
@@ -71,5 +90,11 @@ export class ToolbarComponent implements OnInit {
   navigateTo(route: string) {
     this.router.navigate([route]);
   }
+
+  modifyProfile() {
+    // Lógica para modificar el perfil
+    this.router.navigate(['usuarios/ediciones']);
+  }
+
 
 }
