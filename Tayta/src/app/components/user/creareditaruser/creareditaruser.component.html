@@ -1,0 +1,59 @@
+<div class="container" style="text-align: center; margin: 2%">
+  <div>
+    <h1>Edicion de Perfil</h1>
+  </div>
+  <div>
+    <form [formGroup]="form" (submit)="insertar()">
+      <mat-form-field class="example-full-width" *ngIf="edicion">
+        <mat-label>Código</mat-label>
+        <input matInput formControlName="codigo" />
+      </mat-form-field>
+      <br>
+      <mat-form-field>
+        <mat-label>Nombre Completo</mat-label>
+        <input matInput formControlName="fullname">
+      </mat-form-field>
+      <br />
+      <mat-form-field>
+        <mat-label>Email</mat-label>
+        <input matInput formControlName="email">
+      </mat-form-field>
+      <br>
+      <mat-form-field>
+        <mat-label>Usuario</mat-label>
+        <input matInput formControlName="username">
+      </mat-form-field>
+      <br>
+
+      <!-- Campo para la Contraseña Actual -->
+      <mat-form-field *ngIf="edicion">
+        <mat-label>Contraseña Actual</mat-label>
+        <input matInput formControlName="currentPassword" type="password">
+      </mat-form-field>
+      <br>
+
+      <!-- Campo para la Nueva Contraseña -->
+      <mat-form-field>
+        <mat-label>Nueva Contraseña</mat-label>
+        <input matInput formControlName="newPassword" type="password">
+      </mat-form-field>
+      <br>
+
+      <mat-form-field>
+        <mat-label>Dirección</mat-label>
+        <input matInput formControlName="address">
+      </mat-form-field>
+      <br>
+      <mat-form-field>
+        <mat-label>DNI</mat-label>
+        <input matInput formControlName="dni">
+      </mat-form-field>
+
+      <div>
+        <button mat-flat-button class="custom-button" [disabled]="form.invalid">
+          Registrar
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

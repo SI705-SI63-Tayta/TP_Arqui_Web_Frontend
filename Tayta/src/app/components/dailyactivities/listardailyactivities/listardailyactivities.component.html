@@ -14,14 +14,18 @@
     <ng-container matColumnDef="eliminar">
       <th mat-header-cell *matHeaderCellDef>Eliminar</th>
       <td mat-cell *matCellDef="let element" (click)="eliminar(element.idActivity)">
-        <mat-icon style="color:#eb0a21">delete</mat-icon>
+        <button mat-mini-fab style="background-color: #ffffff00;">
+          <mat-icon style="color:#eb0a21">delete</mat-icon>
+        </button>
       </td>
     </ng-container>
 ss
     <ng-container matColumnDef="editar">
       <th mat-header-cell *matHeaderCellDef>Editar</th>
       <td mat-cell *matCellDef="let element" [routerLink]="['ediciones',element.idActivity]">
-        <mat-icon style="color:#eb0a21">edit</mat-icon>
+        <button mat-mini-fab style="background-color: #ffffff00;">
+          <mat-icon style="color:#eb0a21">edit</mat-icon>
+        </button>
       </td>
     </ng-container>
 

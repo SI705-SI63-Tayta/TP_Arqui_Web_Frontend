@@ -44,4 +44,10 @@ private url=`${base_url}/citas`
       map(ap=>ap.filter(a=>a.userCliente.idUser===id))
     );
   }
+
+  getCitasByPersonal(id:number): Observable<Appointment[]>{
+    return this.list().pipe(
+      map(ap=>ap.filter(a=>a.userPersonal.idUser===id))
+    );
+  }
 }

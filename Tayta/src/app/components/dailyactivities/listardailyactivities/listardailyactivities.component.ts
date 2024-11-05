@@ -6,11 +6,12 @@ import { UserService } from '../../../services/user.service';
 import { MatIconModule } from '@angular/material/icon';
 import { RouterModule } from '@angular/router';
 import { LoginService } from '../../../services/login.service';
+import { MatButtonModule } from '@angular/material/button';
 
 @Component({
   selector: 'app-listardailyactivities',
   standalone: true,
-  imports: [MatTableModule,  MatIconModule, RouterModule],
+  imports: [MatTableModule,  MatIconModule, RouterModule,MatButtonModule],
   templateUrl: './listardailyactivities.component.html',
   styleUrl: './listardailyactivities.component.css'
 })

@@ -1,42 +1,48 @@
-mat-toolbar{
-    background-color: #2b62c8;
-    color: #ffffff;
+mat-toolbar {
+  background-color: #ffff ;
+  color: #000;
 }
 
-mat-icon{
-    color: #ffffff;
+mat-icon {
+  color: #000;
 }
 
-mat-sidenav{
-    width: 250px;
-    border-right: none;
+mat-sidenav {
+  width: 250px;
+  border-right: none;
+  background-color: #F1F7EE;
 }
 
-.content{
-    position: fixed;
-    height: calc(100svh - 98px);
-    background-color: transparent;
-    border-radius: 10px;
-    padding: 16px;
-    max-width: 1520px;
-    margin: 0 auto;
-    font-size: 16px;
-    z-index: 1;
+.content {
+  position: fixed;
+  height: calc(100svh - 98px);
+  background-color: transparent;
+  border-radius: 10px;
+  padding: 16px;
+  max-width: 1520px;
+  margin: 0 auto;
+  font-size: 16px;
+  z-index: 1;
 }
 
-mat-sidenav-container{
-    height: calc(100svh - 65px);
+mat-sidenav-container {
+  height: calc(100svh - 65px);
 }
 
 mat-sidenav-container, mat-sidenav, mat-sidenav-content, .content {
-    border-radius: 0;
+  border-radius: 0;
 }
 
-mat-sidenav-container mat-sidenav mat-nav-list mat-list-item{
-    border-radius: 0px;
-    color: black;
+mat-sidenav-container mat-sidenav mat-nav-list mat-list-item {
+  margin-bottom: 16px;
+  border-radius: 0px;
+  color: black;
 }
 
-mat-sidenav-container mat-sidenav mat-nav-list mat-list-item mat-icon{
-    color: black;
+mat-sidenav-container mat-sidenav mat-nav-list mat-list-item mat-icon {
+  color: black;
+}
+
+mat-toolbar button {
+  margin-left: auto;
 }

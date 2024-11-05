@@ -1,10 +1,19 @@
-<!-- toolbar.component.html -->
 <mat-toolbar>
   <button mat-icon-button *ngIf="sidenav.mode === 'over'" (click)="sidenav.toggle()">
     <mat-icon *ngIf="!sidenav.opened">menu</mat-icon>
     <mat-icon *ngIf="sidenav.opened">close</mat-icon>
   </button>
-  MyPage
+  <span style="flex: 1;">TAYTA</span>
+
+  <!-- Botón de notificaciones con menú desplegable -->
+  <button mat-icon-button [matMenuTriggerFor]="notificationsMenu">
+    <mat-icon>notifications</mat-icon>
+  </button>
+
+  <!-- Botón de perfil con menú desplegable -->
+  <button mat-icon-button [matMenuTriggerFor]="profileMenu">
+    <mat-icon>person</mat-icon>
+  </button>
 </mat-toolbar>
 
 <mat-sidenav-container>
@@ -22,3 +31,20 @@
     </div>
   </mat-sidenav-content>
 </mat-sidenav-container>
+
+<!-- Menú desplegable para el perfil -->
+<mat-menu #profileMenu="matMenu">
+  <button mat-menu-item disabled>Username: {{ username }}</button>
+  <button mat-menu-item disabled>Role: {{ role }}</button>
+  <button mat-menu-item (click)="modifyProfile()">Modificar perfil</button>
+</mat-menu>
+
+<!-- Menú desplegable para las notificaciones -->
+<mat-menu #notificationsMenu="matMenu">
+  <ng-container *ngIf="notifications.length > 0; else noNotifications">
+    <button mat-menu-item *ngFor="let notification of notifications">{{ notification }}</button>
+  </ng-container>
+  <ng-template #noNotifications>
+    <button mat-menu-item disabled>No hay notificaciones</button>
+  </ng-template>
+</mat-menu>

@@ -61,7 +61,7 @@ export class CreareditarnotificationComponent implements OnInit{
         });
       }else{
         this.nS.insert(this.notification).subscribe((data)=>{
-          this.nS.getList().subscribe((data)=>{
+          this.nS.list().subscribe((data)=>{
             this.nS.setList(data);
           });
         });

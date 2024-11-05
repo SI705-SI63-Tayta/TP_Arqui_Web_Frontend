@@ -7,11 +7,13 @@ import { Review } from '../../../models/Review';
 import { ReviewService } from '../../../services/review.service';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { LoginService } from '../../../services/login.service';
+import { MatSelectModule } from '@angular/material/select';
+import { UserService } from '../../../services/user.service';
 
 @Component({
   selector: 'app-creareditarreview',
   standalone: true,
-  imports: [MatInputModule, MatButtonModule, ReactiveFormsModule, CommonModule],
+  imports: [MatInputModule, MatButtonModule, ReactiveFormsModule, CommonModule,MatSelectModule],
   templateUrl: './creareditarreview.component.html',
   styleUrl: './creareditarreview.component.css'
 })
@@ -21,13 +23,17 @@ export class CreareditarreviewComponent implements OnInit {
 
   edicion: boolean = false;
   id: number = 0;
+  idCliente: number=0;
+
+  listaMedicos: { value: number; viewValue: string }[] = [];
 
   constructor(
     private formBuilder: FormBuilder,
     private rS: ReviewService,
     private router: Router,
     private route: ActivatedRoute,
-    private lS:LoginService
+    private lS:LoginService,
+    private uS:UserService
   ) { }
 
 
@@ -37,14 +43,15 @@ export class CreareditarreviewComponent implements OnInit {
       this.edicion = data['id'] != null;
 
       this.init();
+      this.getMedicos();
+      this.idCliente=this.lS.getId();
     });
 
     this.form = this.formBuilder.group({
       codigo: [''],
       puntuacion: ['', Validators.required],
       comentario: ['', Validators.required],
-      userCliente: ['', Validators.required],
-      userPersonal: ['', Validators.required],
+      personal: ['', Validators.required],
     });
   }
   insertar(): void {
@@ -52,8 +59,8 @@ export class CreareditarreviewComponent implements OnInit {
       this.review.idReview = this.form.value.codigo;
       this.review.scoreReview = this.form.value.puntuacion;
       this.review.commentReview = this.form.value.comentario;
-      this.review.userCliente.idUser = this.form.value.userCliente;
-      this.review.userPersonal.idUser = this.form.value.userPersonal;
+      this.review.userCliente.idUser =this.idCliente;
+      this.review.userPersonal.idUser = this.form.value.personal;
 
       if(this.edicion){
         this.rS.update(this.review).subscribe((data)=>{
@@ -63,7 +70,7 @@ export class CreareditarreviewComponent implements OnInit {
         });
       }else{
         this.rS.insert(this.review).subscribe((data)=>{
-          this.rS.getList().subscribe((data)=>{
+          this.rS.list().subscribe((data)=>{
             this.rS.setList(data);
           });
         });
@@ -82,11 +89,22 @@ export class CreareditarreviewComponent implements OnInit {
           codigo: new FormControl(data.idReview),
           puntuacion: new FormControl(data.scoreReview),
           comentario: new FormControl(data.commentReview),
-          userCliente: new FormControl(data.userCliente.idUser),
           userPersonal: new FormControl(data.userPersonal.idUser),
         });
+        this.review.userCliente.idUser=data.userCliente.idUser;
+        this.review.userPersonal.idUser=data.userPersonal.idUser;
       });
     }
+  }
+
+
+  getMedicos(){
+    this.uS.getMedicos().subscribe((data) => {
+      this.listaMedicos = data.map(u=>({
+        value: u.idUser,
+        viewValue: u.fullName
+      }))
+    });
   }
 
 }

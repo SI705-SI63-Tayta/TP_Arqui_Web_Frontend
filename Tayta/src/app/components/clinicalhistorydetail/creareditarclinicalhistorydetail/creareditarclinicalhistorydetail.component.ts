@@ -50,7 +50,7 @@ export class CreareditarclinicalhistorydetailComponent {
 
   insertar(): void {
     if (this.form.valid) {
-      this.clinicalhistorydetail.idDetalleHistoria=this.form.value.hcodigo;
+      this.clinicalhistorydetail.idDetalleHistoria=this.form.value.hidDetalleHistoria;
       this.clinicalhistorydetail.medicalRecord.idMedicalRecord= this.form.value.hmedicalRecord;
       this.clinicalhistorydetail.recipe.idRecipe=this.form.value.hrecipe;
       this.clinicalhistorydetail.appointment.idAppointment=this.form.value.happointment;
@@ -70,10 +70,9 @@ export class CreareditarclinicalhistorydetailComponent {
       }
       this.router.navigate(['detallehistoriaclinica'])
     }else{
-      // Esto marca los campos como "tocados" para que se muestren los errores
-      this.form.markAllAsTouched();
+
     }
-    
+
   }
 
   init() {

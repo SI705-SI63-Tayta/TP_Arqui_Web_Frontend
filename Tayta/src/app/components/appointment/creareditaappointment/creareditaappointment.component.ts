@@ -53,11 +53,11 @@ export class CreareditaappointmentComponent implements OnInit{
     { value: 'Virtual', viewValue: 'Virtual' },
     { value: 'Presencial', viewValue: 'Presencial' },
   ];
-  idCliente:number=0;
-
+  idUser:number=0;
   listaMedicos: { value: number; viewValue: string }[] = [];
   ngOnInit(): void {
-    this.idCliente=this.lS.getId();
+    this.idUser=this.lS.getId();
+    this.role=this.lS.showRole();
     this.route.params.subscribe((data: Params) => {
       this.id = data['id'];
       this.edicion = data['id'] >0;
@@ -87,21 +87,37 @@ export class CreareditaappointmentComponent implements OnInit{
         this.appointment.reason = this.form.value.razon;
         this.appointment.mode = this.form.value.modo;
         this.appointment.description = this.form.value.descripcion;
-        this.appointment.userCliente.idUser = this.idCliente;
+        this.appointment.userCliente.idUser = this.idUser;
         this.appointment.userPersonal.idUser = this.form.value.personal;
 
-        if (this.edicion) {
-          this.aS.update(this.appointment).subscribe((data) => {
-            this.aS.getCitasByCliente(this.idCliente).subscribe((data) => {
-              this.aS.setList(data);
+        if(this.role==="CLIENTE"){
+          if (this.edicion) {
+            this.aS.update(this.appointment).subscribe((data) => {
+              this.aS.getCitasByCliente(this.idUser).subscribe((data) => {
+                this.aS.setList(data);
+              });
             });
-          });
-        } else {
-          this.aS.insert(this.appointment).subscribe((data) => {
-            this.aS.getCitasByCliente(this.idCliente).subscribe((data) => {
-              this.aS.setList(data);
+          } else {
+            this.aS.insert(this.appointment).subscribe((data) => {
+              this.aS.getCitasByCliente(this.idUser).subscribe((data) => {
+                this.aS.setList(data);
+              });
             });
-          });
+          }
+        }else if( this.role==="DOCTOR" || this.role==="ENFERMERO"){
+          if (this.edicion) {
+            this.aS.update(this.appointment).subscribe((data) => {
+              this.aS.getCitasByPersonal(this.idUser).subscribe((data) => {
+                this.aS.setList(data);
+              });
+            });
+          } else {
+            this.aS.insert(this.appointment).subscribe((data) => {
+              this.aS.getCitasByPersonal(this.idUser).subscribe((data) => {
+                this.aS.setList(data);
+              });
+            });
+          }
         }
 
           this.router.navigate(['citas']);

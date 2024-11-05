@@ -20,16 +20,15 @@
       </mat-form-field>
       <br>
       <mat-form-field>
-        <mat-label>Cliente</mat-label>
-        <input matInput formControlName="userCliente">
-      </mat-form-field>
-      <br>
-      <mat-form-field>
         <mat-label>Personal</mat-label>
-        <input matInput formControlName="userPersonal">
+        <mat-select formControlName="personal">
+          @for (m of listaMedicos; track m) {
+          <mat-option [value]="m.value">{{ m.viewValue }}</mat-option>
+          }
+        </mat-select>
       </mat-form-field>
       <div>
-        <button mat-flat-button class="custom-button">Registrar</button>
+        <button mat-flat-button class="custom-button" style="background-color: #27AE60; color: #fff;">Registrar</button>
       </div>
     </form>
   </div>
