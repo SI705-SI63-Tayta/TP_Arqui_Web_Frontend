@@ -61,6 +61,11 @@ mat-card-actions {
   transform: scale(1.05);
 }
 
+.recipe-button{
+  background-color: green;
+  color: #ffffff;
+}
+
 .delete-button {
   color: #ffffff;
   background-color: #e53935; /* Rojo para el botón de eliminar */

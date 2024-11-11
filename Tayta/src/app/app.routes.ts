@@ -65,7 +65,7 @@ export const routes: Routes = [
         path: 'recetas', component: RecipeComponent,
         children: [
           {
-            path: 'registrar', component: CreaeditarecipeComponent
+            path: 'registrar/:idAppointment', component: CreaeditarecipeComponent
           },
           {
             path: 'ediciones/:id', component: CreaeditarecipeComponent

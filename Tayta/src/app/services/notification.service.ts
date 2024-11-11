@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environments';
 import { HttpClient } from '@angular/common/http';
 import { Notification } from '../models/Notification';
-import { Subject } from 'rxjs';
+import { map, Observable, Subject } from 'rxjs';
 
 
 const base_url=environment.base
@@ -40,6 +40,12 @@ export class NotificationService {
 
   update(n: Notification) {
     return this.http.put(this.url, n);
+  }
+
+  getNotificationsByCliente(id:number): Observable<Notification[]>{
+    return this.list().pipe(
+      map(n=>n.filter(ni=>ni.user.idUser===id))
+    );
   }
 
 }

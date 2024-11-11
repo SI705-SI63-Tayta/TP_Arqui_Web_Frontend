@@ -14,16 +14,13 @@ mat-sidenav {
 }
 
 .content {
-  position: fixed;
-  height: calc(100svh - 98px);
-  background-color: transparent;
-  border-radius: 10px;
-  padding: 16px;
-  max-width: 1520px;
-  margin: 0 auto;
-  font-size: 16px;
-  z-index: 1;
+  display: flex;
+  justify-content: center; /* Alinea horizontalmente */
+  align-items: center; /* Alinea verticalmente */
+  text-align: center; /* Asegura que el texto esté centrado */
+  margin-top: 5rem;
 }
+
 
 mat-sidenav-container {
   height: calc(100svh - 65px);
