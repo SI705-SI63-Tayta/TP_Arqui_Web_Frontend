@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Poller+One&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Teachers:ital,wght@0,400..800;1,400..800&display=swap');
 * {
   box-sizing: border-box;
   padding: 0;
@@ -11,19 +12,21 @@ header {
   justify-content: space-between;
   align-items: center;
   padding: 10px 20px;
-  background-color: #C6D4E1;
-  font-family: "Poppins";
-  height: 6rem;
+  background-color: #fff;
+  font-family: "Teachers", sans-serif;
+  height: 8rem;
+  border-bottom: 5px solid black;
 }
 header img {
   max-width: 100px;
+  margin-left: 2rem;
 }
 header nav {
   margin-right: 200px;
   font-size: 22px;
 }
 header nav a {
-  color: #fff;
+  color: #000000;
   text-decoration: none;
 }
 header nav ul {
@@ -45,14 +48,14 @@ header .home-buttons {
 }
 header .home-buttons button {
   margin-left: 10px;
-  background-color: #BDB8AD;
+  background-color: #27AE60;
   color: #fff;
   border: none;
   padding: 10px 20px;
   cursor: pointer;
-  border-radius: 5px;
+  border-radius: 15px;
   font-size: 20px;
-  font-family: "Poppins";
+  max-width: 12rem;
 }
 header button a {
   color: #fff;
@@ -68,6 +71,7 @@ header .home-buttons button:hover {
   text-align: center;
   padding: 100px 0;
   color: #fff;
+  font-family: "Poller One", serif;
 }
 .home-carrusel .carrusel-content {
   background-color: rgba(0, 0, 0, 0.333);
@@ -121,6 +125,7 @@ header .home-buttons button:hover {
 
 .home-container {
   border-bottom: 2px solid rgba(0, 0, 0, 0.509);
+  font-family: "Poppins", sans-serif;
 }
 
 .home-services {
@@ -128,7 +133,8 @@ header .home-buttons button:hover {
   align-items: center;
   padding: 100px;
   justify-content: center;
-  font-family: "Inder", sans-serif;
+  font-family: "Poppins", sans-serif;
+
 }
 .home-services img {
   max-width: 50%;
@@ -160,15 +166,16 @@ footer {
   justify-content: space-between;
   align-items: center;
   padding: 40px 60px;
-  background-color: #C6D4E1;
+  background-color: #fff;
   font-family: "Poppins";
+  border-top: 1px solid black;
 }
 footer nav {
   margin-left: auto;
   font-size: 22px;
 }
 footer nav a {
-  color: #fff;
+  color: #000000;
   text-decoration: none;
 }
 footer nav ul {
@@ -373,7 +380,7 @@ footer nav li {
   gap: 20px;
   padding: 0 20px;
   font-size: 18px;
-  font-family: "Poppins";
+  font-family: "Poppins", sans-serif;
   border-bottom: 2px solid rgba(0, 0, 0, 0.509);
 }
 .conoce-mas .quienes-somos {
@@ -401,7 +408,7 @@ footer nav li {
   margin-top: 5rem;
 }
 .conoce-mas .que-es .img-container {
-  padding-top: 8rem;
+  padding-top: 12rem;
 }
 .conoce-mas .que-es .img-container img {
   margin: 20px;

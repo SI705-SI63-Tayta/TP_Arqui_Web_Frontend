@@ -23,13 +23,21 @@ export class ListarrecipeComponent implements OnInit{
   ){}
 
   idCliente:number=0;
+  role:string="";
 
   ngOnInit(): void {
     this.idCliente=this.lS.getId();
+    this.role=this.lS.showRole();
+    if(this.role==='CLIENTE'){
+      this.rS.getRecetasByCliente(this.idCliente).subscribe((data)=>{
+        this.dataSource=new MatTableDataSource(data);
+      });
+    }else{
+      this.rS.list().subscribe((data)=>{
+        this.dataSource=new MatTableDataSource(data);
+      });
+    }
 
-    this.rS.getRecetasByCliente(this.idCliente).subscribe((data)=>{
-      this.dataSource=new MatTableDataSource(data);
-    });
     this.rS.getList().subscribe((data) => {
       this.dataSource = new MatTableDataSource(data);
     });
