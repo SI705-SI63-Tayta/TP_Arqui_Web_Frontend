@@ -15,8 +15,8 @@ private url=`${base_url}/recipes`
   list(){
     return this.http.get<Recipe[]>(this.url);
   }
-  insert(r: Recipe) {
-    return this.http.post(this.url, r);
+  insert(r: Recipe): Observable<Recipe>{
+    return this.http.post<Recipe>(this.url, r);
   }
 
   getList() {
@@ -42,6 +42,12 @@ private url=`${base_url}/recipes`
   getRecetasByCliente(id:number): Observable<Recipe[]>{
     return this.list().pipe(
       map(re=>re.filter(r=>r.appointment.userCliente.idUser===id))
+    );
+  }
+
+  getRecetaByCita(idCita:number): Observable<Recipe[]>{
+    return this.list().pipe(
+      map(re=>re.filter(r=>r.appointment.idAppointment===idCita))
     );
   }
 }

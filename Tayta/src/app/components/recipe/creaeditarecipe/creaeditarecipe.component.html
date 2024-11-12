@@ -1,5 +1,5 @@
 <div class="container" style="text-align: center;margin:2%">
-    <div><h1>Registro de Vehículos</h1></div>
+    <div><h1>Registro de Recetas</h1></div>
     <div>
       <form [formGroup]="form" (submit)=" insertar()">
         <mat-form-field class="example-full-width" *ngIf="edicion">
@@ -9,44 +9,43 @@
         <br />
         <mat-form-field class="example-full-width">
           <mat-label>Descripcion</mat-label>
-          <input matInput formControlName="descripcion" />
+          <textarea matInput formControlName="descripcion"></textarea>
         </mat-form-field>
         <br />
         <mat-form-field>
-            <mat-label>Escoge una fecha de inicio</mat-label>
-            <input matInput [matDatepicker]="picker" formControlName="fechainicio"/>
+            <mat-label>Fecha de inicio</mat-label>
+            <input matInput [matDatepicker]="picker1" formControlName="fechainicio"/>
             <mat-hint>MM/DD/YYYY</mat-hint>
             <mat-datepicker-toggle
               matIconSuffix
-              [for]="picker"
+              [for]="picker1"
             ></mat-datepicker-toggle>
-            <mat-datepicker #picker></mat-datepicker>
+            <mat-datepicker #picker1></mat-datepicker>
           </mat-form-field>
         <br />
         <mat-form-field>
-            <mat-label>Escoge una fecha de fin</mat-label>
-            <input matInput [matDatepicker]="picker" formControlName="fechafin"/>
+            <mat-label>Fecha de fin</mat-label>
+            <input matInput [matDatepicker]="picker2" formControlName="fechafin"/>
             <mat-hint>MM/DD/YYYY</mat-hint>
             <mat-datepicker-toggle
               matIconSuffix
-              [for]="picker"
+              [for]="picker2"
             ></mat-datepicker-toggle>
-            <mat-datepicker #picker></mat-datepicker>
+            <mat-datepicker #picker2></mat-datepicker>
           </mat-form-field>
         <br />
         <mat-form-field>
           <mat-label>Estado</mat-label>
-          <mat-select formControlName="modo">
-            @for (c of listaModo; track c) {
+          <mat-select formControlName="estado">
+            @for (c of listaEstado; track c) {
             <mat-option [value]="c.value">{{ c.viewValue }}</mat-option>
             }
           </mat-select>
         </mat-form-field>
-  
+
         <div>
           <button mat-flat-button class="custom-button">Registrar</button>
         </div>
       </form>
     </div>
   </div>
-  

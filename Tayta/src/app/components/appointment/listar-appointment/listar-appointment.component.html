@@ -15,6 +15,9 @@
         <p><strong>Descripción:</strong> {{ element.description }}</p>
       </mat-card-content>
       <mat-card-actions>
+        <button mat-icon-button color="warn" class="action-button recipe-button" *ngIf="isPersonal()" [routerLink]="['/recetas/registrar', element.idAppointment]">
+          <mat-icon>receipt</mat-icon>
+        </button>
         <button mat-icon-button color="warn" class="action-button delete-button" (click)="eliminar(element.idAppointment)">
           <mat-icon>delete</mat-icon>
         </button>

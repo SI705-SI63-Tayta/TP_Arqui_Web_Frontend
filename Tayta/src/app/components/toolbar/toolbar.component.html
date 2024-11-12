@@ -40,11 +40,15 @@
 </mat-menu>
 
 <!-- Menú desplegable para las notificaciones -->
+<!-- Menú desplegable para las notificaciones -->
 <mat-menu #notificationsMenu="matMenu">
   <ng-container *ngIf="notifications.length > 0; else noNotifications">
-    <button mat-menu-item *ngFor="let notification of notifications">{{ notification }}</button>
+    <button mat-menu-item *ngFor="let notification of notifications" (click)="openNotificationDialog(notification)">
+      Revisar la receta {{ notification.message }}
+    </button>
   </ng-container>
   <ng-template #noNotifications>
     <button mat-menu-item disabled>No hay notificaciones</button>
   </ng-template>
 </mat-menu>
+

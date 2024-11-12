@@ -7,6 +7,9 @@ import { MatIconModule } from '@angular/material/icon';
 import { LoginService } from '../../../services/login.service';
 import {MatCardModule} from '@angular/material/card';
 import { CommonModule } from '@angular/common';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatDialog } from '@angular/material/dialog';
+import { ConfirmDeleteDialogComponent } from '../../confirm-delete-dialog/confirm-delete-dialog.component';
 @Component({
   selector: 'app-listar-appointment',
   standalone: true,
@@ -18,7 +21,10 @@ export class ListarAppointmentComponent implements OnInit{
   dataSource:MatTableDataSource<Appointment> = new MatTableDataSource();
   displayedColumns: string[] = ['c1', 'c2', 'c3','c4','c5','c6','c7']
 
-  constructor(private aS:AppointmentService, private lS:LoginService){}
+  constructor(private aS:AppointmentService, private lS:LoginService,
+    private snackBar: MatSnackBar,
+    private dialog: MatDialog
+  ){}
   idUser: number=0;
   role: string="";
   ngOnInit(): void {
@@ -38,25 +44,74 @@ export class ListarAppointmentComponent implements OnInit{
       this.dataSource = new MatTableDataSource(data);
     });
 
-
-
-
   }
+
+  isPersonal(){
+    return (this.lS.showRole()==='DOCTOR' || this.lS.showRole()==='ENFERMERO');
+  }
+
+  isCliente(){
+    return this.lS.showRole()==='CLIENTE';
+  }
+
+
   eliminar(id: number) {
-    if(this.role==="CLIENTE"){
-      this.aS.delete(id).subscribe((data) => {
-        this.aS.getCitasByCliente(this.idUser).subscribe((data) => {
-          this.aS.setList(data);
-        });
-      });
-    }else if(this.role=== "DOCTOR" || this.role==="ENFERMERO"){
-      this.aS.delete(id).subscribe((data) => {
-        this.aS.getCitasByPersonal(this.idUser).subscribe((data) => {
-          this.aS.setList(data);
-        });
-      });
-    }
+    const dialogRef = this.dialog.open(ConfirmDeleteDialogComponent, {
+      data: { message: '¿Estás seguro de que deseas eliminar esta cita?' }  // Mensaje del cuadro de confirmación
+    });
 
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {  // Si el usuario confirma
+        if (this.role === "CLIENTE") {
+          this.aS.delete(id).subscribe(
+            (data) => {
+              this.aS.getCitasByCliente(this.idUser).subscribe((data) => {
+                this.aS.setList(data);
+              });
+            },
+            (error) => {
+              if (error.status === 400) {
+                this.snackBar.open('No se puede eliminar la cita: La cita ya ha sido atendida.', 'Cerrar', {
+                  duration: 5000,
+                  horizontalPosition: 'center',
+                  verticalPosition: 'bottom',
+                });
+              } else {
+                this.snackBar.open('Hubo un error al eliminar la cita. Inténtalo de nuevo.', 'Cerrar', {
+                  duration: 5000,
+                  horizontalPosition: 'center',
+                  verticalPosition: 'bottom',
+                });
+              }
+            }
+          );
+        } else if (this.role === "DOCTOR" || this.role === "ENFERMERO") {
+          this.aS.delete(id).subscribe(
+            (data) => {
+              this.aS.getCitasByPersonal(this.idUser).subscribe((data) => {
+                this.aS.setList(data);
+              });
+            },
+            (error) => {
+              if (error.status === 400) {
+                this.snackBar.open('No se puede eliminar la cita: La cita ya ha sido atendida.', 'Cerrar', {
+                  duration: 5000,
+                  horizontalPosition: 'center',
+                  verticalPosition: 'bottom',
+                });
+              } else {
+                this.snackBar.open('Hubo un error al eliminar la cita. Inténtalo de nuevo.', 'Cerrar', {
+                  duration: 5000,
+                  horizontalPosition: 'center',
+                  verticalPosition: 'bottom',
+                });
+              }
+            }
+          );
+        }
+      }
+    });
   }
+
 
 }
