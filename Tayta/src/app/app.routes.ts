@@ -68,7 +68,7 @@ export const routes: Routes = [
             path: 'registrar/:idAppointment', component: CreaeditarecipeComponent
           },
           {
-            path: 'ediciones/:id', component: CreaeditarecipeComponent
+            path: 'ediciones/:id/:idCita', component: CreaeditarecipeComponent
           }
         ],
         canActivate: [segGuard],

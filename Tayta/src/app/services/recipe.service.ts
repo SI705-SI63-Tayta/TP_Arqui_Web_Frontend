@@ -3,19 +3,19 @@ import { environment } from '../../environments/environments';
 import { HttpClient } from '@angular/common/http';
 import { Recipe } from '../models/Recipe';
 import { map, Observable, Subject } from 'rxjs';
-const base_url=environment.base
+const base_url = environment.base
 
 @Injectable({
   providedIn: 'root'
 })
 export class RecipeService {
-private url=`${base_url}/recipes`
-  constructor(private http:HttpClient) { }
+  private url = `${base_url}/recipes`
+  constructor(private http: HttpClient) { }
   private listaCambio = new Subject<Recipe[]>();
-  list(){
+  list() {
     return this.http.get<Recipe[]>(this.url);
   }
-  insert(r: Recipe): Observable<Recipe>{
+  insert(r: Recipe): Observable<Recipe> {
     return this.http.post<Recipe>(this.url, r);
   }
 
@@ -39,15 +39,24 @@ private url=`${base_url}/recipes`
     return this.http.put(this.url, veh);
   }
 
-  getRecetasByCliente(id:number): Observable<Recipe[]>{
+  getRecetasByCliente(id: number): Observable<Recipe[]> {
     return this.list().pipe(
-      map(re=>re.filter(r=>r.appointment.userCliente.idUser===id))
+      map(re => re.filter(r => r.appointment.userCliente.idUser === id))
     );
   }
 
-  getRecetaByCita(idCita:number): Observable<Recipe[]>{
+  getRecetaByCita(idCita: number): Observable<Recipe[]> {
     return this.list().pipe(
-      map(re=>re.filter(r=>r.appointment.idAppointment===idCita))
+      map(re => re.filter(r => r.appointment.idAppointment === idCita))
     );
   }
+
+  getRecetaPorCita(idCita: number): Observable<Recipe | null> {
+    return this.list().pipe(
+      map(recetas => recetas.find(receta => receta.appointment.idAppointment === idCita) || null)
+    );
+  }
+
+
+
 }

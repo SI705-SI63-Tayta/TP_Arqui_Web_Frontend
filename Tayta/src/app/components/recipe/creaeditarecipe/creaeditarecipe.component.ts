@@ -57,10 +57,11 @@ export class CreaeditarecipeComponent implements OnInit {
 
     // Capturar el idAppointment desde la ruta
     this.route.params.subscribe((data: Params) => {
-      this.appointmentId = data['idAppointment']; // Parámetro que viene en la URL
+      this.appointmentId = data['idCita']; // Parámetro que viene en la URL
       this.edicion = data['id'] != null;
       this.id = data['id'] || 0; // ID de receta, si existe
       this.loadAppointment(this.appointmentId); // Cargar la cita relacionada
+      console.log(this.appointmentId);
       this.init();
     });
 
@@ -83,6 +84,7 @@ export class CreaeditarecipeComponent implements OnInit {
 
   insertar(): void {
     if (this.form.valid) {
+      this.rS.getRecetaByCita(this.id)
       this.recipe = this.recipe || new Recipe();
       this.recipe.idRecipe = this.form.value.codigo;
       this.recipe.description = this.form.value.descripcion;
@@ -91,12 +93,13 @@ export class CreaeditarecipeComponent implements OnInit {
       this.recipe.state = this.form.value.estado;
 
       if (this.edicion) {
+        console.log(this.recipe);
         this.rS.update(this.recipe).subscribe(() => {
-          this.rS.getRecetasByCliente(this.idCliente).subscribe((data) => {
+          this.rS.list().subscribe((data) => {
             this.rS.setList(data);
           });
         });
-        this.router.navigate(['recetas']);
+        this.router.navigate(['citas']);
       } else {
         this.rS.insert(this.recipe).subscribe((savedRecipe: Recipe) => {
           console.log("Receta guardada:", savedRecipe);
