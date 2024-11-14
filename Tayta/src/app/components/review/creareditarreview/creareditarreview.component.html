@@ -9,14 +9,18 @@
         <input matInput formControlName="codigo" />
       </mat-form-field>
       <br>
-      <mat-form-field>
+      <mat-form-field appearance="fill">
         <mat-label>Puntuación</mat-label>
-        <input matInput formControlName="puntuacion">
+        <mat-select formControlName="puntuacion" required>
+          <mat-option *ngFor="let score of puntuaciones" [value]="score">
+            {{ score }}
+          </mat-option>
+        </mat-select>
       </mat-form-field>
       <br />
       <mat-form-field>
         <mat-label>Comentario</mat-label>
-        <input matInput formControlName="comentario">
+        <textarea matInput formControlName="comentario"></textarea>
       </mat-form-field>
       <br>
       <mat-form-field>

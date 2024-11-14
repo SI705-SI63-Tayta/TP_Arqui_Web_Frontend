@@ -57,11 +57,12 @@ export class CreaeditarecipeComponent implements OnInit {
 
     // Capturar el idAppointment desde la ruta
     this.route.params.subscribe((data: Params) => {
-      this.appointmentId = data['idCita']; // Parámetro que viene en la URL
+      //console.log(data);
+      this.appointmentId = data['idAppointment']; // Parámetro que viene en la URL
       this.edicion = data['id'] != null;
       this.id = data['id'] || 0; // ID de receta, si existe
       this.loadAppointment(this.appointmentId); // Cargar la cita relacionada
-      console.log(this.appointmentId);
+      //console.log(this.appointmentId);
       this.init();
     });
 

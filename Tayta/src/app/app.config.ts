@@ -7,6 +7,7 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
 import { provideHttpClient, withFetch,withInterceptorsFromDi } from '@angular/common/http';
 import {LayoutModule} from '@angular/cdk/layout'
 import { JwtModule } from '@auth0/angular-jwt';
+import { provideCharts, withDefaultRegisterables } from 'ng2-charts';
 
 export function tokenGetter() {
 
@@ -28,7 +29,7 @@ export const appConfig: ApplicationConfig = {
           disallowedRoutes: ['http://localhost:8081/login/forget'],
         },
       })
-    ),
+    ), provideCharts(withDefaultRegisterables()),
   ]
 };
 

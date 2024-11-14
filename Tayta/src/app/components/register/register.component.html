@@ -57,8 +57,8 @@
                   <input formControlName="dni" matInput type="text" id="registerDNI">
                   <mat-icon matPrefix>card_membership</mat-icon>
                   <mat-error *ngIf="form.get('dni')?.hasError('required')">Este campo es obligatorio.</mat-error>
-                  <mat-error *ngIf="form.get('dni')?.hasError('maxLength')">No puede exceder los 8 caracteres.</mat-error>
-                  <mat-error *ngIf="form.get('dni')?.hasError('pattern')">Solo se permiten números.</mat-error>
+                  <mat-error *ngIf="form.get('dni')?.hasError('pattern')">Solo se permiten números y 8 digitos.</mat-error>
+                  <mat-error *ngIf="form.get('dni')?.hasError('dniTaken')">Ya existe un usuario con este dni.</mat-error>
               </mat-form-field>
 
               <mat-form-field appearance="fill" class="input-div">
