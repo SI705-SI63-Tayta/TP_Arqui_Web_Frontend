@@ -2,32 +2,31 @@
 
 
     <ng-container matColumnDef="c1">
-      <th mat-header-cell *matHeaderCellDef> idReview </th>
+      <th mat-header-cell *matHeaderCellDef> ID </th>
       <td mat-cell *matCellDef="let element"> {{element.idReview}} </td>
     </ng-container>
-  
+
     <ng-container matColumnDef="c2">
-      <th mat-header-cell *matHeaderCellDef> scoreReview </th>
+      <th mat-header-cell *matHeaderCellDef> Puntuación </th>
       <td mat-cell *matCellDef="let element"> {{element.scoreReview}} </td>
     </ng-container>
 
     <ng-container matColumnDef="c3">
-        <th mat-header-cell *matHeaderCellDef> commentReview </th>
+        <th mat-header-cell *matHeaderCellDef> Comentario </th>
         <td mat-cell *matCellDef="let element"> {{element.commentReview}} </td>
     </ng-container>
 
     <ng-container matColumnDef="c4">
-        <th mat-header-cell *matHeaderCellDef> userCliente </th>
-        <td mat-cell *matCellDef="let element"> {{element.userCliente.idUser}} </td>
+        <th mat-header-cell *matHeaderCellDef> Cliente </th>
+        <td mat-cell *matCellDef="let element"> {{element.userCliente.fullName}} </td>
     </ng-container>
 
     <ng-container matColumnDef="c5">
-        <th mat-header-cell *matHeaderCellDef> userPersonal </th>
-        <td mat-cell *matCellDef="let element"> {{element.userPersonal.idUser}} </td>
+        <th mat-header-cell *matHeaderCellDef> Personal </th>
+        <td mat-cell *matCellDef="let element"> {{element.userPersonal.fullName}} </td>
     </ng-container>
-  
-    
+
+
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
   </table>
-  

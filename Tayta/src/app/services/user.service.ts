@@ -46,6 +46,13 @@ export class UserService {
     return this.http.get<boolean>(`${this.url}/?username=${username}`);
   }
 
+  exitsByDNI(dni: string): Observable<boolean> {
+    return this.list().pipe(
+      map(users => users.some(user => user.dni === dni))
+    );
+  }
+
+
   getMedicos(): Observable<User[]> {
     return this.list().pipe(
       map(users => users.filter(user => user.role.tipoRol === 'DOCTOR' || user.role.tipoRol === 'ENFERMERO'))

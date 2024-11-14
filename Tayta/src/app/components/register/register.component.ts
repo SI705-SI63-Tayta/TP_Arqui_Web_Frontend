@@ -55,44 +55,60 @@ export class RegisterComponent implements OnInit{
       username: ['', [Validators.required]],
       password: ['', [Validators.required]],
       address: ['', [Validators.required, Validators.maxLength(250)]],
-      dni: ['', [Validators.required, Validators.maxLength(8), Validators.pattern(/^\d+$/)]],
+      dni: ['', [Validators.required,, Validators.pattern(/^\d{8}$/)]],
       rol: ['', Validators.required],
     });
   }
 
-  registrar(): void{
-    if(this.form.valid){
+  registrar(): void {
+    if (this.form.valid) {
       const username = this.form.value.username;
-      this.uS.exitsByUsername(username).subscribe((exists: boolean)=>{
-        if(exists){
-          this.form.controls['username'].setErrors({usernameTaken:true});
-          this.snackbar.open('Ya existe un usuario con este username','',{
-            duration:300
-          });
-        }else{
-          console.log(this.form.value);
-          this.user.fullName = this.form.value.fullName;
-          this.user.email = this.form.value.email;
-          this.user.username = this.form.value.username;
-          this.user.password = this.form.value.password;
-          this.user.address = this.form.value.address;
-          this.user.dni = this.form.value.dni;
-          this.user.enabled = true;
-          this.user.role.idRol=this.form.value.rol;
+      const dni = this.form.value.dni;
 
-          this.uS.insert(this.user).subscribe((data)=>{
-            this.uS.list().subscribe((data)=>{
-              this.uS.setList(data);
-            });
+      // Validar que el username no exista
+      this.uS.exitsByUsername(username).subscribe((usernameExists: boolean) => {
+        if (usernameExists) {
+          this.form.controls['username'].setErrors({ usernameTaken: true });
+          this.snackbar.open('Ya existe un usuario con este username', '', {
+            duration: 3000,
           });
-          this.router.navigate(['login']);
+        } else {
+          // Validar que el DNI no exista
+          this.uS.exitsByDNI(dni).subscribe((dniExists: boolean) => {
+            if (dniExists) {
+              this.form.controls['dni'].setErrors({ dniTaken: true });
+              this.snackbar.open('Ya existe un usuario con este DNI', '', {
+                duration: 3000,
+              });
+            } else {
+              // Asignar los valores del formulario al usuario
+              console.log(this.form.value);
+              this.user.fullName = this.form.value.fullName;
+              this.user.email = this.form.value.email;
+              this.user.username = this.form.value.username;
+              this.user.password = this.form.value.password;
+              this.user.address = this.form.value.address;
+              this.user.dni = this.form.value.dni;
+              this.user.enabled = true;
+              this.user.role.idRol = this.form.value.rol;
+
+              // Insertar el usuario en la base de datos
+              this.uS.insert(this.user).subscribe(() => {
+                this.uS.list().subscribe((data) => {
+                  this.uS.setList(data);
+                });
+              });
+              this.router.navigate(['login']);
+            }
+          });
         }
-      })
-    }else {
+      });
+    } else {
       this.snackbar.open('Por favor completa todos los campos correctamente.', '', {
         duration: 3000,
       });
     }
   }
+
 
 }

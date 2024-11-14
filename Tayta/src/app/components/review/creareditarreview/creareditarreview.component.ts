@@ -26,6 +26,7 @@ export class CreareditarreviewComponent implements OnInit {
   idCliente: number=0;
 
   listaMedicos: { value: number; viewValue: string }[] = [];
+  puntuaciones: number[] = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
   constructor(
     private formBuilder: FormBuilder,

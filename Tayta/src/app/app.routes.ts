@@ -26,6 +26,9 @@ import { CreareditarnotificationComponent } from './components/notification/crea
 import { CreareditarreviewComponent } from './components/review/creareditarreview/creareditarreview.component';
 import { UserComponent } from './components/user/user.component';
 import { CreareditaruserComponent } from './components/user/creareditaruser/creareditaruser.component';
+import { ReportesComponent } from './components/reportes/reportes.component';
+import { Top5calificacionComponent } from './components/reportes/top5calificacion/top5calificacion.component';
+import { RecipesfinishedclientComponent } from './components/reportes/recipesfinishedclient/recipesfinishedclient.component';
 
 
 export const routes: Routes = [
@@ -154,6 +157,17 @@ export const routes: Routes = [
           }
         ],
         canActivate: [segGuard]
+      },
+      {
+        path:'reportes', component:ReportesComponent,
+        children: [
+          {
+            path:'top5personal', component: Top5calificacionComponent
+          },
+          {
+            path:'recipesfinished', component: RecipesfinishedclientComponent
+          }
+        ]
       }
     ]
   },
