@@ -96,7 +96,7 @@ header .home-buttons button:hover {
   right: 0;
 }
 .home-carrusel .carrusel-text {
-  width: 500px;
+  width: 40rem;
   margin: 0 auto;
   padding-bottom: 30px;
   font-family: "Meera Inimai", sans-serif;
@@ -377,7 +377,7 @@ footer nav li {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 20px;
+  gap: 12rem;
   padding: 0 20px;
   font-size: 18px;
   font-family: "Poppins", sans-serif;
@@ -387,6 +387,7 @@ footer nav li {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+  gap: 2rem;
   margin-top: 5rem;
 }
 .conoce-mas .quienes-somos .text-container {
@@ -398,26 +399,22 @@ footer nav li {
   text-align: center;
 }
 .conoce-mas .quienes-somos img {
-  padding-left: 5rem;
-  max-width: 45rem;
+  max-width: 30rem;
 }
 .conoce-mas .que-es {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
-  margin-top: 5rem;
+  justify-content: center;
+  align-items: center;
+  gap: 5rem;
 }
-.conoce-mas .que-es .img-container {
-  padding-top: 12rem;
-}
-.conoce-mas .que-es .img-container img {
-  margin: 20px;
-  max-width: 35rem;
+
+.conoce-mas .que-es img {
+  max-width: 30rem;
+  max-height: 20rem;
 }
 .conoce-mas .que-es .text-container {
-  margin-top: 10rem;
-  padding: 20px 0 0px 70px;
-  max-width: 40rem;
+  max-width: 30rem;
 }
 .conoce-mas .que-es .text-container h2 {
   text-align: center;
@@ -427,7 +424,6 @@ footer nav li {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 5rem;
 }
 .conoce-mas .porque-usar h2 {
   text-align: center;
@@ -580,3 +576,75 @@ footer nav li {
 }
 
 /*# sourceMappingURL=styles.css.map */
+/* Estilo para ocultar los botones en pantallas pequeñas */
+.desktop-nav {
+  display: flex;
+  justify-content: space-around;
+}
+
+.mobile-menu-btn {
+  display: none;
+}
+
+/* Para pantallas pequeñas (menos de 768px) */
+@media (max-width: 1050px) {
+  nav{
+    display: none;
+  }
+}
+
+@media (max-width: 800px) {
+  .quienes-somos .text-container{
+    text-align: center;
+  }
+  .quienes-somos img{
+    padding: 0rem;
+    width: 25rem;
+  }
+
+  .que-es img{
+    width: 25rem;
+  }
+
+  .que-es .text-container{
+    text-align: center;
+  }
+}
+
+@media (max-width: 650px) {
+
+  .carrusel-content .carrusel-text{
+    width: 30rem;
+  }
+
+}
+
+@media (max-width: 525px) {
+
+  .carrusel-content .carrusel-text{
+    width: 20rem;
+  }
+
+  .carrusel-content .carrusel-text p{
+    font-size: 20px;
+    text-align: center;
+  }
+}
+
+
+@media (max-width: 500px) {
+  .conoce-mas .que-es .text-container {
+    max-width: 25rem;
+  }
+}
+
+
+
+@media (max-width: 420px) {
+  .conoce-mas .que-es .text-container {
+    max-width: 20rem;
+  }
+}
+
+
+
