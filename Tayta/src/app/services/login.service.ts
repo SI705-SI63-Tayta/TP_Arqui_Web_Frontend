@@ -16,7 +16,7 @@ const base_url=environment.base;
 export class LoginService {
   private url=`${base_url}/Users`;
   private url_login=`${base_url}/login`;
-  
+
   constructor(private http:HttpClient,
     @Inject(PLATFORM_ID) private platformId: Object
   ) { }
@@ -75,7 +75,7 @@ export class LoginService {
       const helper = new JwtHelperService();
       const decodedToken = helper.decodeToken(token);
       console.log(decodedToken);
-  
+
       let id = decodedToken?.id;
       if (id) {
         id = parseInt(id, 10);

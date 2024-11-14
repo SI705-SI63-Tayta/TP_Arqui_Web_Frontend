@@ -14,7 +14,7 @@ import { NotificationService } from '../../services/notification.service';
 import { Notification } from '../../models/Notification';
 import { MatDialog } from '@angular/material/dialog';
 import { NotificationDialogComponent } from '../notification-dialog/notification-dialog.component';
-
+import {MatBadgeModule} from '@angular/material/badge';
 
 interface MenuItem {
   icon: string;
@@ -25,7 +25,7 @@ interface MenuItem {
 @Component({
   selector: 'app-toolbar',
   standalone: true,
-  imports: [MatToolbarModule, MatSidenavModule, MatButtonModule, MatIconModule, MatDividerModule, MatListModule, RouterOutlet, CommonModule, RouterModule, MatMenuModule],
+  imports: [MatToolbarModule, MatSidenavModule, MatButtonModule, MatIconModule, MatDividerModule, MatListModule, RouterOutlet, CommonModule, RouterModule, MatMenuModule,MatBadgeModule],
   templateUrl: './toolbar.component.html',
   styleUrl: './toolbar.component.css'
 })
