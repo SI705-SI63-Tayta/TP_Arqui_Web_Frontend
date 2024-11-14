@@ -9,7 +9,13 @@ import {LayoutModule} from '@angular/cdk/layout'
 import { JwtModule } from '@auth0/angular-jwt';
 
 export function tokenGetter() {
-  return sessionStorage.getItem('token');
+
+  if(typeof window !== 'undefined'){
+    return sessionStorage.getItem('token');
+  }else{
+    return null;
+  }
+
 }
 
 export const appConfig: ApplicationConfig = {

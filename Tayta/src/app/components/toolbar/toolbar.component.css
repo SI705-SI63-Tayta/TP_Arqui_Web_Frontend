@@ -43,3 +43,7 @@ mat-sidenav-container mat-sidenav mat-nav-list mat-list-item mat-icon {
 mat-toolbar button {
   margin-left: auto;
 }
+
+.mat-bage-content{
+  background-color: red;
+}

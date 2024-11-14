@@ -119,7 +119,8 @@ export const routes: Routes = [
           {
             path: 'ediciones/:id', component: CreareditarnotificationComponent
           }
-        ]
+        ],
+        canActivate: [segGuard],
       },
       {
         path: 'resenas', component: ReviewComponent,
@@ -130,7 +131,8 @@ export const routes: Routes = [
           {
             path: 'ediciones/:id', component: CreareditarreviewComponent
           }
-        ]
+        ],
+        canActivate: [segGuard],
       },
       {
         path: 'usuarios', component:UserComponent,
@@ -138,21 +140,24 @@ export const routes: Routes = [
           {
             path: 'ediciones',component:CreareditaruserComponent
           }
-        ]
+        ],
+        canActivate: [segGuard],
+      },
+      {
+        path: 'roles', component: RoleComponent,
+        children: [
+          {
+            path: 'registrar', component: CreaeditaroleComponent
+          },
+          {
+            path: 'ediciones/:id', component: CreaeditaroleComponent
+          }
+        ],
+        canActivate: [segGuard]
       }
     ]
   },
 
-  {
-    path: 'roles', component: RoleComponent,
-    children: [
-      {
-        path: 'registrar', component: CreaeditaroleComponent
-      },
-      {
-        path: 'ediciones/:id', component: CreaeditaroleComponent
-      }
-    ]
-  }
+
 
 ];
