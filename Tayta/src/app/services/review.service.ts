@@ -4,6 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { Review } from '../models/Review';
 import { map, Observable, Subject } from 'rxjs';
 import { Top5PersonalDTO } from '../models/Top5PersonalDTO';
+import { ReviewListDTO } from '../models/ReviewListDTO';
 
 const base_url=environment.base
 
@@ -34,14 +35,6 @@ export class ReviewService {
     return this.http.delete(`${this.url}/${id}`);
   }
 
-
-  listId(id: number) {
-    return this.http.get<Review>(`${this.url}/${id}`);
-  }
-
-  update(r: Review) {
-    return this.http.put(this.url, r);
-
   listId(id: number) {
     return this.http.get<Review>(`${this.url}/${id}`);
   }
@@ -60,16 +53,9 @@ export class ReviewService {
     );
   }
 
-  top5CalificacionPersonal():Observable<Top5PersonalDTO[]>{
-    return this.http.get<Top5PersonalDTO[]>(`${this.url}/top5Personal`);
-  }
-
-  getResenasByPersonal(id:number): Observable<Review[]>{
-    return this.list().pipe(
-      map(re=>re.filter(r=>r.userPersonal.idUser===id))
-    );
-  }
   listarcalificacionmayor3() {
-    return this.http.get<Review[]>(`${this.url}/listaCalificacionmayor3`);
+    return this.http.get<ReviewListDTO[]>(`${this.url}/calificacionmayor3`);
   }
+
 }
+
