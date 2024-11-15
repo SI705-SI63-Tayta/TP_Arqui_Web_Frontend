@@ -27,8 +27,11 @@ import { CreareditarreviewComponent } from './components/review/creareditarrevie
 import { UserComponent } from './components/user/user.component';
 import { CreareditaruserComponent } from './components/user/creareditaruser/creareditaruser.component';
 import { ReportesComponent } from './components/reportes/reportes.component';
+import { ReportappointmentmodeComponent } from './components/reportes/reportappointmentmode/reportappointmentmode.component';
+import { ReportquantityappointmentperiodComponent } from './components/reportes/reportquantityappointmentperiod/reportquantityappointmentperiod.component';
 import { Top5calificacionComponent } from './components/reportes/top5calificacion/top5calificacion.component';
 import { RecipesfinishedclientComponent } from './components/reportes/recipesfinishedclient/recipesfinishedclient.component';
+
 
 
 export const routes: Routes = [
@@ -143,9 +146,32 @@ export const routes: Routes = [
           {
             path: 'ediciones',component:CreareditaruserComponent
           }
+
+        ]
+      },
+      {
+        path: 'reportes', component:ReportesComponent,
+        children:[
+          {
+            path: 'cantidadcitas',component:ReportappointmentmodeComponent
+          },
+          {
+            path: 'cantidadcitasPediodo',component:ReportquantityappointmentperiodComponent
+          }
+        ],
+        
+      }
+    ]
+  },
+
+  {
+    path: 'roles', component: RoleComponent,
+    children: [
+
         ],
         canActivate: [segGuard],
       },
+
       {
         path: 'roles', component: RoleComponent,
         children: [
