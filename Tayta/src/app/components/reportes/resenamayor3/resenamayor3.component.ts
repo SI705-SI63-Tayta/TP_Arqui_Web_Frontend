@@ -2,6 +2,7 @@ import { NgFor } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { Review } from '../../../models/Review';
 import { ReviewService } from '../../../services/review.service';
+import { ReviewListDTO } from '../../../models/ReviewListDTO';
 
 @Component({
   selector: 'app-resenamayor3',
@@ -11,7 +12,7 @@ import { ReviewService } from '../../../services/review.service';
   styleUrl: './resenamayor3.component.css'
 })
 export class Resenamayor3Component implements OnInit{
-  reviews: Review[] = [];
+  reviews: ReviewListDTO[] = [];
 
   constructor(private reviewService: ReviewService) {}
 
