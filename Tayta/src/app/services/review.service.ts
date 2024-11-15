@@ -34,30 +34,12 @@ export class ReviewService {
     return this.http.delete(`${this.url}/${id}`);
   }
 
-
   listId(id: number) {
     return this.http.get<Review>(`${this.url}/${id}`);
   }
 
   update(r: Review) {
     return this.http.put(this.url, r);
-
-  listId(id: number) {
-    return this.http.get<Review>(`${this.url}/${id}`);
-  }
-
-  update(r: Review) {
-    return this.http.put(this.url, r);
-  }
-
-  top5CalificacionPersonal():Observable<Top5PersonalDTO[]>{
-    return this.http.get<Top5PersonalDTO[]>(`${this.url}/top5Personal`);
-  }
-
-  getResenasByPersonal(id:number): Observable<Review[]>{
-    return this.list().pipe(
-      map(re=>re.filter(r=>r.userPersonal.idUser===id))
-    );
   }
 
   top5CalificacionPersonal():Observable<Top5PersonalDTO[]>{

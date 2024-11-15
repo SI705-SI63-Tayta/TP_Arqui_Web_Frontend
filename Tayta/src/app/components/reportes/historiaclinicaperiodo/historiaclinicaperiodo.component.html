@@ -1,1 +1,29 @@
-<p>historiaclinicaperiodo works!</p>
+<div class="title-container">
+    <h1>Histpria clinica en un periodo de tiempo</h1>
+  </div>
+  <div class="date-inputs">
+    <label for="date1">Fecha de inicio:</label>
+    <input type="date" [(ngModel)]="date1" id="date1" />
+  
+    <label for="date2">Fecha de fin:</label>
+    <input type="date" [(ngModel)]="date2" id="date2" />
+  
+
+    <button (click)="getData()">Generar reporte</button>
+  
+
+    <p *ngIf="date1 && date2 && !isDateRangeValid()" class="error-message">
+      La fecha de inicio no puede ser mayor que la fecha final.
+    </p>
+  </div>
+  <div class="chart-container">
+    <canvas
+      baseChart
+      [datasets]="barChartData"
+      [labels]="barChartLabels"
+      [options]="barChartOptions"
+      [legend]="barChartLegend"
+      [type]="barChartType"
+    ></canvas>
+  </div>
+  
