@@ -31,6 +31,8 @@ import { ReportappointmentmodeComponent } from './components/reportes/reportappo
 import { ReportquantityappointmentperiodComponent } from './components/reportes/reportquantityappointmentperiod/reportquantityappointmentperiod.component';
 import { Top5calificacionComponent } from './components/reportes/top5calificacion/top5calificacion.component';
 import { RecipesfinishedclientComponent } from './components/reportes/recipesfinishedclient/recipesfinishedclient.component';
+import { Resenamayor3Component } from './components/reportes/resenamayor3/resenamayor3.component';
+
 
 
 
@@ -192,11 +194,15 @@ export const routes: Routes = [
           },
           {
             path:'recipesfinished', component: RecipesfinishedclientComponent
+          },
+          {
+            path:'listaCalificacionmayor3', component:Resenamayor3Component
           }
         ]
       }
     ]
-  },
+  },  
+      
 
 
 
