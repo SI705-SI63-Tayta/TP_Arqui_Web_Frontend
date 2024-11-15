@@ -35,6 +35,7 @@ import { Resenamayor3Component } from './components/reportes/resenamayor3/resena
 
 
 
+
 export const routes: Routes = [
   {
     path: '', redirectTo: 'menulanding', pathMatch: 'full' // Redirige a login por defecto
@@ -201,6 +202,7 @@ export const routes: Routes = [
       }
     ]
   },  
+      
 
 
 

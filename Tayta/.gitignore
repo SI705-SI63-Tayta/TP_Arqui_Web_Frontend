@@ -1,6 +1,7 @@
 # See https://docs.github.com/get-started/getting-started-with-git/ignoring-files for more about ignoring files.
 
 # Compiled output
+/src/var/*
 /dist
 /tmp
 /out-tsc
@@ -40,3 +41,6 @@ testem.log
 # System files
 .DS_Store
 Thumbs.db
+Dockerfile
+nginx.conf
+.dockerignore
