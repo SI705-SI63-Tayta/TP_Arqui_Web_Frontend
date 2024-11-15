@@ -161,53 +161,46 @@ export const routes: Routes = [
             path: 'cantidadcitasPediodo', component: ReportquantityappointmentperiodComponent
           },
           {
-            path:'top5personal', component: Top5calificacionComponent
+            path: 'top5personal', component: Top5calificacionComponent
           },
           {
-            path:'recipesfinished', component: RecipesfinishedclientComponent
+            path: 'recipesfinished', component: RecipesfinishedclientComponent
           },
           {
-            path:'listaCalificacionmayor3', component:Resenamayor3Component
+            path: 'listaCalificacionmayor3', component: Resenamayor3Component
           }
         ],
 
+      },
+
+      {
+        path: 'roles', component: RoleComponent,
+        children: [
+          {
+            path: 'registrar', component: CreaeditaroleComponent
+          },
+          {
+            path: 'ediciones/:id', component: CreaeditaroleComponent
+          }
+        ],
+        canActivate: [segGuard]
+      },
+      {
+        path: 'reportes', component: ReportesComponent,
+        children: [
+          {
+            path: 'top5personal', component: Top5calificacionComponent
+          },
+          {
+            path: 'recipesfinished', component: RecipesfinishedclientComponent
+          },
+          {
+            path: 'listaCalificacionmayor3', component: Resenamayor3Component
+          }
+        ]
       }
     ]
   },
 
-  {
-    path: 'roles', component: RoleComponent,
-    children: [
-
-    ],
-    canActivate: [segGuard],
-  },
-
-  {
-    path: 'roles', component: RoleComponent,
-    children: [
-      {
-        path: 'registrar', component: CreaeditaroleComponent
-      },
-      {
-        path: 'ediciones/:id', component: CreaeditaroleComponent
-      }
-    ],
-    canActivate: [segGuard]
-  },
-  {
-    path: 'reportes', component: ReportesComponent,
-    children: [
-      {
-        path: 'top5personal', component: Top5calificacionComponent
-      },
-      {
-        path: 'recipesfinished', component: RecipesfinishedclientComponent
-      },
-      {
-        path: 'listaCalificacionmayor3', component: Resenamayor3Component
-      }
-    ]
-  }
 ]
 
