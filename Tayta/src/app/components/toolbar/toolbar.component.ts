@@ -14,7 +14,7 @@ import { NotificationService } from '../../services/notification.service';
 import { Notification } from '../../models/Notification';
 import { MatDialog } from '@angular/material/dialog';
 import { NotificationDialogComponent } from '../notification-dialog/notification-dialog.component';
-
+import {MatBadgeModule} from '@angular/material/badge';
 
 interface MenuItem {
   icon: string;
@@ -25,7 +25,7 @@ interface MenuItem {
 @Component({
   selector: 'app-toolbar',
   standalone: true,
-  imports: [MatToolbarModule, MatSidenavModule, MatButtonModule, MatIconModule, MatDividerModule, MatListModule, RouterOutlet, CommonModule, RouterModule, MatMenuModule],
+  imports: [MatToolbarModule, MatSidenavModule, MatButtonModule, MatIconModule, MatDividerModule, MatListModule, RouterOutlet, CommonModule, RouterModule, MatMenuModule,MatBadgeModule],
   templateUrl: './toolbar.component.html',
   styleUrl: './toolbar.component.css'
 })
@@ -98,6 +98,8 @@ export class ToolbarComponent implements OnInit {
         { icon: 'home', label: 'ver reseñas', route: '/resenas/registrar' },
         { icon: 'home', label: 'ver reporte cantidad', route: '/reportes/cantidadcitas' },
         { icon: 'home', label: 'ver reporte citas periodo', route: '/reportes/cantidadcitasPediodo' },
+        { icon: 'home', label: 'Top5 personal', route: '/reportes/top5personal' },
+        { icon: 'home', label: 'Recetas finalizas cliente', route: '/reportes/recipesfinished' },
       ]
     }
 
@@ -119,6 +121,11 @@ export class ToolbarComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
 
     });
+  }
+
+  closeSession(){
+    this.navigateTo("/login");
+    sessionStorage.clear();
   }
 
 

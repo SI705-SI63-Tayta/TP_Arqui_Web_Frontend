@@ -29,6 +29,9 @@ import { CreareditaruserComponent } from './components/user/creareditaruser/crea
 import { ReportesComponent } from './components/reportes/reportes.component';
 import { ReportappointmentmodeComponent } from './components/reportes/reportappointmentmode/reportappointmentmode.component';
 import { ReportquantityappointmentperiodComponent } from './components/reportes/reportquantityappointmentperiod/reportquantityappointmentperiod.component';
+import { Top5calificacionComponent } from './components/reportes/top5calificacion/top5calificacion.component';
+import { RecipesfinishedclientComponent } from './components/reportes/recipesfinishedclient/recipesfinishedclient.component';
+
 
 
 export const routes: Routes = [
@@ -122,7 +125,8 @@ export const routes: Routes = [
           {
             path: 'ediciones/:id', component: CreareditarnotificationComponent
           }
-        ]
+        ],
+        canActivate: [segGuard],
       },
       {
         path: 'resenas', component: ReviewComponent,
@@ -133,7 +137,8 @@ export const routes: Routes = [
           {
             path: 'ediciones/:id', component: CreareditarreviewComponent
           }
-        ]
+        ],
+        canActivate: [segGuard],
       },
       {
         path: 'usuarios', component:UserComponent,
@@ -141,6 +146,7 @@ export const routes: Routes = [
           {
             path: 'ediciones',component:CreareditaruserComponent
           }
+
         ]
       },
       {
@@ -161,13 +167,37 @@ export const routes: Routes = [
   {
     path: 'roles', component: RoleComponent,
     children: [
+
+        ],
+        canActivate: [segGuard],
+      },
+
       {
-        path: 'registrar', component: CreaeditaroleComponent
+        path: 'roles', component: RoleComponent,
+        children: [
+          {
+            path: 'registrar', component: CreaeditaroleComponent
+          },
+          {
+            path: 'ediciones/:id', component: CreaeditaroleComponent
+          }
+        ],
+        canActivate: [segGuard]
       },
       {
-        path: 'ediciones/:id', component: CreaeditaroleComponent
+        path:'reportes', component:ReportesComponent,
+        children: [
+          {
+            path:'top5personal', component: Top5calificacionComponent
+          },
+          {
+            path:'recipesfinished', component: RecipesfinishedclientComponent
+          }
+        ]
       }
     ]
-  }
+  },
+
+
 
 ];

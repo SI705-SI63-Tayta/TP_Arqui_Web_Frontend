@@ -8,6 +8,8 @@ import { LoginService } from '../../../services/login.service';
 import { CommonModule } from '@angular/common';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
+import { RecipeDialogComponent } from '../../recipe-dialog/recipe-dialog.component';
+import { MatDialog } from '@angular/material/dialog';
 @Component({
   selector: 'app-listarrecipe',
   standalone: true,
@@ -19,7 +21,8 @@ export class ListarrecipeComponent implements OnInit{
   dataSource:MatTableDataSource<Recipe> = new MatTableDataSource();
   displayedColumns: string[] = ['c1', 'c2', 'c3','c4','c5','c6','c7']
   constructor(private rS:RecipeService,
-    private lS:LoginService
+    private lS:LoginService,
+    private dialog: MatDialog
   ){}
 
   idCliente:number=0;
@@ -44,9 +47,24 @@ export class ListarrecipeComponent implements OnInit{
   }
   eliminar(id: number) {
     this.rS.delete(id).subscribe((data) => {
-      this.rS.getRecetasByCliente(id).subscribe((data) => {
+      this.rS.getRecetasByCliente(this.idCliente).subscribe((data) => {
         this.rS.setList(data);
       });
+    });
+  }
+
+  actualizarReceta(r:Recipe){
+    r.state='FINALIZADO';
+    this.rS.update(r).subscribe((data) => {
+      this.rS.getRecetasByCliente(this.idCliente).subscribe((data) => {
+        this.rS.setList(data);
+      });
+    });
+  }
+
+  openRecipeDialog(recipe: Recipe): void {
+    this.dialog.open(RecipeDialogComponent, {
+      data: recipe
     });
   }
 

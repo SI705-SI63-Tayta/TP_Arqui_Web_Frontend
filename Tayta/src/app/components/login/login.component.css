@@ -180,4 +180,8 @@
   .login .login-content {
     justify-content: center;
   }
+
+  .login .login-container{
+    grid-template-columns: none;
+  }
 }

@@ -79,3 +79,13 @@ mat-card-actions {
 .edit-button:hover {
   background-color: #1565c0; /* Azul oscuro al pasar el mouse */
 }
+
+
+.finish-button {
+  color: #ffffff;
+  background-color: #008000; /* Azul para el botón de editar */
+}
+
+.finish-button:hover {
+  background-color: #1aa11a; /* Azul oscuro al pasar el mouse */
+}

@@ -3,6 +3,7 @@ import { environment } from '../../environments/environments';
 import { HttpClient } from '@angular/common/http';
 import { Recipe } from '../models/Recipe';
 import { map, Observable, Subject } from 'rxjs';
+import { QuantityRecipesFinishedPerClientDTO } from '../models/QuantityRecipesFinishedPerClientDTO';
 const base_url = environment.base
 
 @Injectable({
@@ -38,6 +39,11 @@ export class RecipeService {
   update(veh: Recipe) {
     return this.http.put(this.url, veh);
   }
+
+  recipesFinishedPerClient():Observable<QuantityRecipesFinishedPerClientDTO[]>{
+    return this.http.get<QuantityRecipesFinishedPerClientDTO[]>(`${this.url}/recetasFinalizadas`);
+  }
+
 
   getRecetasByCliente(id: number): Observable<Recipe[]> {
     return this.list().pipe(

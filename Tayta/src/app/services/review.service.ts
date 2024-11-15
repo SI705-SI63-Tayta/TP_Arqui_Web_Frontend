@@ -3,6 +3,7 @@ import { environment } from '../../environments/environments';
 import { HttpClient } from '@angular/common/http';
 import { Review } from '../models/Review';
 import { map, Observable, Subject } from 'rxjs';
+import { Top5PersonalDTO } from '../models/Top5PersonalDTO';
 
 const base_url=environment.base
 
@@ -39,6 +40,10 @@ export class ReviewService {
 
   update(r: Review) {
     return this.http.put(this.url, r);
+  }
+
+  top5CalificacionPersonal():Observable<Top5PersonalDTO[]>{
+    return this.http.get<Top5PersonalDTO[]>(`${this.url}/top5Personal`);
   }
 
   getResenasByPersonal(id:number): Observable<Review[]>{

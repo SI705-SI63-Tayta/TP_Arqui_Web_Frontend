@@ -43,3 +43,8 @@ mat-sidenav-container mat-sidenav mat-nav-list mat-list-item mat-icon {
 mat-toolbar button {
   margin-left: auto;
 }
+
+.mat-badge{
+  --mat-badge-background-color:#27AE60;
+}
+
