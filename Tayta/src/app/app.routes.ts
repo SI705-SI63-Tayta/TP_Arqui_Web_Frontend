@@ -143,35 +143,34 @@ export const routes: Routes = [
         canActivate: [segGuard],
       },
       {
-        path: 'usuarios', component:UserComponent,
-        children:[
+        path: 'usuarios', component: UserComponent,
+        children: [
           {
-            path: 'ediciones',component:CreareditaruserComponent
+            path: 'ediciones', component: CreareditaruserComponent
           }
 
         ]
       },
       {
-        path: 'reportes', component:ReportesComponent,
-        children:[
+        path: 'reportes', component: ReportesComponent,
+        children: [
           {
-            path: 'cantidadcitas',component:ReportappointmentmodeComponent
+            path: 'cantidadcitas', component: ReportappointmentmodeComponent
           },
           {
-            path: 'cantidadcitasPediodo',component:ReportquantityappointmentperiodComponent
+            path: 'cantidadcitasPediodo', component: ReportquantityappointmentperiodComponent
+          },
+          {
+            path: 'top5personal', component: Top5calificacionComponent
+          },
+          {
+            path: 'recipesfinished', component: RecipesfinishedclientComponent
+          },
+          {
+            path: 'listaCalificacionmayor3', component: Resenamayor3Component
           }
         ],
-        
-      }
-    ]
-  },
 
-  {
-    path: 'roles', component: RoleComponent,
-    children: [
-
-        ],
-        canActivate: [segGuard],
       },
 
       {
@@ -187,15 +186,16 @@ export const routes: Routes = [
         canActivate: [segGuard]
       },
       {
-        path:'reportes', component:ReportesComponent,
+        path: 'reportes', component: ReportesComponent,
         children: [
           {
-            path:'top5personal', component: Top5calificacionComponent
+            path: 'top5personal', component: Top5calificacionComponent
           },
           {
-            path:'recipesfinished', component: RecipesfinishedclientComponent
+            path: 'recipesfinished', component: RecipesfinishedclientComponent
           },
           {
+
             path:'listaCalificacionmayor3', component:Resenamayor3Component
           },
           {
@@ -205,3 +205,4 @@ export const routes: Routes = [
       }
     ]
   
+

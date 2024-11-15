@@ -43,13 +43,11 @@ export class UserService {
   }
 
   exitsByUsername(username: string):Observable<boolean>{
-    return this.http.get<boolean>(`${this.url}/?username=${username}`);
+    return this.http.get<boolean>(`${this.url}/findusername?username=${username}`);
   }
 
-  exitsByDNI(dni: string): Observable<boolean> {
-    return this.list().pipe(
-      map(users => users.some(user => user.dni === dni))
-    );
+  exitsByDNI(dni: string):Observable<boolean>{
+    return this.http.get<boolean>(`${this.url}/finddni?dni=${dni}`);
   }
 
 
