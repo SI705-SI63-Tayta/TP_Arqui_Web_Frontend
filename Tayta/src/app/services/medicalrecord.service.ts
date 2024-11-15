@@ -2,7 +2,8 @@ import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environments';
 import { HttpClient } from '@angular/common/http';
 import { MedicalRecord } from '../models/MedicalRecord';
-import { Subject } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
+import { MedicalRecordDateDTO } from '../models/MedicalRecordDateDTO';
 const base_url=environment.base
 @Injectable({
   providedIn: 'root'
@@ -40,5 +41,9 @@ export class MedicalrecordService {
   update(mr: MedicalRecord) {
     return this.http.put(this.url, mr);
   }
+  getHistoriaClinicaPeriodo(date1: string, date2: string): Observable<MedicalRecordDateDTO[]> {
+    const url = `${this.url}/historiaclinicaperiodo?date1=${date1}&date2=${date2}`;
+    return this.http.get<MedicalRecordDateDTO[]>(url);
+}
 }
 
