@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environments';
 import { HttpClient } from '@angular/common/http';
 import { ClinicalHistoryDetail } from '../models/ClinicalHistoryDetail';
+import { Subject } from 'rxjs';
 
 const base_url = environment.base;
 
@@ -10,10 +11,33 @@ const base_url = environment.base;
 })
 export class ClinicaldetailhistoryService {
   private url = `${base_url}/Detalle_historiaclinica`;
-
+  private listaCambio = new Subject<ClinicalHistoryDetail[]>();
   constructor(private http: HttpClient) {}
 
   list() {
     return this.http.get<ClinicalHistoryDetail[]>(this.url);
+  }
+  insert(ch: ClinicalHistoryDetail) {
+    return this.http.post(this.url, ch);
+  }
+
+  getList() {
+    return this.listaCambio.asObservable();
+  }
+
+  setList(listaNueva: ClinicalHistoryDetail[]) {
+    this.listaCambio.next(listaNueva);
+  }
+
+  delete(id: number) {
+    return this.http.delete(`${this.url}/${id}`);
+  }
+
+  listId(id: number) {
+    return this.http.get<ClinicalHistoryDetail>(`${this.url}/${id}`);
+  }
+
+  update(ch: ClinicalHistoryDetail) {
+    return this.http.put(this.url, ch);
   }
 }

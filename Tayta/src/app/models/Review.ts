@@ -11,10 +11,4 @@ export class Review{
     userCliente: User= new User();
 
     userPersonal: User= new User();
-
-
-
-
-
-
 }

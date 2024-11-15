@@ -1,0 +1,50 @@
+mat-toolbar {
+  background-color: #ffff ;
+  color: #000;
+}
+
+mat-icon {
+  color: #000;
+}
+
+mat-sidenav {
+  width: 250px;
+  border-right: none;
+  background-color: #F1F7EE;
+}
+
+.content {
+  display: flex;
+  justify-content: center; /* Alinea horizontalmente */
+  align-items: center; /* Alinea verticalmente */
+  text-align: center; /* Asegura que el texto esté centrado */
+  margin-top: 5rem;
+}
+
+
+mat-sidenav-container {
+  height: calc(100svh - 65px);
+}
+
+mat-sidenav-container, mat-sidenav, mat-sidenav-content, .content {
+  border-radius: 0;
+}
+
+mat-sidenav-container mat-sidenav mat-nav-list mat-list-item {
+  margin-bottom: 16px;
+  border-radius: 0px;
+  color: black;
+}
+
+mat-sidenav-container mat-sidenav mat-nav-list mat-list-item mat-icon {
+  color: black;
+}
+
+mat-toolbar button {
+  margin-left: auto;
+}
+
+.mat-badge{
+  --mat-badge-background-color:#27AE60;
+}
+

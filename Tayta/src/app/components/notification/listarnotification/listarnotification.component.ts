@@ -21,13 +21,16 @@ export class ListarnotificationComponent implements OnInit{
 
   displayedColumns:string[]=['c1', 'c2', 'c3', 'c4']
 
-  constructor(private nS:NotificationService, private rS:RecipeService, private uS:UserService){}
+  constructor(private nS:NotificationService,public rS:RecipeService, private uS:UserService){}
 
   ngOnInit(): void {
     this.nS.list().subscribe((data)=>{
       this.dataSource=new MatTableDataSource(data);
-
     })
+    this.nS.getList().subscribe((data)=>{
+      this.dataSource=new MatTableDataSource(data);
+    })
+
 }
 
 

@@ -1,0 +1,36 @@
+/* Contenedor principal */
+.container {
+  width: 800px; /* Ancho máximo para no ocupar toda la pantalla */
+  height: 600px;
+  margin: 40px auto; /* Centra el contenedor en la página */
+  padding: 20px;
+  background-color: #f5f5f5; /* Fondo suave */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Sombra suave */
+  border-radius: 8px; /* Bordes redondeados */
+
+}
+
+/* Encabezado */
+.header h1 {
+  font-size: 1.8em;
+  text-align: center;
+  margin-bottom: 20px;
+  color: #333; /* Color de texto oscuro */
+  font-family: "poppins", sans-serif;
+}
+
+/* Contenedor del gráfico */
+.chart-container {
+  position: relative;
+  width: 100%;
+  padding: 10px;
+  background-color: #ffffff; /* Fondo blanco para el gráfico */
+  border-radius: 8px; /* Bordes redondeados */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra más pequeña */
+}
+
+/* Canvas dentro del contenedor del gráfico */
+.chart-container canvas {
+  width: 100% !important; /* Asegura que el gráfico se adapte al contenedor */
+  height: 100% !important;
+}

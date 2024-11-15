@@ -1,0 +1,31 @@
+<div class="modal-container">
+  <h2>Selecciona tu ubicación</h2>
+
+  <div class="search-container">
+    <input #searchInput type="text" placeholder="Buscar dirección..." class="search-input" />
+  </div>
+
+  <google-map
+    height="400px"
+    width="400px"
+    [options]="mapOptions"
+    (mapClick)="onMapClick($event)">
+    <map-marker
+      *ngIf="userLocation"
+      [position]="userLocation"
+      [options]="userMarkerOptions">
+    </map-marker>
+  </google-map>
+
+  <button mat-button color="primary" (click)="locateUser()">Usar mi ubicación actual</button>
+
+  <div *ngIf="userLocation" class="location-info">
+    <p>Ubicación seleccionada:</p>
+    <p>Latitud: {{ userLocation.lat }}, Longitud: {{ userLocation.lng }}</p>
+  </div>
+
+  <div class="action-buttons">
+    <button mat-button color="primary" (click)="seleccionarUbicacion()">Confirmar ubicación</button>
+    <button mat-button color="warn" (click)="matDialogRed.close()">Cancelar</button>
+  </div>
+</div>

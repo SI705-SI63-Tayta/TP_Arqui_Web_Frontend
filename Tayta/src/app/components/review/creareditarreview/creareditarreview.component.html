@@ -1,0 +1,39 @@
+<div class="container" style="text-align: center;margin:2%">
+  <div>
+    <h1>Registro de Reseñas</h1>
+  </div>
+  <div>
+    <form [formGroup]="form" (submit)=" insertar()">
+      <mat-form-field class="example-full-width" *ngIf="edicion">
+        <mat-label>Codigo</mat-label>
+        <input matInput formControlName="codigo" />
+      </mat-form-field>
+      <br>
+      <mat-form-field appearance="fill">
+        <mat-label>Puntuación</mat-label>
+        <mat-select formControlName="puntuacion" required>
+          <mat-option *ngFor="let score of puntuaciones" [value]="score">
+            {{ score }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <br />
+      <mat-form-field>
+        <mat-label>Comentario</mat-label>
+        <textarea matInput formControlName="comentario"></textarea>
+      </mat-form-field>
+      <br>
+      <mat-form-field>
+        <mat-label>Personal</mat-label>
+        <mat-select formControlName="personal">
+          @for (m of listaMedicos; track m) {
+          <mat-option [value]="m.value">{{ m.viewValue }}</mat-option>
+          }
+        </mat-select>
+      </mat-form-field>
+      <div>
+        <button mat-flat-button class="custom-button" style="background-color: #27AE60; color: #fff;">Registrar</button>
+      </div>
+    </form>
+  </div>
+</div>
