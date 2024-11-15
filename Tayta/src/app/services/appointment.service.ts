@@ -3,6 +3,8 @@ import { environment } from '../../environments/environments';
 import { HttpClient } from '@angular/common/http';
 import { Appointment } from '../models/Appointment';
 import { map, Observable, Subject } from 'rxjs';
+import { AppointmentModeDTO } from '../models/AppointmentModeDTO';
+import { AppointmentCountDTO } from '../models/AppointmentCountDTO';
 const base_url=environment.base
 
 @Injectable({
@@ -50,4 +52,13 @@ private url=`${base_url}/citas`
       map(ap=>ap.filter(a=>a.userPersonal.idUser===id))
     );
   }
+
+  getCantidadCitasByMode(): Observable<AppointmentModeDTO[]> {
+    return this.http.get<AppointmentModeDTO[]>(`${this.url}/cantidadModoCitas`);
+  }
+
+  getCantidadCitasByPeriod(date1: string, date2: string): Observable<AppointmentCountDTO[]> {
+    const url = `${this.url}/cantidadCitas?date1=${date1}&date2=${date2}`;
+    return this.http.get<AppointmentCountDTO[]>(url);
+}
 }

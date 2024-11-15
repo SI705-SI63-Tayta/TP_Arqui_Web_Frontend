@@ -96,6 +96,8 @@ export class ToolbarComponent implements OnInit {
         { icon: 'home', label: 'ver historia clinica', route: '/historiaclinica/registrar' },
         { icon: 'home', label: 'ver notificaciones', route: '/notificaciones/registrar' },
         { icon: 'home', label: 'ver reseñas', route: '/resenas/registrar' },
+        { icon: 'home', label: 'ver reporte cantidad', route: '/reportes/cantidadcitas' },
+        { icon: 'home', label: 'ver reporte citas periodo', route: '/reportes/cantidadcitasPediodo' },
       ]
     }
 

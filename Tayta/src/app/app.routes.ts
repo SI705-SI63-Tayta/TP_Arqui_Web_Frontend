@@ -26,6 +26,9 @@ import { CreareditarnotificationComponent } from './components/notification/crea
 import { CreareditarreviewComponent } from './components/review/creareditarreview/creareditarreview.component';
 import { UserComponent } from './components/user/user.component';
 import { CreareditaruserComponent } from './components/user/creareditaruser/creareditaruser.component';
+import { ReportesComponent } from './components/reportes/reportes.component';
+import { ReportappointmentmodeComponent } from './components/reportes/reportappointmentmode/reportappointmentmode.component';
+import { ReportquantityappointmentperiodComponent } from './components/reportes/reportquantityappointmentperiod/reportquantityappointmentperiod.component';
 
 
 export const routes: Routes = [
@@ -139,6 +142,18 @@ export const routes: Routes = [
             path: 'ediciones',component:CreareditaruserComponent
           }
         ]
+      },
+      {
+        path: 'reportes', component:ReportesComponent,
+        children:[
+          {
+            path: 'cantidadcitas',component:ReportappointmentmodeComponent
+          },
+          {
+            path: 'cantidadcitasPediodo',component:ReportquantityappointmentperiodComponent
+          }
+        ],
+        
       }
     ]
   },
