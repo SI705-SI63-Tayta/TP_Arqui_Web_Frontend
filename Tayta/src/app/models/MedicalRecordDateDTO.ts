@@ -1,4 +1,5 @@
 export class MedicalRecordDateDTO {
-    idMedicalRecord: number=0
-    
+    idUser: number=0
+    fullName: string = ""
+    dateMedicalRecord: string = ""
 }
