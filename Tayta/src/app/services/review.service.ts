@@ -41,6 +41,7 @@ export class ReviewService {
 
   update(r: Review) {
     return this.http.put(this.url, r);
+
   }
 
   top5CalificacionPersonal():Observable<Top5PersonalDTO[]>{
@@ -51,6 +52,7 @@ export class ReviewService {
     return this.list().pipe(
       map(re=>re.filter(r=>r.userPersonal.idUser===id))
     );
+
   }
 
   listarcalificacionmayor3() {

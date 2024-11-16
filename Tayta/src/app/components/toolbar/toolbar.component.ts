@@ -98,6 +98,8 @@ export class ToolbarComponent implements OnInit {
         { icon: 'home', label: 'Top5 personal', route: '/reportes/top5personal' },
         { icon: 'home', label: 'Recetas finalizas cliente', route: '/reportes/recipesfinished' },
         { icon: 'home', label: 'Calificacion mayor a 3', route: '/reportes/listaCalificacionmayor3' },
+        { icon: 'home', label: 'rolporusuario', route: '/reportes/rolporusuario' },
+        { icon: 'home', label: 'BuscarporDNI', route: '/reportes/Buscarpordni' }
       ]
     }
 
