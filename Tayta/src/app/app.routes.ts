@@ -34,7 +34,6 @@ import { RecipesfinishedclientComponent } from './components/reportes/recipesfin
 import { ListpatientsbystaffComponent } from './components/reportes/listpatientsbystaff/listpatientsbystaff.component';
 import { ListpatientsbydateComponent } from './components/reportes/listpatientsbydate/listpatientsbydate.component';
 import { Resenamayor3Component } from './components/reportes/resenamayor3/resenamayor3.component';
-import { HistoriaclinicaperiodoComponent } from './components/reportes/historiaclinicaperiodo/historiaclinicaperiodo.component';
 import { CantidadusuariorolComponent } from './components/reportes/cantidadusuariorol/cantidadusuariorol.component';
 import { BuscarPorDNIComponent } from './components/reportes/buscar-por-dni/buscar-por-dni.component';
 
@@ -206,9 +205,6 @@ export const routes: Routes = [
           {
 
             path: 'listaCalificacionmayor3', component: Resenamayor3Component
-          },
-          {
-            path: 'historiaclinicaperiodo', component: HistoriaclinicaperiodoComponent
           },
           {
             path:'rolporusuario', component: CantidadusuariorolComponent
