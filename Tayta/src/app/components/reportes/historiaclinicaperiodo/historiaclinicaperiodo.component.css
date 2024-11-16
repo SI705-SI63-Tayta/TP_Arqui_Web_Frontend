@@ -1,0 +1,46 @@
+.title-container {
+    text-align: center;
+    margin-bottom: 40px;
+    margin-top: 60px;
+  }
+  
+  .date-inputs {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .date-inputs label {
+    font-weight: 600;
+    margin-right: 5px;
+  }
+  
+  .date-inputs input {
+    margin: 0 10px;
+    padding: 5px;
+    font-size: 1em;
+  }
+  
+  .date-inputs button {
+    padding: 6px 12px;
+    font-size: 1em;
+    background-color: #445cac;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 4px;
+  }
+  
+  .chart-container {
+    width: 40%;
+    margin: 0 auto;
+    padding: 9px;
+    box-sizing: border-box;
+  }
+  
+  @media (max-width: 768px) {
+    .chart-container {
+      width: 100%;
+      padding: 10px;
+    }
+  }
+  

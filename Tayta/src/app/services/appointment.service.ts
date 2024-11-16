@@ -5,6 +5,9 @@ import { Appointment } from '../models/Appointment';
 import { map, Observable, Subject } from 'rxjs';
 import { ListPatientsByStaffDTO } from '../models/ListPatientsByStaffDTO';
 import { ListPatientsByDateDTO } from '../models/ListPatientsByDateDTO';
+import { AppointmentModeDTO } from '../models/AppointmentModeDTO';
+import { AppointmentCountDTO } from '../models/AppointmentCountDTO';
+
 const base_url=environment.base
 
 @Injectable({
@@ -30,7 +33,7 @@ private url=`${base_url}/citas`
   }
 
   delete(id: number) {
-    return this.http.delete(`${this.url}/${id}`);
+    return this.http.delete(`${this.url}/${id}`,{ responseType: 'text' });
   }
 
   listId(id: number) {
@@ -62,4 +65,13 @@ private url=`${base_url}/citas`
     const url = (`${this.url}/ListarPacientesPorFecha?fecha=${fecha}`);
     return this.http.get<ListPatientsByDateDTO[]>(url);
   }
+
+  getCantidadCitasByMode(): Observable<AppointmentModeDTO[]> {
+    return this.http.get<AppointmentModeDTO[]>(`${this.url}/cantidadModoCitas`);
+  }
+
+  getCantidadCitasByPeriod(date1: string, date2: string): Observable<AppointmentCountDTO[]> {
+    const url = `${this.url}/cantidadCitas?date1=${date1}&date2=${date2}`;
+    return this.http.get<AppointmentCountDTO[]>(url);
+}
 }

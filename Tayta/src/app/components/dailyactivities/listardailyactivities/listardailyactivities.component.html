@@ -8,6 +8,11 @@
 
     <ng-container matColumnDef="c2">
       <th mat-header-cell *matHeaderCellDef> Actividad </th>
+      <td mat-cell *matCellDef="let element"> {{element.user.fullName}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="c3" >
+      <th mat-header-cell *matHeaderCellDef> Actividad </th>
       <td mat-cell *matCellDef="let element"> {{element.habits}} </td>
     </ng-container>
 

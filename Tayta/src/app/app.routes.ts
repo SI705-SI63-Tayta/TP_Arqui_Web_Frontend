@@ -27,10 +27,16 @@ import { CreareditarreviewComponent } from './components/review/creareditarrevie
 import { UserComponent } from './components/user/user.component';
 import { CreareditaruserComponent } from './components/user/creareditaruser/creareditaruser.component';
 import { ReportesComponent } from './components/reportes/reportes.component';
+import { ReportappointmentmodeComponent } from './components/reportes/reportappointmentmode/reportappointmentmode.component';
+import { ReportquantityappointmentperiodComponent } from './components/reportes/reportquantityappointmentperiod/reportquantityappointmentperiod.component';
 import { Top5calificacionComponent } from './components/reportes/top5calificacion/top5calificacion.component';
 import { RecipesfinishedclientComponent } from './components/reportes/recipesfinishedclient/recipesfinishedclient.component';
 import { ListpatientsbystaffComponent } from './components/reportes/listpatientsbystaff/listpatientsbystaff.component';
 import { ListpatientsbydateComponent } from './components/reportes/listpatientsbydate/listpatientsbydate.component';
+import { Resenamayor3Component } from './components/reportes/resenamayor3/resenamayor3.component';
+import { HistoriaclinicaperiodoComponent } from './components/reportes/historiaclinicaperiodo/historiaclinicaperiodo.component';
+import { CantidadusuariorolComponent } from './components/reportes/cantidadusuariorol/cantidadusuariorol.component';
+import { BuscarPorDNIComponent } from './components/reportes/buscar-por-dni/buscar-por-dni.component';
 
 
 export const routes: Routes = [
@@ -73,7 +79,7 @@ export const routes: Routes = [
             path: 'registrar/:idAppointment', component: CreaeditarecipeComponent
           },
           {
-            path: 'ediciones/:id/:idCita', component: CreaeditarecipeComponent
+            path: 'ediciones/:id/:idAppointment', component: CreaeditarecipeComponent
           }
         ],
         canActivate: [segGuard],
@@ -140,14 +146,36 @@ export const routes: Routes = [
         canActivate: [segGuard],
       },
       {
-        path: 'usuarios', component:UserComponent,
-        children:[
+        path: 'usuarios', component: UserComponent,
+        children: [
           {
-            path: 'ediciones',component:CreareditaruserComponent
+            path: 'ediciones', component: CreareditaruserComponent
+          }
+
+        ]
+      },
+      {
+        path: 'reportes', component: ReportesComponent,
+        children: [
+          {
+            path: 'cantidadcitas', component: ReportappointmentmodeComponent
+          },
+          {
+            path: 'cantidadcitasPediodo', component: ReportquantityappointmentperiodComponent
+          },
+          {
+            path: 'top5personal', component: Top5calificacionComponent
+          },
+          {
+            path: 'recipesfinished', component: RecipesfinishedclientComponent
+          },
+          {
+            path: 'listaCalificacionmayor3', component: Resenamayor3Component
           }
         ],
-        canActivate: [segGuard],
+
       },
+
       {
         path: 'roles', component: RoleComponent,
         children: [
@@ -161,10 +189,10 @@ export const routes: Routes = [
         canActivate: [segGuard]
       },
       {
-        path:'reportes', component:ReportesComponent,
+        path: 'reportes', component: ReportesComponent,
         children: [
           {
-            path:'top5personal', component: Top5calificacionComponent
+            path: 'top5personal', component: Top5calificacionComponent
           },
           {
             path:'recipesfinished', component: RecipesfinishedclientComponent
@@ -174,12 +202,24 @@ export const routes: Routes = [
           },
           {
             path:'listpatientsbydate', component: ListpatientsbydateComponent
+          },
+          {
+
+            path: 'listaCalificacionmayor3', component: Resenamayor3Component
+          },
+          {
+            path: 'historiaclinicaperiodo', component: HistoriaclinicaperiodoComponent
+          },
+          {
+            path:'rolporusuario', component: CantidadusuariorolComponent
+          },
+          {
+            path:'Buscarpordni', component: BuscarPorDNIComponent
           }
         ]
       }
     ]
-  },
+  }
 
+]
 
-
-];

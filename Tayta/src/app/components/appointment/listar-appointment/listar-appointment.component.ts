@@ -36,12 +36,16 @@ export class ListarAppointmentComponent implements OnInit{
     this.role=this.lS.showRole();
     this.idUser=this.lS.getId();
 
-    if(this.role==="CLIENTE"){
+    if(this.isCliente()){
       this.aS.getCitasByCliente(this.idUser).subscribe((data)=>{
         this.dataSource=new MatTableDataSource(data);
       });
-    }else if(this.role=== "DOCTOR" || this.role==="ENFERMERO"){
+    }else if(this.isPersonal()){
       this.aS.getCitasByPersonal(this.idUser).subscribe((data)=>{
+        this.dataSource=new MatTableDataSource(data);
+      });
+    }else if(this.isAdministrador()){
+      this.aS.list().subscribe((data)=>{
         this.dataSource=new MatTableDataSource(data);
       });
     }
@@ -59,6 +63,10 @@ export class ListarAppointmentComponent implements OnInit{
     return this.lS.showRole()==='CLIENTE';
   }
 
+  isAdministrador(){
+    return this.lS.showRole()==='ADMINISTRADOR';
+  }
+
 
   eliminar(id: number) {
     const dialogRef = this.dialog.open(ConfirmDeleteDialogComponent, {
@@ -73,6 +81,12 @@ export class ListarAppointmentComponent implements OnInit{
               this.aS.getCitasByCliente(this.idUser).subscribe((data) => {
                 this.aS.setList(data);
               });
+              this.snackBar.open('Eliminado correctamente', 'Cerrar', {
+                duration: 5000,
+                horizontalPosition: 'center',
+                verticalPosition: 'bottom',
+              });
+
             },
             (error) => {
               if (error.status === 400) {
@@ -96,6 +110,41 @@ export class ListarAppointmentComponent implements OnInit{
               this.aS.getCitasByPersonal(this.idUser).subscribe((data) => {
                 this.aS.setList(data);
               });
+              this.snackBar.open('Eliminado correctamente', 'Cerrar', {
+                duration: 5000,
+                horizontalPosition: 'center',
+                verticalPosition: 'bottom',
+              });
+
+            },
+            (error) => {
+              if (error.status === 400) {
+                this.snackBar.open('No se puede eliminar la cita: La cita ya ha sido atendida.', 'Cerrar', {
+                  duration: 5000,
+                  horizontalPosition: 'center',
+                  verticalPosition: 'bottom',
+                });
+              } else {
+                this.snackBar.open('Hubo un error al eliminar la cita. Inténtalo de nuevo.', 'Cerrar', {
+                  duration: 5000,
+                  horizontalPosition: 'center',
+                  verticalPosition: 'bottom',
+                });
+              }
+            }
+          );
+        }else if(this.role==='ADMINISTRADOR'){
+          this.aS.delete(id).subscribe(
+            (data) => {
+              this.aS.list().subscribe((data) => {
+                this.aS.setList(data);
+              });
+              this.snackBar.open('Eliminado correctamente', 'Cerrar', {
+                duration: 5000,
+                horizontalPosition: 'center',
+                verticalPosition: 'bottom',
+              });
+
             },
             (error) => {
               if (error.status === 400) {
@@ -114,35 +163,6 @@ export class ListarAppointmentComponent implements OnInit{
             }
           );
         }
-      }
-    });
-  }
-
-  recetaAsociada1(idCita: number) {
-    this.rS.getRecetaPorCita(idCita).subscribe(receta => {
-      if (receta) {
-        this.snackBar.open('La cita ya cuenta con una receta', 'Cerrar', {
-          duration: 5000,
-          horizontalPosition: 'center',
-          verticalPosition: 'bottom',
-        });
-      } else {
-        this.router.navigate(['/recetas/registrar', idCita]);
-      }
-    });
-  }
-
-
-  recetaAsociada2(idCita: number) {
-    this.rS.getRecetaPorCita(idCita).subscribe(receta => {
-      if (receta) {
-        this.router.navigate(['/recetas/ediciones', receta.idRecipe]);
-      } else {
-        this.snackBar.open('Esta cita todavia no cuenta con una receta', 'Cerrar', {
-          duration: 5000,
-          horizontalPosition: 'center',
-          verticalPosition: 'bottom',
-        });
       }
     });
   }

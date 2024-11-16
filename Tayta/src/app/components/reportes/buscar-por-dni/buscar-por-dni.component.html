@@ -1,0 +1,34 @@
+<div class="container">
+  <div class="title-container">
+    <h1 class="title">Buscar por DNI</h1>
+  </div>
+
+  <div class="form-container">
+    <mat-form-field class="example-full-width">
+      <mat-label>Ingrese el nombre del Usuario:</mat-label>
+      <input
+        matInput
+        [(ngModel)]="dni"
+        name="userNameInput"
+        placeholder="Nombre del Usuario"
+      />
+    </mat-form-field>
+    <button mat-raised-button color="primary" (click)="fetchIncidentsByUser(dni)">
+      Buscar Incidentes
+    </button>
+  </div>
+
+  <div class="card-container" *ngIf="listauser.length > 0">
+    <mat-card *ngFor="let userdni of listauser">
+      <mat-card-header>
+        <mat-card-title id="name">{{ userdni.nombrepaciente }}</mat-card-title>
+        <mat-card-subtitle>{{ userdni.correo }}</mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-content>
+        <p>Fecha Historia: {{ userdni.fechahistoria }}</p>
+        <p>Diagnóstico: {{ userdni.diagnostico }}</p>
+        <p>Receta ID: {{ userdni.recetaid }}</p>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>

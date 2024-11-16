@@ -1,0 +1,10 @@
+<div>
+    <h1>Reporte mayor a 3</h1>
+    <ul>
+      <li *ngFor="let review of reviews">
+        <p><strong>ID:</strong> {{ review.idReview }}</p>
+        <p><strong>Texto:</strong> {{ review.comment }}</p>
+        <p><strong>Calificación:</strong> {{ review.score }}</p>
+      </li>
+    </ul>
+  </div>

@@ -27,6 +27,8 @@ export const appConfig: ApplicationConfig = {
         config: {
           tokenGetter: tokenGetter,
           allowedDomains: ['localhost:8081'],
+          //allowedDomains: ['52.167.229.156:8081'],
+          //disallowedRoutes: ['http://52.167.229.156:8081/login/forget'],
           disallowedRoutes: ['http://localhost:8081/login/forget'],
         },
       })

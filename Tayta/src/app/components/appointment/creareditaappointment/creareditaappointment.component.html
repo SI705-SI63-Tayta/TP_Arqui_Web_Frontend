@@ -4,7 +4,7 @@
     <h1 *ngIf="edicion">Edicion de Citas</h1>
   </div>
   <div>
-    <form [formGroup]="form" (submit)=" insertar()">
+    <form [formGroup]="form" (submit)=" insertar()" *ngIf="isCliente()">
       <mat-form-field class="example-full-width" *ngIf="edicion">
         <mat-label>Código</mat-label>
         <input matInput formControlName="codigo" />
@@ -55,5 +55,69 @@
         <button mat-flat-button (click)="flagUpdate()" style="background-color: #27AE60; color: #fff;" class="custom-button" *ngIf="edicion">Guardar</button>
       </div>
     </form>
+
+    <!--FORM 2-->
+    <form [formGroup]="form2" (submit)=" insertar2()" *ngIf="isAdministrador()">
+      <mat-form-field class="example-full-width" *ngIf="edicion">
+        <mat-label>Código</mat-label>
+        <input matInput formControlName="codigo" />
+      </mat-form-field>
+      <br />
+      <mat-form-field>
+        <mat-label>Escoge una fecha</mat-label>
+        <input matInput [matDatepicker]="picker" formControlName="fecha" />
+        <mat-hint>MM/DD/YYYY</mat-hint>
+        <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+      <br />
+      <mat-form-field>
+        <mat-label>Razon</mat-label>
+        <input matInput formControlName="razon">
+      </mat-form-field>
+      <br />
+      <mat-form-field>
+        <mat-label>Modalidad</mat-label>
+        <mat-select formControlName="modo">
+          @for (c of listaModo; track c) {
+          <mat-option [value]="c.value">{{ c.viewValue }}</mat-option>
+          }
+        </mat-select>
+      </mat-form-field>
+
+      <br *ngIf="modoPresencial">
+      <button *ngIf="modoPresencial" (click)="openModal();">Seleccionar ubicación</button>
+      <br *ngIf="modoPresencial">
+      <br>
+      <mat-form-field>
+        <mat-label>Cliente</mat-label>
+        <mat-select formControlName="cliente">
+          @for (m of listaClientes; track m) {
+          <mat-option [value]="m.value">{{ m.viewValue }}</mat-option>
+          }
+        </mat-select>
+      </mat-form-field>
+      <br>
+      <mat-form-field>
+        <mat-label>Medico</mat-label>
+        <mat-select formControlName="personal">
+          @for (m of listaMedicos; track m) {
+          <mat-option [value]="m.value">{{ m.viewValue }}</mat-option>
+          }
+        </mat-select>
+      </mat-form-field>
+
+      <br />
+      <mat-form-field class="example-full-width">
+        <mat-label>Descripcion</mat-label>
+        <textarea matInput formControlName="descripcion"></textarea>
+      </mat-form-field>
+      <div>
+        <button mat-flat-button (click)="flagUpdate()" style="background-color: #27AE60; color: #fff;" class="custom-button" *ngIf="!edicion">Registrar</button>
+        <button mat-flat-button (click)="flagUpdate()" style="background-color: #27AE60; color: #fff;" class="custom-button" *ngIf="edicion">Guardar</button>
+      </div>
+    </form>
+
+
   </div>
 </div>

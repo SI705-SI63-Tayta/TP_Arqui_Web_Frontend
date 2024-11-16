@@ -51,6 +51,7 @@ export class AppComponent implements OnInit{
       document.head.appendChild(script);
     }
   }
+
   close() {
     sessionStorage.clear();
   }

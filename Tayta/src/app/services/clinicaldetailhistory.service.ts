@@ -2,7 +2,8 @@ import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environments';
 import { HttpClient } from '@angular/common/http';
 import { ClinicalHistoryDetail } from '../models/ClinicalHistoryDetail';
-import { Subject } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
+import { SearchByDni } from '../models/SearchByDni';
 
 const base_url = environment.base;
 
@@ -39,5 +40,9 @@ export class ClinicaldetailhistoryService {
 
   update(ch: ClinicalHistoryDetail) {
     return this.http.put(this.url, ch);
+  }
+
+  getuserperdni(dni: string): Observable<SearchByDni[]> {
+    return this.http.get<SearchByDni[]>(`${this.url}/buscar?dni=${dni}`);
   }
 }
