@@ -33,6 +33,8 @@ import { Top5calificacionComponent } from './components/reportes/top5calificacio
 import { RecipesfinishedclientComponent } from './components/reportes/recipesfinishedclient/recipesfinishedclient.component';
 import { Resenamayor3Component } from './components/reportes/resenamayor3/resenamayor3.component';
 import { HistoriaclinicaperiodoComponent } from './components/reportes/historiaclinicaperiodo/historiaclinicaperiodo.component';
+import { CantidadusuariorolComponent } from './components/reportes/cantidadusuariorol/cantidadusuariorol.component';
+import { BuscarPorDNIComponent } from './components/reportes/buscar-por-dni/buscar-por-dni.component';
 
 
 
@@ -196,13 +198,21 @@ export const routes: Routes = [
           },
           {
 
-            path:'listaCalificacionmayor3', component:Resenamayor3Component
+            path: 'listaCalificacionmayor3', component: Resenamayor3Component
           },
           {
-            path:'historiaclinicaperiodo', component:HistoriaclinicaperiodoComponent
+            path: 'historiaclinicaperiodo', component: HistoriaclinicaperiodoComponent
+          },
+          {
+            path:'rolporusuario', component: CantidadusuariorolComponent
+          },
+          {
+            path:'Buscarpordni', component: BuscarPorDNIComponent
           }
         ]
       }
     ]
-  
+  }
+
+]
 

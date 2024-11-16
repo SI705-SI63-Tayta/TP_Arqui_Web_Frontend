@@ -2,7 +2,8 @@ import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environments';
 import { HttpClient } from '@angular/common/http';
 import { Role } from '../models/Role';
-import { Subject } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
+import { QuantityUserperRolDTO } from '../models/QuantityUserperRolDTO';
 const base_url=environment.base
 
 @Injectable({
@@ -39,5 +40,9 @@ export class RoleService {
 
   update(r: Role) {
     return this.http.put(this.url, r);
+  }
+
+  getQuantityUserRol(): Observable<QuantityUserperRolDTO[]> {
+    return this.http.get<QuantityUserperRolDTO[]>(`${this.url}/CantidadUsuariosPorRol`);
   }
 }
