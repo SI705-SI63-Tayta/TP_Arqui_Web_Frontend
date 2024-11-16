@@ -5,29 +5,39 @@
     <div>
         <form [formGroup]="form" (submit)="insertar()">
           <mat-form-field class="example-full-width" *ngIf="edicion">
-            <mat-label>Código</mat-label>
+            <mat-label>ID</mat-label>
             <input matInput formControlName="hidDetalleHistoria" />
           </mat-form-field>
           <br />
 
-          <mat-form-field class="example-full-width">
-            <mat-label>ID Medical Record</mat-label>
-            <input matInput formControlName="hmedicalRecord" />
+          <mat-form-field>
+            <mat-label>ID Registro Medico</mat-label>
+            <mat-select formControlName="hmedicalRecord">
+              @for (c of listaId; track c) {
+              <mat-option [value]="c.value">{{ c.viewValue }}</mat-option>
+              }
+            </mat-select>
           </mat-form-field>
-          <br />
+          <br>
 
-          <mat-form-field class="example-full-width">
-            <mat-label>ID Recipe</mat-label>
-            <input matInput formControlName="hrecipe" />
+          <mat-form-field>
+            <mat-label>ID Receta</mat-label>
+            <mat-select formControlName="hrecipe">
+              @for (c of listaReceta; track c) {
+              <mat-option [value]="c.value">{{ c.viewValue }}</mat-option>
+              }
+            </mat-select>
           </mat-form-field>
-          <br />
-
-          <mat-form-field class="example-full-width">
-            <mat-label>ID Appointment</mat-label>
-            <input matInput formControlName="happointment" />
+          <br>
+          <mat-form-field>
+            <mat-label>ID Cita</mat-label>
+            <mat-select formControlName="happointment">
+              @for (c of listaCita; track c) {
+              <mat-option [value]="c.value">{{ c.viewValue }}</mat-option>
+              }
+            </mat-select>
           </mat-form-field>
-          <br />
-
+          <br>
           <mat-form-field class="example-full-width">
             <mat-label>Diagnóstico</mat-label>
             <input matInput formControlName="hdiagnostico" />

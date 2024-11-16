@@ -75,16 +75,16 @@ export class ToolbarComponent implements OnInit {
         { icon: 'person', label: 'Ver Citas', route: '/citas' },//LISTO
         { icon: 'person', label: 'Registrar Actividades', route: '/actividades/registrar' },//LISTO
         { icon: 'person', label: 'Ver Actividades', route: '/actividades' },//LISTO
-        { icon: 'person', label: 'Ver Recetas', route: '/recetas' },
-        { icon: 'person', label: 'Registrar reseña', route: '/resenas/registrar' },
-        { icon: 'person', label: 'Ver Reseñas', route: '/resenas' },
+        { icon: 'person', label: 'Ver Recetas', route: '/recetas' },//LISTO
+        { icon: 'person', label: 'Registrar reseña', route: '/resenas/registrar' },//LISTO
+        { icon: 'person', label: 'Ver Reseñas', route: '/resenas' },//LISTO
       ];
     } else if (this.role === 'DOCTOR' || this.role === 'ENFERMERO') {
       this.menuItems = [
         { icon: 'person', label: 'Ver Citas', route: '/citas' },//LISTO
-        { icon: 'person', label: 'Ver Reseñas', route: '/resenas' },
-        { icon: 'person', label: 'Registrar Historia Clinica', route: '/historiaclinica/registrar' },
-        { icon: 'person', label: 'Ver Historia Clinica', route: '/historiaclinica' },
+        { icon: 'person', label: 'Ver Reseñas', route: '/resenas' },//LISTO
+        { icon: 'person', label: 'Registrar Historia Clinica', route: '/historiaclinica/registrar' },//LISTO
+        { icon: 'person', label: 'Ver Historia Clinica', route: '/historiaclinica' },//LISTO
         { icon: 'person', label: 'Registrar Detalle Historia', route: '/detallehistoriaclinica/registrar' },
         { icon: 'person', label: 'Ver Detalle Historia', route: '/detallehistoriaclinica' },
       ]
@@ -93,18 +93,8 @@ export class ToolbarComponent implements OnInit {
 
     } else if (this.role === 'ADMINISTRADOR') {
       this.menuItems = [
-        { icon: 'home', label: 'ver historia clinica', route: '/historiaclinica/registrar' },
-        { icon: 'home', label: 'ver notificaciones', route: '/notificaciones/registrar' },
-        { icon: 'home', label: 'ver reseñas', route: '/resenas/registrar' },
-        { icon: 'home', label: 'Top5 personal', route: '/reportes/top5personal' },
-        { icon: 'home', label: 'Recetas finalizas cliente', route: '/reportes/recipesfinished' },
-        { icon: 'home', label: 'Pacientes atendidos por Personal', route: '/reportes/listpatientsbystaff' },
-        { icon: 'home', label: 'Pacientes atendidos por Fecha', route: '/reportes/listpatientsbydate' },
-        { icon: 'person', label: 'Ver Citas', route: '/citas' },
-        { icon: 'home', label: 'Registrar Cita', route: '/citas/registrar' },
-        { icon: 'person', label: 'Registrar Actividades', route: '/actividades/registrar' },
-        { icon: 'person', label: 'Ver Actividades', route: '/actividades' },
-        { icon: 'person', label: 'Ver Recetas', route: '/recetas' },
+        { icon: 'person', label: 'Registrar Detalle Historia', route: '/detallehistoriaclinica/registrar' },
+        { icon: 'person', label: 'Ver Detalle Historia', route: '/detallehistoriaclinica' },
 
         // { icon: 'home', label: 'ver reporte cantidad', route: '/reportes/cantidadcitas' },//EMERZON
         // { icon: 'home', label: 'ver reporte citas periodo', route: '/reportes/cantidadcitasPediodo' },//EMERZON

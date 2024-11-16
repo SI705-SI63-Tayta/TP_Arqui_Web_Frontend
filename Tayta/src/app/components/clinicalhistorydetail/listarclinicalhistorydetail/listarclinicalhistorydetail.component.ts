@@ -5,6 +5,9 @@ import { ClinicaldetailhistoryService } from '../../../services/clinicaldetailhi
 import { MatIconModule } from '@angular/material/icon';
 import { RouterModule } from '@angular/router';
 import { MatButtonModule } from '@angular/material/button';
+import { MatDialog } from '@angular/material/dialog';
+import { Recipe } from '../../../models/Recipe';
+import { RecipeDialogComponent } from '../../recipe-dialog/recipe-dialog.component';
 
 @Component({
   selector: 'app-listarclinicalhistorydetail',
@@ -15,8 +18,10 @@ import { MatButtonModule } from '@angular/material/button';
 })
 export class ListarclinicalhistorydetailComponent implements OnInit{
   dataSource: MatTableDataSource<ClinicalHistoryDetail> = new MatTableDataSource();
-  displayedColumns:string[]=['c1', 'c2', 'c3', 'c4', 'c5','eliminar','editar']
-  constructor(private cS:ClinicaldetailhistoryService){}
+  displayedColumns:string[]=['c1', 'c2', 'c3', 'c4', 'c5','c6','eliminar','editar']
+  constructor(private cS:ClinicaldetailhistoryService,
+    private dialog: MatDialog
+  ){}
   ngOnInit(): void {
     this.cS.list().subscribe((data)=>{
       this.dataSource=new MatTableDataSource(data);
@@ -31,6 +36,12 @@ export class ListarclinicalhistorydetailComponent implements OnInit{
         this.cS.setList(data);
       })
     })
+  }
+
+  openRecipeDialog(recipe: Recipe): void {
+    this.dialog.open(RecipeDialogComponent, {
+      data: recipe
+    });
   }
 
 

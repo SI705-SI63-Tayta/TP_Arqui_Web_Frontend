@@ -1,26 +1,38 @@
 <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
 
     <ng-container matColumnDef="c1">
-      <th mat-header-cell *matHeaderCellDef> id Detalle de Historia </th>
+      <th mat-header-cell *matHeaderCellDef> ID </th>
       <td mat-cell *matCellDef="let element"> {{element.idDetalleHistoria}} </td>
     </ng-container>
 
     <ng-container matColumnDef="c2">
-      <th mat-header-cell *matHeaderCellDef> id Historia Clínica</th>
-      <td mat-cell *matCellDef="let element"> {{element.medicalRecord.idMedicalRecord}} </td>
+      <th mat-header-cell *matHeaderCellDef> DNI Cliente</th>
+      <td mat-cell *matCellDef="let element"> {{element.medicalRecord.u.dni}} </td>
     </ng-container>
 
     <ng-container matColumnDef="c3">
-      <th mat-header-cell *matHeaderCellDef> id Receta </th>
-      <td mat-cell *matCellDef="let element"> {{element.recipe.idRecipe}} </td>
+      <th mat-header-cell *matHeaderCellDef>Ver Receta</th>
+      <td mat-cell *matCellDef="let element" (click)="openRecipeDialog(element.recipe)">
+
+        <button mat-mini-fab style="background-color: #ffffff00;">
+          <mat-icon style="color:#eb0a21">remove_red_eye</mat-icon>
+        </button>
+
+      </td>
     </ng-container>
 
+
     <ng-container matColumnDef="c4">
-      <th mat-header-cell *matHeaderCellDef> id Cita </th>
-      <td mat-cell *matCellDef="let element"> {{element.appointment.idAppointment}} </td>
+      <th mat-header-cell *matHeaderCellDef> Fecha Cita </th>
+      <td mat-cell *matCellDef="let element"> {{element.appointment.date}} </td>
     </ng-container>
 
     <ng-container matColumnDef="c5">
+      <th mat-header-cell *matHeaderCellDef> Personal </th>
+      <td mat-cell *matCellDef="let element"> {{element.appointment.userPersonal.fullName}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="c6">
         <th mat-header-cell *matHeaderCellDef> Diagnostico </th>
         <td mat-cell *matCellDef="let element"> {{element.diagnostico}} </td>
     </ng-container>

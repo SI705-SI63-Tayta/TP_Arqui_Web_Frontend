@@ -27,7 +27,7 @@ export class ListarreviewComponent implements OnInit {
     this.role = this.lS.showRole();
     this.idUser = this.lS.getId();
 
-    if (this.role === "CLIENTE") {
+    if (this.role === "CLIENTE" || this.role==='ADMINISTRADOR') {
 
     this.rS.list().subscribe((data) => {
       this.dataSource = new MatTableDataSource(data);

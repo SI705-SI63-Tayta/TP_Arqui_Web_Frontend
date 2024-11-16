@@ -6,6 +6,10 @@ import { MatInputModule } from '@angular/material/input';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { ClinicalHistoryDetail } from '../../../models/ClinicalHistoryDetail';
 import { ClinicaldetailhistoryService } from '../../../services/clinicaldetailhistory.service';
+import { MedicalrecordService } from '../../../services/medicalrecord.service';
+import { RecipeService } from '../../../services/recipe.service';
+import { AppointmentService } from '../../../services/appointment.service';
+import { MatSelectModule } from '@angular/material/select';
 
 @Component({
   selector: 'app-creareditarclinicalhistorydetail',
@@ -13,7 +17,7 @@ import { ClinicaldetailhistoryService } from '../../../services/clinicaldetailhi
   imports: [MatInputModule,
     MatButtonModule,
     ReactiveFormsModule,
-    CommonModule],
+    CommonModule, MatSelectModule],
   templateUrl: './creareditarclinicalhistorydetail.component.html',
   styleUrl: './creareditarclinicalhistorydetail.component.css'
 })
@@ -23,12 +27,18 @@ export class CreareditarclinicalhistorydetailComponent {
 
   id: number = 0;
   edicion: boolean = false;
+  listaId: { value: number; viewValue: number }[] = [];
+  listaReceta: { value: number; viewValue: number }[] = [];
+  listaCita: { value: number; viewValue: number }[] = [];
 
   constructor(
     private cS: ClinicaldetailhistoryService,
     private formBuilder: FormBuilder,
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private mrS:MedicalrecordService,
+    private rS:RecipeService,
+    private aS:AppointmentService
   ){}
 
   ngOnInit(): void {
@@ -38,6 +48,7 @@ export class CreareditarclinicalhistorydetailComponent {
       this.edicion = data['id'] != null;
       //trae los datos
       this.init();
+      this.getData();
     });
     this.form = this.formBuilder.group({
       hidDetalleHistoria: [''],
@@ -87,5 +98,30 @@ export class CreareditarclinicalhistorydetailComponent {
         });
       });
     }
+  }
+
+  getData() {
+    this.mrS.list().subscribe((data) => {
+      this.listaId = data.map(m => ({
+        value: m.idMedicalRecord,
+        viewValue: m.idMedicalRecord
+      }))
+    });
+
+    this.rS.list().subscribe((data) => {
+      this.listaReceta = data.map(m => ({
+        value: m.idRecipe,
+        viewValue: m.idRecipe
+      }))
+    });
+
+    this.aS.list().subscribe((data) => {
+      this.listaCita = data.map(m => ({
+        value: m.idAppointment,
+        viewValue: m.idAppointment
+      }))
+    });
+
+
   }
 }
