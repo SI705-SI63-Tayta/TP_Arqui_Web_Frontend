@@ -98,6 +98,8 @@ export class ToolbarComponent implements OnInit {
         { icon: 'home', label: 'ver reseñas', route: '/resenas/registrar' },
         { icon: 'home', label: 'Top5 personal', route: '/reportes/top5personal' },
         { icon: 'home', label: 'Recetas finalizas cliente', route: '/reportes/recipesfinished' },
+        { icon: 'home', label: 'Pacientes atendidos por Personal', route: '/reportes/listpatientsbystaff' },
+        { icon: 'home', label: 'Pacientes atendidos por Fecha', route: '/reportes/listpatientsbydate' }
       ]
     }
 

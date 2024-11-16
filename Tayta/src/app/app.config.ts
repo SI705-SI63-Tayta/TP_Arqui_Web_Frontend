@@ -8,6 +8,7 @@ import { provideHttpClient, withFetch,withInterceptorsFromDi } from '@angular/co
 import {LayoutModule} from '@angular/cdk/layout'
 import { JwtModule } from '@auth0/angular-jwt';
 import { provideCharts, withDefaultRegisterables } from 'ng2-charts';
+import { provideNativeDateAdapter } from '@angular/material/core';
 
 export function tokenGetter() {
 
@@ -20,7 +21,7 @@ export function tokenGetter() {
 }
 
 export const appConfig: ApplicationConfig = {
-  providers: [provideZoneChangeDetection({ eventCoalescing: true }), provideRouter(routes), provideClientHydration(), provideAnimationsAsync(),provideHttpClient(withFetch(), withInterceptorsFromDi()), provideAnimationsAsync(),LayoutModule,
+  providers: [provideZoneChangeDetection({ eventCoalescing: true }), provideRouter(routes), provideClientHydration(), provideAnimationsAsync(),provideHttpClient(withFetch(), withInterceptorsFromDi()), provideAnimationsAsync(),LayoutModule,provideNativeDateAdapter(),
     importProvidersFrom(
       JwtModule.forRoot({
         config: {

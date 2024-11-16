@@ -3,6 +3,8 @@ import { environment } from '../../environments/environments';
 import { HttpClient } from '@angular/common/http';
 import { Appointment } from '../models/Appointment';
 import { map, Observable, Subject } from 'rxjs';
+import { ListPatientsByStaffDTO } from '../models/ListPatientsByStaffDTO';
+import { ListPatientsByDateDTO } from '../models/ListPatientsByDateDTO';
 const base_url=environment.base
 
 @Injectable({
@@ -49,5 +51,15 @@ private url=`${base_url}/citas`
     return this.list().pipe(
       map(ap=>ap.filter(a=>a.userPersonal.idUser===id))
     );
+  }
+
+  listPatientsByStaff(personal:number):Observable<ListPatientsByStaffDTO[]>{
+    const url =  (`${this.url}/ListarPacientesPorPersonal?personal=${personal}`);
+    return this.http.get<ListPatientsByStaffDTO[]>(url);
+  }
+
+  listPatientsByDate(fecha:String):Observable<ListPatientsByDateDTO[]>{
+    const url = (`${this.url}/ListarPacientesPorFecha?fecha=${fecha}`);
+    return this.http.get<ListPatientsByDateDTO[]>(url);
   }
 }

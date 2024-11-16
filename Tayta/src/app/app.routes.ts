@@ -29,6 +29,8 @@ import { CreareditaruserComponent } from './components/user/creareditaruser/crea
 import { ReportesComponent } from './components/reportes/reportes.component';
 import { Top5calificacionComponent } from './components/reportes/top5calificacion/top5calificacion.component';
 import { RecipesfinishedclientComponent } from './components/reportes/recipesfinishedclient/recipesfinishedclient.component';
+import { ListpatientsbystaffComponent } from './components/reportes/listpatientsbystaff/listpatientsbystaff.component';
+import { ListpatientsbydateComponent } from './components/reportes/listpatientsbydate/listpatientsbydate.component';
 
 
 export const routes: Routes = [
@@ -166,6 +168,12 @@ export const routes: Routes = [
           },
           {
             path:'recipesfinished', component: RecipesfinishedclientComponent
+          },
+          {
+            path:'listpatientsbystaff', component: ListpatientsbystaffComponent
+          },
+          {
+            path:'listpatientsbydate', component: ListpatientsbydateComponent
           }
         ]
       }

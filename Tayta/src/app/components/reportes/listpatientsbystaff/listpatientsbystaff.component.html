@@ -1,0 +1,46 @@
+<div>
+    <!-- MatSelect para seleccionar un médico -->
+    <mat-form-field appearance="fill">
+      <mat-label>Seleccionar Personal</mat-label>
+      <mat-select [(ngModel)]="nameStaff">
+        <mat-option *ngFor="let medico of listaMedicos" [value]="medico.value">
+          {{ medico.viewValue }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  
+    <!-- Botón para listar pacientes -->
+    <button mat-raised-button color="primary" (click)="getData()">Listar</button>
+  
+    <!-- Verificación de carga de datos -->
+    <div *ngIf="reporteData.data.length === 0 && nameStaff">
+      No se encontraron datos para mostrar.
+    </div>
+  
+    <!-- Tabla que se muestra después de presionar el botón y cargar los datos -->
+    <table mat-table [dataSource]="reporteData" class="mat-elevation-z8" *ngIf="reporteData.data.length > 0">
+      <!-- Columna 1 -->
+      <ng-container matColumnDef="c1">
+        <th mat-header-cell *matHeaderCellDef> Nombre del Personal </th>
+        <td mat-cell *matCellDef="let element"> {{ element.staffName }} </td>
+      </ng-container>
+  
+      <!-- Columna 2 -->
+      <ng-container matColumnDef="c2">
+        <th mat-header-cell *matHeaderCellDef> Rol del Personal </th>
+        <td mat-cell *matCellDef="let element"> {{ element.tipoRol }} </td>
+      </ng-container>
+  
+      <!-- Columna 3 -->
+      <ng-container matColumnDef="c3">
+        <th mat-header-cell *matHeaderCellDef> Nombre Cliente </th>
+        <td mat-cell *matCellDef="let element"> {{ element.patientName }} </td>
+      </ng-container>
+  
+      <!-- Encabezado de la tabla -->
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <!-- Filas de la tabla -->
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+  </div>
+  

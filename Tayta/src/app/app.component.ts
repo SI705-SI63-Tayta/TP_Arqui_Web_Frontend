@@ -16,7 +16,7 @@ import { LoginComponent } from "./components/login/login.component";
 import { LoginService } from './services/login.service';
 import { ListarAppointmentComponent } from "./components/appointment/listar-appointment/listar-appointment.component";
 import { isPlatformBrowser } from '@angular/common';
-import { vari } from '../var/var';
+import { vari } from './var/var';
 //import { vari } from '../var/var'; 
 
 

@@ -1,0 +1,32 @@
+<div>
+    <!-- MatDatepicker para seleccionar una fecha -->
+    <mat-form-field appearance="fill">
+      <mat-label>Seleccionar Fecha</mat-label>
+      <input matInput [matDatepicker]="picker" [(ngModel)]="selectedDate" />
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+  
+    <!-- Botón para listar pacientes -->
+    <button mat-raised-button color="primary" (click)="getData()">Listar</button>
+  
+    <!-- Verificación de carga de datos -->
+    <div *ngIf="reporteData.data.length === 0 && selectedDate">
+      No se encontraron datos para mostrar.
+    </div>
+  
+    <!-- Tabla que se muestra después de presionar el botón y cargar los datos -->
+    <table mat-table [dataSource]="reporteData" class="mat-elevation-z8" *ngIf="reporteData.data.length > 0">
+      <!-- Columna de nombres de pacientes -->
+      <ng-container matColumnDef="c1">
+        <th mat-header-cell *matHeaderCellDef> Nombre del Paciente </th>
+        <td mat-cell *matCellDef="let element"> {{ element.namePatient }} </td>
+      </ng-container>
+
+      <!-- Encabezado de la tabla -->
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <!-- Filas de la tabla -->
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+  </div>
+  
