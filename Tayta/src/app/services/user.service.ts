@@ -57,6 +57,12 @@ export class UserService {
     );
   }
 
+  getClientes(): Observable<User[]> {
+    return this.list().pipe(
+      map(users => users.filter(user => user.role.tipoRol === 'CLIENTE'))
+    );
+  }
+
   // Método para actualizar el usuario junto con la contraseña
   updateUserWithPassword(userData: any): Observable<any> {
     return this.http.put(`${this.url}/update-with-password`, userData);

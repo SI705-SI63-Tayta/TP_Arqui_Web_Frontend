@@ -16,7 +16,8 @@ import { LoginComponent } from "./components/login/login.component";
 import { LoginService } from './services/login.service';
 import { ListarAppointmentComponent } from "./components/appointment/listar-appointment/listar-appointment.component";
 import { isPlatformBrowser } from '@angular/common';
-//import { vari } from '../var/var'; 
+import { vari } from '../var/var';
+//import { vari } from '../var/var';
 
 
 @Component({
@@ -37,10 +38,20 @@ export class AppComponent implements OnInit{
 
 
   ngOnInit() {
-    
+    this.loadGoogleMaps();
   }
 
-  
+  loadGoogleMaps() {
+    // Verificamos si estamos en el navegador
+    if (isPlatformBrowser(this.platformId)) {
+      const script = document.createElement('script');
+      script.src = `https://maps.googleapis.com/maps/api/js?key=${vari.googleMapsApiKey}&libraries=places`;
+      script.async = true;
+      script.defer = true;
+      document.head.appendChild(script);
+    }
+  }
+
   close() {
     sessionStorage.clear();
   }

@@ -8,17 +8,21 @@ import { MatButtonModule } from '@angular/material/button';
 import { CommonModule } from '@angular/common';
 import { User } from '../../../models/User';
 import { LoginService } from '../../../services/login.service';
+import { UserService } from '../../../services/user.service';
+import { MatSelectModule } from '@angular/material/select';
 
 @Component({
   selector: 'app-creareditardailyactivities',
   standalone: true,
-  imports: [MatInputModule, MatButtonModule, ReactiveFormsModule, CommonModule],
+  imports: [MatInputModule, MatButtonModule, ReactiveFormsModule, CommonModule, MatSelectModule],
   templateUrl: './creareditardailyactivities.component.html',
   styleUrl: './creareditardailyactivities.component.css'
 })
 export class CreareditardailyactivitiesComponent implements OnInit {
   form: FormGroup = new FormGroup({});
+  form2: FormGroup = new FormGroup({});
   activities: DailyActivities = new DailyActivities();
+  listaClientes: { value: number; viewValue: string }[] = [];
 
   edicion: boolean = false;
   id: number = 0;
@@ -28,7 +32,8 @@ export class CreareditardailyactivitiesComponent implements OnInit {
     private dS: DailyactivitiesService,
     private router: Router,
     private route: ActivatedRoute,
-    private lS:LoginService
+    private lS:LoginService,
+    private uS:UserService
   ) { }
 
   ngOnInit(): void {
@@ -44,6 +49,16 @@ export class CreareditardailyactivitiesComponent implements OnInit {
       codigo: [''],
       nombreHabito: ['', Validators.required],
     });
+
+    if(this.isAdministrador()){
+      this.getClientes();
+      this.form2 = this.formBuilder.group({
+        codigo: [''],
+        usuario: ['', Validators.required],
+        nombreHabito: ['', Validators.required],
+      });
+    }
+
   }
 
   insertar(): void {
@@ -72,19 +87,75 @@ export class CreareditardailyactivitiesComponent implements OnInit {
     }
   }
 
+  insertar2(): void {
+    if (this.form2.valid) {
+      this.activities.idActivity = this.form2.value.codigo;
+      this.activities.habits = this.form2.value.nombreHabito;
+      this.activities.user.idUser = this.form2.value.usuario;
+
+      if(this.edicion){
+        this.dS.update(this.activities).subscribe((data)=>{
+          this.dS.list().subscribe((data)=>{
+            this.dS.setList(data);
+          });
+        });
+      }else{
+        this.dS.insert(this.activities).subscribe((data)=>{
+          this.dS.list().subscribe((data)=>{
+            this.dS.setList(data);
+          });
+        });
+      }
+      this.router.navigate(['actividades']);
+
+    }
+  }
+
+
 
 
   init() {
     if (this.edicion) {
-      this.dS.listId(this.id).subscribe((data) => {
-        this.form = new FormGroup({
-          codigo: new FormControl(data.idActivity),
-          nombreHabito: new FormControl(data.habits),
+      if(this.isCliente()){
+        this.dS.listId(this.id).subscribe((data) => {
+          this.form = new FormGroup({
+            codigo: new FormControl(data.idActivity),
+            nombreHabito: new FormControl(data.habits),
+          });
+          this.activities.user.idUser=data.user.idUser;
         });
-        this.activities.user.idUser=data.user.idUser;
-      });
+      }else if(this.isAdministrador()){
+        this.dS.listId(this.id).subscribe((data) => {
+          this.form2 = new FormGroup({
+            codigo: new FormControl(data.idActivity),
+            usuario: new FormControl(data.user.idUser),
+            nombreHabito: new FormControl(data.habits),
+          });
+        });
+      }
+
     }
   }
 
+  isPersonal(){
+    return (this.lS.showRole()==='DOCTOR' || this.lS.showRole()==='ENFERMERO');
+  }
+
+  isCliente(){
+    return this.lS.showRole()==='CLIENTE';
+  }
+
+  isAdministrador(){
+    return this.lS.showRole()==='ADMINISTRADOR';
+  }
+
+  getClientes() {
+    this.uS.getClientes().subscribe((data) => {
+      this.listaClientes = data.map(u => ({
+        value: u.idUser,
+        viewValue: u.fullName
+      }))
+    });
+  }
 
 }

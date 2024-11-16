@@ -1,12 +1,37 @@
 <div class="container" style="text-align: center;margin:2%">
     <div><h1>Registro de Actividades Diarias</h1></div>
     <div>
-      <form [formGroup]="form" (submit)=" insertar()">
+      <form [formGroup]="form" (submit)=" insertar()" *ngIf="isCliente()">
         <mat-form-field class="example-full-width" *ngIf="edicion">
           <mat-label>Codigo</mat-label>
           <input matInput formControlName="codigo" />
         </mat-form-field>
         <br />
+        <mat-form-field>
+            <mat-label>Actividad</mat-label>
+            <input matInput formControlName="nombreHabito" >
+        </mat-form-field>
+        <br />
+        <div>
+          <button mat-flat-button class="custom-button" style="background-color: #27AE60; color: #fff;" >Registrar</button>
+        </div>
+      </form>
+
+      <form [formGroup]="form2" (submit)=" insertar2()" *ngIf="isAdministrador()">
+        <mat-form-field class="example-full-width" *ngIf="edicion">
+          <mat-label>Codigo</mat-label>
+          <input matInput formControlName="codigo" />
+        </mat-form-field>
+        <br />
+        <mat-form-field>
+          <mat-label>Cliente</mat-label>
+          <mat-select formControlName="usuario">
+            @for (c of listaClientes; track c) {
+            <mat-option [value]="c.value">{{ c.viewValue }}</mat-option>
+            }
+          </mat-select>
+        </mat-form-field>
+        <br>
         <mat-form-field>
             <mat-label>Actividad</mat-label>
             <input matInput formControlName="nombreHabito" >

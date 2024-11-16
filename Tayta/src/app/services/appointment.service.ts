@@ -30,7 +30,7 @@ private url=`${base_url}/citas`
   }
 
   delete(id: number) {
-    return this.http.delete(`${this.url}/${id}`);
+    return this.http.delete(`${this.url}/${id}`,{ responseType: 'text' });
   }
 
   listId(id: number) {

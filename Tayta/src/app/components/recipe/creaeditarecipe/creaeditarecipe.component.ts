@@ -62,7 +62,7 @@ export class CreaeditarecipeComponent implements OnInit {
       this.edicion = data['id'] != null;
       this.id = data['id'] || 0; // ID de receta, si existe
       this.loadAppointment(this.appointmentId); // Cargar la cita relacionada
-      //console.log(this.appointmentId);
+      //console.log(data);
       this.init();
     });
 
@@ -100,7 +100,13 @@ export class CreaeditarecipeComponent implements OnInit {
             this.rS.setList(data);
           });
         });
-        this.router.navigate(['citas']);
+
+        if(this.isDoctor()|| this.isEnfermero()){
+          this.router.navigate(['citas']);
+        }else{
+          this.router.navigate(['recetas']);
+        }
+
       } else {
         this.rS.insert(this.recipe).subscribe((savedRecipe: Recipe) => {
           console.log("Receta guardada:", savedRecipe);
@@ -155,5 +161,21 @@ export class CreaeditarecipeComponent implements OnInit {
         });
       });
     }
+  }
+
+  isAdmin(){
+    return this.lS.showRole()==='ADMINISTRADOR';
+  }
+
+  isDoctor(){
+    return this.lS.showRole()==='DOCTOR';
+  }
+
+  isEnfermero(){
+    return this.lS.showRole()==='ENFERMERO';
+  }
+
+  isCliente(){
+    return this.lS.showRole()==='CLIENTE';
   }
 }
