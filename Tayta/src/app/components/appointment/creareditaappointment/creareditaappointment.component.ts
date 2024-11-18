@@ -158,7 +158,7 @@ export class CreareditaappointmentComponent implements OnInit {
 
       if (this.isAdministrador()) {
         if (this.edicion) {
-          console.log("entre a eicion");
+          //console.log("entre a eicion");
           this.aS.update(this.appointment).subscribe((data) => {
             this.aS.list().subscribe((data) => {
               this.aS.setList(data);
@@ -179,7 +179,7 @@ export class CreareditaappointmentComponent implements OnInit {
 
   flagUpdate(): void {
     this.flagForm = true;
-    console.log(this.flagForm);
+    //console.log(this.flagForm);
   }
 
   init() {
@@ -250,15 +250,15 @@ export class CreareditaappointmentComponent implements OnInit {
       if (result) {
 
         if (result.lat && result.lng) {
-          console.log('Latitud:', result.lat);
-          console.log('Longitud:', result.lng);
+          //console.log('Latitud:', result.lat);
+          //console.log('Longitud:', result.lng);
           this.appointment.latitude = result.lat;
           this.appointment.longitude = result.lng;
         } else {
           console.log('Los datos de ubicación no son válidos');
         }
       } else {
-        console.log("No recibí nada del modal");
+        //console.log("No recibí nada del modal");
       }
     });
   }

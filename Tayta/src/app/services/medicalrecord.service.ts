@@ -4,29 +4,29 @@ import { HttpClient } from '@angular/common/http';
 import { MedicalRecord } from '../models/MedicalRecord';
 import { Observable, Subject } from 'rxjs';
 import { MedicalRecordDateDTO } from '../models/MedicalRecordDateDTO';
-const base_url=environment.base
+const base_url = environment.base
 @Injectable({
   providedIn: 'root'
 })
 export class MedicalrecordService {
-  private url=`${base_url}/HistoriaClinica`;
+  private url = `${base_url}/HistoriaClinica`;
   private listaCambio = new Subject<MedicalRecord[]>();
 
-  constructor(private http:HttpClient) { }
+  constructor(private http: HttpClient) { }
 
-  list(){
+  list() {
     return this.http.get<MedicalRecord[]>(this.url);
   }
 
-  insert(mr:MedicalRecord){
+  insert(mr: MedicalRecord) {
     return this.http.post(this.url, mr)
   }
 
-  setList(listaNueva:MedicalRecord[]){
+  setList(listaNueva: MedicalRecord[]) {
     this.listaCambio.next(listaNueva);
   }
 
-  getList(){
+  getList() {
     return this.listaCambio.asObservable();
   }
 
@@ -42,8 +42,8 @@ export class MedicalrecordService {
     return this.http.put(this.url, mr);
   }
   getHistoriaClinicaPeriodo(date1: string, date2: string): Observable<MedicalRecordDateDTO[]> {
-    const url = `${this.url}/historiaclinicaperiodo?date1=${date1}&date2=${date2}`;
+    const url = `${this.url}/fechaCita?date1=${date1}&date2=${date2}`;
     return this.http.get<MedicalRecordDateDTO[]>(url);
-}
+  }
 }
 

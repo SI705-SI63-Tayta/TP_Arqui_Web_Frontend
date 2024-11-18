@@ -68,14 +68,14 @@ export class CreareditardailyactivitiesComponent implements OnInit {
       this.activities.user.idUser = this.idCliente;
 
       if(this.edicion){
-        console.log("aqui entre");
+        //console.log("aqui entre");
         this.dS.update(this.activities).subscribe((data)=>{
           this.dS.getActivitiesByCliente(this.idCliente).subscribe((data)=>{
             this.dS.setList(data);
           });
         });
       }else{
-        console.log("aqui no entre");
+        //console.log("aqui no entre");
         this.dS.insert(this.activities).subscribe((data)=>{
           this.dS.getActivitiesByCliente(this.idCliente).subscribe((data)=>{
             this.dS.setList(data);

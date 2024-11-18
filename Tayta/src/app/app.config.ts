@@ -26,10 +26,10 @@ export const appConfig: ApplicationConfig = {
       JwtModule.forRoot({
         config: {
           tokenGetter: tokenGetter,
-          allowedDomains: ['localhost:8081'],
-          //allowedDomains: ['52.167.229.156:8081'],
-          //disallowedRoutes: ['http://52.167.229.156:8081/login/forget'],
-          disallowedRoutes: ['http://localhost:8081/login/forget'],
+          //allowedDomains: ['localhost:8081'],
+          allowedDomains: ['taytabackend.eastus2.cloudapp.azure.com:8081'],
+          disallowedRoutes: ['http://taytabackend.eastus2.cloudapp.azure.com:8081/login/forget'],
+          //disallowedRoutes: ['http://localhost:8081/login/forget'],
         },
       })
     ), provideCharts(withDefaultRegisterables()),

@@ -1,29 +1,46 @@
-<div class="title-container">
-    <h1>Histpria clinica en un periodo de tiempo</h1>
-  </div>
-  <div class="date-inputs">
-    <label for="date1">Fecha de inicio:</label>
-    <input type="date" [(ngModel)]="date1" id="date1" />
+<div>
+  <!-- MatDatepicker para seleccionar la fecha de inicio -->
+  <mat-form-field appearance="fill">
+    <mat-label>Fecha de Inicio</mat-label>
+    <input matInput [matDatepicker]="picker1" [(ngModel)]="startDate" />
+    <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+    <mat-datepicker #picker1></mat-datepicker>
+  </mat-form-field>
   
-    <label for="date2">Fecha de fin:</label>
-    <input type="date" [(ngModel)]="date2" id="date2" />
-  
+  <!-- MatDatepicker para seleccionar la fecha de fin -->
+  <mat-form-field appearance="fill">
+    <mat-label>Fecha de Fin</mat-label>
+    <input matInput [matDatepicker]="picker2" [(ngModel)]="endDate" />
+    <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+    <mat-datepicker #picker2></mat-datepicker>
+  </mat-form-field>
 
-    <button (click)="getData()">Generar reporte</button>
-  
+  <!-- Botón para listar registros médicos -->
+  <button mat-raised-button color="primary" (click)="getData()">Listar</button>
 
-    <p *ngIf="date1 && date2 && !isDateRangeValid()" class="error-message">
-      La fecha de inicio no puede ser mayor que la fecha final.
-    </p>
+  <!-- Verificación de carga de datos -->
+  <div *ngIf="reporteData.data.length === 0 && startDate && endDate">
+    No se encontraron datos para mostrar.
   </div>
-  <div class="chart-container">
-    <canvas
-      baseChart
-      [datasets]="barChartData"
-      [labels]="barChartLabels"
-      [options]="barChartOptions"
-      [legend]="barChartLegend"
-      [type]="barChartType"
-    ></canvas>
-  </div>
-  
+
+  <!-- Tabla que se muestra después de presionar el botón y cargar los datos -->
+  <table mat-table [dataSource]="reporteData" class="mat-elevation-z8" *ngIf="reporteData.data.length > 0">
+
+    <!-- Columna de DNI -->
+    <ng-container matColumnDef="dni">
+      <th mat-header-cell *matHeaderCellDef> DNI </th>
+      <td mat-cell *matCellDef="let element"> {{ element.dni }} </td>
+    </ng-container>
+
+    <!-- Columna de diagnóstico -->
+    <ng-container matColumnDef="diagnostico">
+      <th mat-header-cell *matHeaderCellDef> Diagnóstico </th>
+      <td mat-cell *matCellDef="let element"> {{ element.diagnostico }} </td>
+    </ng-container>
+
+    <!-- Encabezado de la tabla -->
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <!-- Filas de la tabla -->
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+</div>

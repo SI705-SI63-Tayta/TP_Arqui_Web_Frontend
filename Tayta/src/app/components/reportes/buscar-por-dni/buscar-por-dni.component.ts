@@ -45,9 +45,8 @@ export class BuscarPorDNIComponent implements OnInit {
       this.sA.getuserperdni(dni1).subscribe(
         data => {
           this.listauser = data;
-          console.log(data);
         },
-        
+
         error => {
           console.error('Error fetching incidents:', error);
         }

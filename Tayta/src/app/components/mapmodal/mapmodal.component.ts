@@ -37,14 +37,14 @@ export class MapmodalComponent implements AfterViewInit{
 
     ngAfterViewInit(): void {
       this.initializeAutocomplete();
-      console.log(this.data);
+      //console.log(this.data);
       if (this.data.latitude != 0 && this.data.longtitude != 0) {
-        console.log("Entre aqui");
+        //console.log("Entre aqui");
         this.userLocation = {
           lat: this.data.latitude,
           lng: this.data.longtitude,
         };
-        console.log("Mostrando marcador");
+        //console.log("Mostrando marcador");
         this.mapOptions = { ...this.mapOptions, center: this.userLocation };
 
         // Forzar la detección de cambios después de asignar los valores
@@ -90,7 +90,7 @@ export class MapmodalComponent implements AfterViewInit{
               lng: position.coords.longitude,
             };
             this.mapOptions = { ...this.mapOptions, center: this.userLocation };
-            console.log(`Tu ubicación es: Latitud ${position.coords.latitude}, Longitud ${position.coords.longitude}`);
+            //console.log(`Tu ubicación es: Latitud ${position.coords.latitude}, Longitud ${position.coords.longitude}`);
           },
           () => console.log('No se pudo obtener la ubicación.')
         );

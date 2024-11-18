@@ -94,7 +94,7 @@ export class CreaeditarecipeComponent implements OnInit {
       this.recipe.state = this.form.value.estado;
 
       if (this.edicion) {
-        console.log(this.recipe);
+        //console.log(this.recipe);
         this.rS.update(this.recipe).subscribe(() => {
           this.rS.list().subscribe((data) => {
             this.rS.setList(data);
@@ -109,7 +109,7 @@ export class CreaeditarecipeComponent implements OnInit {
 
       } else {
         this.rS.insert(this.recipe).subscribe((savedRecipe: Recipe) => {
-          console.log("Receta guardada:", savedRecipe);
+          //console.log("Receta guardada:", savedRecipe);
 
           if (savedRecipe && savedRecipe.idRecipe) {
             this.recipe = savedRecipe;
@@ -137,7 +137,7 @@ export class CreaeditarecipeComponent implements OnInit {
     notification.recipe.idRecipe = idRecipe; // Solo el idRecipe
     notification.user.idUser=idUser; // Solo el idUser
 
-    console.log("Notificación a guardar:", notification);
+    //console.log("Notificación a guardar:", notification);
 
     this.nS.insert(notification).subscribe(() => {
       this.nS.getNotificationsByCliente(this.idCliente).subscribe((data) => {

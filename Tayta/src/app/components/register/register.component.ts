@@ -82,7 +82,7 @@ export class RegisterComponent implements OnInit{
               });
             } else {
               // Asignar los valores del formulario al usuario
-              console.log(this.form.value);
+              //console.log(this.form.value);
               this.user.fullName = this.form.value.fullName;
               this.user.email = this.form.value.email;
               this.user.username = this.form.value.username;

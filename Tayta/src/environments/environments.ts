@@ -1,6 +1,6 @@
 export const environment={
     production:false,
-    base:"http://localhost:8081"
-    //base:"http://52.167.229.156:8081"
+    //base:"http://localhost:8081"
+    base:"http://taytabackend.eastus2.cloudapp.azure.com:8081"
 }
 

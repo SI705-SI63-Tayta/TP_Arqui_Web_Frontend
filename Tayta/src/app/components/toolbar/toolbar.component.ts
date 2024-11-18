@@ -14,7 +14,7 @@ import { NotificationService } from '../../services/notification.service';
 import { Notification } from '../../models/Notification';
 import { MatDialog } from '@angular/material/dialog';
 import { NotificationDialogComponent } from '../notification-dialog/notification-dialog.component';
-import {MatBadgeModule} from '@angular/material/badge';
+import { MatBadgeModule } from '@angular/material/badge';
 
 interface MenuItem {
   icon: string;
@@ -25,7 +25,7 @@ interface MenuItem {
 @Component({
   selector: 'app-toolbar',
   standalone: true,
-  imports: [MatToolbarModule, MatSidenavModule, MatButtonModule, MatIconModule, MatDividerModule, MatListModule, RouterOutlet, CommonModule, RouterModule, MatMenuModule,MatBadgeModule],
+  imports: [MatToolbarModule, MatSidenavModule, MatButtonModule, MatIconModule, MatDividerModule, MatListModule, RouterOutlet, CommonModule, RouterModule, MatMenuModule, MatBadgeModule],
   templateUrl: './toolbar.component.html',
   styleUrl: './toolbar.component.css'
 })
@@ -71,38 +71,51 @@ export class ToolbarComponent implements OnInit {
   loadItems() {
     if (this.role === 'CLIENTE') {
       this.menuItems = [
-        { icon: 'home', label: 'Registrar Cita', route: '/citas/registrar' },//LISTO
-        { icon: 'person', label: 'Ver Citas', route: '/citas' },//LISTO
-        { icon: 'person', label: 'Registrar Actividades', route: '/actividades/registrar' },//LISTO
-        { icon: 'person', label: 'Ver Actividades', route: '/actividades' },//LISTO
-        { icon: 'person', label: 'Ver Recetas', route: '/recetas' },//LISTO
-        { icon: 'person', label: 'Registrar reseña', route: '/resenas/registrar' },//LISTO
+        { icon: 'add_location', label: 'Registrar Cita', route: '/citas/registrar' },//LISTO
+        { icon: 'layers', label: 'Ver Citas', route: '/citas' },//LISTO
+        { icon: 'directions_run', label: 'Registrar Actividades', route: '/actividades/registrar' },//LISTO
+        { icon: 'directions_walk', label: 'Ver Actividades', route: '/actividades' },//LISTO
+        { icon: 'local_hospital', label: 'Ver Recetas', route: '/recetas' },//LISTO
+        { icon: 'add_comment', label: 'Registrar reseña', route: '/resenas/registrar' },//LISTO
         { icon: 'person', label: 'Ver Reseñas', route: '/resenas' },//LISTO
       ];
     } else if (this.role === 'DOCTOR' || this.role === 'ENFERMERO') {
       this.menuItems = [
-        { icon: 'person', label: 'Ver Citas', route: '/citas' },//LISTO
+        { icon: 'layers', label: 'Ver Citas', route: '/citas' },//LISTO
         { icon: 'person', label: 'Ver Reseñas', route: '/resenas' },//LISTO
-        { icon: 'person', label: 'Registrar Historia Clinica', route: '/historiaclinica/registrar' },//LISTO
-        { icon: 'person', label: 'Ver Historia Clinica', route: '/historiaclinica' },//LISTO
-        { icon: 'person', label: 'Registrar Detalle Historia', route: '/detallehistoriaclinica/registrar' },
-        { icon: 'person', label: 'Ver Detalle Historia', route: '/detallehistoriaclinica' },
+        { icon: 'view_list', label: 'Registrar Historia Clinica', route: '/historiaclinica/registrar' },//LISTO
+        { icon: 'view_headline', label: 'Ver Historia Clinica', route: '/historiaclinica' },//LISTO
+        { icon: 'view_module', label: 'Registrar Detalle Historia', route: '/detallehistoriaclinica/registrar' },
+        { icon: 'view_quilt', label: 'Ver Detalle Historia', route: '/detallehistoriaclinica' },
       ]
 
 
 
     } else if (this.role === 'ADMINISTRADOR') {
       this.menuItems = [
-        { icon: 'person', label: 'Registrar Detalle Historia', route: '/detallehistoriaclinica/registrar' },
-        { icon: 'person', label: 'Ver Detalle Historia', route: '/detallehistoriaclinica' },
+        { icon: 'add_location', label: 'Registrar Cita', route: '/citas/registrar' },//LISTO
+        { icon: 'layers', label: 'Ver Citas', route: '/citas' },//LISTO
+        { icon: 'directions_run', label: 'Registrar Actividades', route: '/actividades/registrar' },//LISTO
+        { icon: 'directions_walk', label: 'Ver Actividades', route: '/actividades' },//LISTO
+        { icon: 'local_hospital', label: 'Ver Recetas', route: '/recetas' },//LISTO
+        { icon: 'add_comment', label: 'Registrar reseña', route: '/resenas/registrar' },//LISTO
+        { icon: 'person', label: 'Ver Reseñas', route: '/resenas' },//LISTO
+        { icon: 'view_list', label: 'Registrar Historia Clinica', route: '/historiaclinica/registrar' },//LISTO
+        { icon: 'view_headline', label: 'Ver Historia Clinica', route: '/historiaclinica' },//LISTO
+        { icon: 'view_module', label: 'Registrar Detalle Historia', route: '/detallehistoriaclinica/registrar' },
+        { icon: 'view_quilt', label: 'Ver Detalle Historia', route: '/detallehistoriaclinica' },
 
-        // { icon: 'home', label: 'ver reporte cantidad', route: '/reportes/cantidadcitas' },//EMERZON
-        // { icon: 'home', label: 'ver reporte citas periodo', route: '/reportes/cantidadcitasPediodo' },//EMERZON
-        // { icon: 'home', label: 'Top5 personal', route: '/reportes/top5personal' },//RENZO
-        // { icon: 'home', label: 'Recetas finalizas cliente', route: '/reportes/recipesfinished' },//RENZO
-        // { icon: 'home', label: 'Calificacion mayor a 3', route: '/reportes/listaCalificacionmayor3' },//ANTONIO
-        // { icon: 'home', label: 'rolporusuario', route: '/reportes/rolporusuario' },//ALBERTO
-        // { icon: 'home', label: 'BuscarporDNI', route: '/reportes/Buscarpordni' },//ALBERTO
+
+        { icon: 'equalizer', label: 'Ver reporte cantidad', route: '/reportes/modocitas' },//EMERZON
+        { icon: 'equalizer', label: 'Ver reporte citas periodo', route: '/reportes/Cantidadcitasperiodo' },//EMERZON
+        { icon: 'equalizer', label: 'Top5 personal', route: '/reportes/top5personal' },//RENZO
+        { icon: 'equalizer', label: 'Recetas finalizas cliente', route: '/reportes/recipesfinished' },//RENZO
+        { icon: 'equalizer', label: 'Calificacion mayor a 3', route: '/reportes/listaCalificacionmayor3' },//ANTONIO
+        { icon: 'equalizer', label: 'Historiaclinicaperiodo', route: '/reportes/Historiaclinicaperiodo' },//ANTONIO
+        { icon: 'equalizer', label: 'Rol por usuario', route: '/reportes/rolporusuario' },//ALBERTO
+        { icon: 'equalizer', label: 'BuscarporDNI', route: '/reportes/Buscarpordni' },//ALBERTO
+        { icon: 'equalizer', label: 'Pacientes por Personal', route: '/reportes/listpatientsbystaff' },//BRUNO
+        { icon: 'equalizer', label: 'Pacientes por Fecha', route: '/reportes/listpatientsbydate' },//BRUNO
       ]
     }
 
@@ -126,7 +139,7 @@ export class ToolbarComponent implements OnInit {
     });
   }
 
-  closeSession(){
+  closeSession() {
     this.navigateTo("/login");
     sessionStorage.clear();
   }

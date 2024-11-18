@@ -38,11 +38,11 @@ export class ListpatientsbystaffComponent implements OnInit{
 
   constructor(private apS: AppointmentService, private usS: UserService) {}
 
-  
+
   getData(): void {
-    
+
     this.apS.listPatientsByStaff(this.nameStaff).subscribe((data: ListPatientsByStaffDTO[]) => {
-      console.log(data); // Verifica el contenido de los datos
+      //console.log(data); // Verifica el contenido de los datos
       this.reporteData = new MatTableDataSource(data);
     });
   }

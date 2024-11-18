@@ -55,7 +55,7 @@ export class LoginService {
       }
       const helper = new JwtHelperService();
       const decodedToken = helper.decodeToken(token);
-      console.log(decodedToken);
+      //console.log(decodedToken);
       return decodedToken?.username;
     }
     return null;
@@ -74,7 +74,7 @@ export class LoginService {
       }
       const helper = new JwtHelperService();
       const decodedToken = helper.decodeToken(token);
-      console.log(decodedToken);
+      //console.log(decodedToken);
 
       let id = decodedToken?.id;
       if (id) {
