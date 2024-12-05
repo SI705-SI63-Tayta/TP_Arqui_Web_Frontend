@@ -11,6 +11,7 @@ import { MedicalrecordService } from '../../../services/medicalrecord.service';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { UserService } from '../../../services/user.service';
 import { User } from '../../../models/User';
+import { map } from 'rxjs';
 
 
 
@@ -58,7 +59,7 @@ export class CreaeditamedicalrecordComponent {
       hfecha: ['', Validators.required],
       husuario: ['', Validators.required],
     });
-    this.uS.list().subscribe((data) => {
+    this.uS.list().pipe(map(u=>u.filter(us=>us.role.tipoRol==='CLIENTE'))).subscribe((data) => {
       this.listaUsuarios = data;
     });
   }

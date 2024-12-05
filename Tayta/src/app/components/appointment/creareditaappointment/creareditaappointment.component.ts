@@ -65,7 +65,6 @@ export class CreareditaappointmentComponent implements OnInit {
       this.id = data['id'];
       this.edicion = data['id'] > 0;
       //trae los datos
-
       this.init();
       this.getMedicos();
       if(this.isAdministrador()){
@@ -89,6 +88,7 @@ export class CreareditaappointmentComponent implements OnInit {
         this.modoPresencial = value === 'Presencial'; // Actualiza la variable si es presencial
       });
     }
+
     this.form = this.formBuilder.group({
       codigo: [''],
       fecha: ['', Validators.required],
@@ -165,6 +165,7 @@ export class CreareditaappointmentComponent implements OnInit {
             });
           });
         } else {
+          console.log("tambinn estoy aqui")
           this.aS.insert(this.appointment).subscribe((data) => {
             this.aS.list().subscribe((data) => {
               this.aS.setList(data);
@@ -185,7 +186,7 @@ export class CreareditaappointmentComponent implements OnInit {
   init() {
     if (this.edicion) {
 
-      if(this.isCliente()){
+      if(this.isCliente() || this.isPersonal()){
         this.aS.listId(this.id).subscribe((data) => {
           this.form = new FormGroup({
             codigo: new FormControl(data.idAppointment),
